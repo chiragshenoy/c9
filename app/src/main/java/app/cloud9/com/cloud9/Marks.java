@@ -38,7 +38,6 @@ public class Marks extends Activity {
     ListView subjects_listview;
     private ArrayAdapter<String> listAdapter;
     ArrayList<String> subjectList;
-    ArrayList<String> marks_to_be_passed;
     String name = "";
     Bundle b;
 
