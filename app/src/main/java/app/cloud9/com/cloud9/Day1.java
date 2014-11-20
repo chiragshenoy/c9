@@ -1,17 +1,23 @@
 package app.cloud9.com.cloud9;
 
-import android.app.Activity;
+/**
+ * Created by chirag on 20/11/14.
+ */
+
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Created by chirag on 16/11/14.
+ * Created by Chirag on 06-11-2014.
  */
-public class DisplayMarksAndAttendance extends ActionBarActivity {
+public class Day1 extends Fragment {
 
     JSONObject full_json;
     JSONObject json_current_subject;
@@ -64,36 +70,37 @@ public class DisplayMarksAndAttendance extends ActionBarActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.display_marks_and_attendance);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View d1 = inflater.inflate(R.layout.display_marks_and_attendance, container, false);
 
-        i1 = (TextView) findViewById(R.id.i1);
-        i2 = (TextView) findViewById(R.id.i2);
-        i3 = (TextView) findViewById(R.id.i3);
-
-
-        q1 = (TextView) findViewById(R.id.q1);
-        q2 = (TextView) findViewById(R.id.q2);
-
-        la = (TextView) findViewById(R.id.la);
-        lh = (TextView) findViewById(R.id.lh);
-
-        ta = (TextView) findViewById(R.id.ta);
-        th = (TextView) findViewById(R.id.th);
-
-        final_cie_marks = (TextView) findViewById(R.id.final_cie_marks);
-        el = (TextView) findViewById(R.id.el);
-
-        l1 = (TextView) findViewById(R.id.l1);
-        l2 = (TextView) findViewById(R.id.l2);
+        i1 = (TextView) d1.findViewById(R.id.i1);
+        i2 = (TextView) d1.findViewById(R.id.i2);
+        i3 = (TextView) d1.findViewById(R.id.i3);
 
 
-        Bundle bundle = getIntent().getExtras();
+        q1 = (TextView) d1.findViewById(R.id.q1);
+        q2 = (TextView) d1.findViewById(R.id.q2);
 
-        all_marks_string = bundle.getString("marks");
+        la = (TextView) d1.findViewById(R.id.la);
+        lh = (TextView) d1.findViewById(R.id.lh);
 
-        subject_name_string = bundle.getString("subject_name");
+        ta = (TextView) d1.findViewById(R.id.ta);
+        th = (TextView) d1.findViewById(R.id.th);
+
+        final_cie_marks = (TextView) d1.findViewById(R.id.final_cie_marks);
+        el = (TextView) d1.findViewById(R.id.el);
+
+        l1 = (TextView) d1.findViewById(R.id.l1);
+        l2 = (TextView) d1.findViewById(R.id.l2);
+
+
+        Temp activity = (Temp) getActivity();
+
+        String all_marks_string = activity.getAllMarks();
+
+        String subject_name_strin1;
+
 
         try {
             full_json = new JSONObject(all_marks_string);
@@ -101,8 +108,9 @@ public class DisplayMarksAndAttendance extends ActionBarActivity {
             e.printStackTrace();
         }
 
+
         try {
-            current_subject_string = full_json.getString(subject_name_string);
+            current_subject_string = full_json.getString("unix system programming");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -233,5 +241,9 @@ public class DisplayMarksAndAttendance extends ActionBarActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        return d1;
+
+
     }
+
 }

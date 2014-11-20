@@ -125,7 +125,7 @@ public class LoginPage extends Activity implements
         Log.v(TAG, "Connected. Yay!");
         welcome.setText("You are logged in as :" + mPlusClient.getAccountName());
 
-        Intent a = new Intent(this, HomePage.class);
+        Intent a = new Intent(this, MainActivity.class);
         startActivity(a);
 
         // Turn off the flag, so if the user signs out they'll have to
