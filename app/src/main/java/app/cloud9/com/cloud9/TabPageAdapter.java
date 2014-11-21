@@ -34,7 +34,8 @@ public class TabPageAdapter extends FragmentStatePagerAdapter {
                 return new Subject4();
             case 4:
                 return new Subject5();
-
+            case 5:
+                return new Subject6();
 
         }
         return null;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Slider Menu</string>
+    <string name="app_name">Cloud 9</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="drawer_opened">Slider Menu Opened</string>
@@ -12,7 +12,6 @@
         <item>Home</item>
         <item>About Us</item>
         <item>Contact Us</item>
-
         <item>What\'s Hot</item>
     </string-array>
 
