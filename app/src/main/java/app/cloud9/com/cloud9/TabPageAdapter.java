@@ -17,16 +17,25 @@ public class TabPageAdapter extends FragmentStatePagerAdapter {
         // TODO Auto-generated constructor stub
     }
 
+    int i = 0;
 
     @Override
     public Fragment getItem(int i) {
         switch (i) {
             case 0:
                 //Fragement for Android Tab
-                return new Day1();
+                return new Subject1();
             case 1:
                 //Fragment for Ios Tab
-                return new Day2();
+                return new Subject2();
+            case 2:
+                return new Subject3();
+            case 3:
+                return new Subject4();
+            case 4:
+                return new Subject5();
+
+
         }
         return null;
     }
@@ -34,6 +43,10 @@ public class TabPageAdapter extends FragmentStatePagerAdapter {
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        return 2; //No of Tabs
+        return i; //No of Tabs
+    }
+
+    public void get_number_of_subject(int x) {
+        i = x;
     }
 }

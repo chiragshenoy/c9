@@ -175,7 +175,7 @@ public class HomePage extends Fragment {
                 b.putStringArrayList("names_of_subjects", subjectList);
                 //
                 b.putString("all_marks", string_marks);
-                Day1 fragobj = new Day1();
+                Subject1 fragobj = new Subject1();
                 fragobj.setArguments(b);
 
                 return null;

@@ -17,7 +17,7 @@ import org.json.JSONObject;
 /**
  * Created by Chirag on 06-11-2014.
  */
-public class Day1 extends Fragment {
+public class Subject5 extends Fragment {
 
     JSONObject full_json;
     JSONObject json_current_subject;
@@ -99,7 +99,7 @@ public class Day1 extends Fragment {
 
         String all_marks_string = activity.getAllMarks();
 
-        String subject_name_strin1;
+        String subject_name_string = activity.getPageTitle(4);
 
 
         try {
@@ -110,7 +110,7 @@ public class Day1 extends Fragment {
 
 
         try {
-            current_subject_string = full_json.getString("unix system programming");
+            current_subject_string = full_json.getString(subject_name_string);
         } catch (JSONException e) {
             e.printStackTrace();
         }

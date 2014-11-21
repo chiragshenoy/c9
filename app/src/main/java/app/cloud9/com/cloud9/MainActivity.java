@@ -2,8 +2,10 @@ package app.cloud9.com.cloud9;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.ProgressDialog;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
@@ -13,9 +15,25 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class MainActivity extends ActionBarActivity {
     private DrawerLayout mDrawerLayout;
@@ -35,10 +53,32 @@ public class MainActivity extends ActionBarActivity {
     private ArrayList<NavDrawerItem> navDrawerItems;
     private NavDrawerListAdapter adapter;
 
+    Button get_marks;
+    HttpClient client;
+    final static String URL = "http://dev.isharath.com/data";
+    JSONObject json;
+    TextView welcome;
+    private ArrayAdapter<String> listAdapter;
+    ArrayList<String> subjectList;
+    String name = "";
+    String usn = "";
+    Bundle b;
+    String string_marks;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        welcome = (TextView) findViewById(R.id.welcome);
+        //Drama
+
+        b = new Bundle();
+        client = new DefaultHttpClient();
+        subjectList = new ArrayList<String>();
+        //new Read().execute();
+        //Ends
+
 
         mTitle = mDrawerTitle = getTitle();
 
@@ -218,6 +258,104 @@ public class MainActivity extends ActionBarActivity {
         super.onConfigurationChanged(newConfig);
         // Pass any configuration change to the drawer toggls
         mDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    public JSONObject get_entire_json() throws IOException, JSONException {
+
+        StringBuilder url = new StringBuilder(URL);
+        HttpGet get = new HttpGet(url.toString());
+        HttpResponse r = client.execute(get);
+
+        int status = r.getStatusLine().getStatusCode();
+
+        if (status == 200) {
+            HttpEntity e = r.getEntity();
+            String data = EntityUtils.toString(e);
+            JSONObject full_json = new JSONObject(data);
+
+            return full_json;
+        } else {
+            Toast.makeText(this, "error", Toast.LENGTH_SHORT).show();
+            return null;
+
+        }
+    }
+
+    public class Read extends AsyncTask<String, Integer, String> {
+        /**
+         * progress dialog to show user that the backup is processing.
+         */
+        private ProgressDialog dialog = new ProgressDialog(MainActivity.this);
+
+        @Override
+        protected void onPreExecute() {
+            this.dialog.setMessage("Please wait");
+            this.dialog.show();
+        }
+
+        int i = 0;
+
+        //Only getting the list of the subjects and getting basic info
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                json = get_entire_json();
+                String string_basic_info = json.getString("basic_info");
+                JSONObject json_basic_info = new JSONObject(string_basic_info);
+
+                //Get only marks Objects
+                string_marks = json.getString("marks");
+                b.putString("marks", string_marks);
+                JSONObject json_marks = new JSONObject(string_marks);
+
+                //Get names of the objects dynamically
+                Iterator keys = json_marks.keys();
+
+                while (keys.hasNext()) {
+                    // loop to get the dynamic key
+
+                    String currentDynamicKey = (String) keys.next();
+                    subjectList.add(i, currentDynamicKey);
+                    i++;
+                }
+                name = json_basic_info.getString("name");
+                usn = json_basic_info.getString("usn");
+
+                b.putStringArrayList("names_of_subjects", subjectList);
+                //
+                b.putString("all_marks_string", string_marks);
+                Subject1 fragobj = new Subject1();
+                fragobj.setArguments(b);
+
+                return null;
+
+            } catch (ClientProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            if (dialog.isShowing()) {
+                dialog.dismiss();
+            }
+            //welcome.setText("Welcome " + name.toUpperCase());
+            // listAdapter.notifyDataSetChanged();
+            welcome.setText(name + usn);
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+
+        }
     }
 
 }

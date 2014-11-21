@@ -9,7 +9,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -21,7 +20,6 @@ public class Temp extends ActionBarActivity {
     TextView tv;
     String s = "";
     ArrayList<String> arr;
-    ActionBar.Tab tab1, tab2, tab3;
     String all_marks_string;
 
     private DrawerLayout mDrawerLayout;
@@ -41,7 +39,6 @@ public class Temp extends ActionBarActivity {
     private ArrayList<NavDrawerItem> navDrawerItems;
     private NavDrawerListAdapter adapter;
 
-
     Bundle b;
 
     @Override
@@ -49,15 +46,26 @@ public class Temp extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.workshops);
         Bundle bundle = getIntent().getExtras();
-
         all_marks_string = bundle.getString("marks");
+
         b = new Bundle();
-        Toast.makeText(Temp.this, "" + all_marks_string, Toast.LENGTH_SHORT).show();
         b.putString("all_marks", all_marks_string);
-        Day1 fragobj = new Day1();
+
+        //Toast.makeText(Temp.this, "" + all_marks_string, Toast.LENGTH_SHORT).show();
+
+        Bundle c = getIntent().getExtras();
+
+        if (c != null) {
+            arr = (ArrayList<String>) c.getStringArrayList("array_list");
+        }
+
+
+        Subject1 fragobj = new Subject1();
         fragobj.setArguments(b);
 
         TabAdapter = new TabPageAdapter(getSupportFragmentManager());
+        TabAdapter.get_number_of_subject(arr.size());
+
         Tab = (ViewPager) findViewById(R.id.pager);
         Tab.setOnPageChangeListener(
                 new ViewPager.SimpleOnPageChangeListener() {
@@ -77,7 +85,6 @@ public class Temp extends ActionBarActivity {
             @Override
             public void onTabSelected(ActionBar.Tab tab, android.support.v4.app.FragmentTransaction fragmentTransaction) {
                 Tab.setCurrentItem(tab.getPosition());
-
             }
 
             @Override
@@ -105,17 +112,18 @@ public class Temp extends ActionBarActivity {
         for (int i = 0; i < arr.size(); i++) {
             actionBar.addTab(actionBar.newTab().setText("" + arr.get(i)).setTabListener(tabListener));
         }
-        //Add New Tab
-//        actionBar.addTab(actionBar.newTab().setText("Day 1 Workshops").setTabListener(tabListener));
-//        actionBar.addTab(actionBar.newTab().setText("Day 2 Workshops").setTabListener(tabListener));
+
     }
 
     public String getAllMarks() {
         return all_marks_string;
     }
 
-    public String getAllSubjects(){
-        return null;
+    //Return title of current
+    public String getPageTitle(int position) {
+
+        return arr.get(position);
+
     }
 
 }
