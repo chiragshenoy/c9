@@ -23,10 +23,8 @@ public class TabPageAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int i) {
         switch (i) {
             case 0:
-                //Fragement for Android Tab
                 return new Subject1();
             case 1:
-                //Fragment for Ios Tab
                 return new Subject2();
             case 2:
                 return new Subject3();
@@ -36,6 +34,14 @@ public class TabPageAdapter extends FragmentStatePagerAdapter {
                 return new Subject5();
             case 5:
                 return new Subject6();
+            case 6:
+                return new Subject7();
+            case 7:
+                return new Subject8();
+            case 8:
+                return new Subject9();
+            case 9:
+                return new Subject10();
 
         }
         return null;

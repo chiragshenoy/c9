@@ -24,23 +24,6 @@ public class Temp extends ActionBarActivity {
     ArrayList<String> arr;
     String all_marks_string;
 
-    private DrawerLayout mDrawerLayout;
-    private ListView mDrawerList;
-    private ActionBarDrawerToggle mDrawerToggle;
-
-    // nav drawer title
-    private CharSequence mDrawerTitle;
-
-    // used to store app title
-    private CharSequence mTitle;
-
-    // slide menu items
-    private String[] navMenuTitles;
-    private TypedArray navMenuIcons;
-
-    private ArrayList<NavDrawerItem> navDrawerItems;
-    private NavDrawerListAdapter adapter;
-
     Bundle b;
 
     @Override
@@ -53,7 +36,6 @@ public class Temp extends ActionBarActivity {
         b = new Bundle();
         b.putString("all_marks", all_marks_string);
 
-        //Toast.makeText(Temp.this, "" + all_marks_string, Toast.LENGTH_SHORT).show();
 
         Bundle c = getIntent().getExtras();
 

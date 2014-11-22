@@ -38,10 +38,9 @@ public class HomePage extends Fragment {
 
     Button get_marks;
     HttpClient client;
-    final static String URL = "http://dev.isharath.com/data";
+    final static String URL = "https://api.myjson.com/bins/4y3gb";
     JSONObject json;
     TextView welcome;
-    private ArrayAdapter<String> listAdapter;
     ArrayList<String> subjectList;
     String name = "";
     String usn = "";
@@ -71,8 +70,6 @@ public class HomePage extends Fragment {
         relativeLayout = (RelativeLayout) rootView.findViewById(R.id.relative_layout);
 
         transition = (TransitionDrawable) relativeLayout.getBackground();
-//        transition.startTransition(1000);
-//        transition.reverseTransition(1000);
 
         final Handler handler = new Handler();
 
@@ -197,9 +194,7 @@ public class HomePage extends Fragment {
             if (dialog.isShowing()) {
                 dialog.dismiss();
             }
-            //welcome.setText("Welcome " + name.toUpperCase());
-            // listAdapter.notifyDataSetChanged();
-            welcome.setText(name + usn);
+            welcome.setText(name + " " + usn);
         }
 
         @Override
