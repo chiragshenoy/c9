@@ -27,11 +27,4 @@
         android:layout_height="wrap_content"
         android:text="Sign Out" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Marks"
-        android:id="@+id/marks"
-        android:layout_gravity="center_horizontal|top" />
-
 </FrameLayout>

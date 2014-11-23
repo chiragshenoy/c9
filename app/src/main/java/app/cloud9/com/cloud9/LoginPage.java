@@ -10,9 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.auth.GoogleAuthException;
 import com.google.android.gms.auth.GoogleAuthUtil;
@@ -49,7 +47,6 @@ public class LoginPage extends Activity implements
     // case there is a delay in any of the dialogs being ready.
     private ProgressDialog mConnectionProgressDialog;
     TextView welcome;
-    Button marks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +55,6 @@ public class LoginPage extends Activity implements
 
         welcome = (TextView) findViewById(R.id.welcome);
 
-        marks = (Button) findViewById(R.id.marks);
-        marks.setOnClickListener(this);
         // We pass through this for all three arguments, specifying the:
         // 1. Context
         // 2. Object to call onConnected and onDisconnected on
@@ -238,14 +233,6 @@ public class LoginPage extends Activity implements
                     welcome.setText("Please Log In to proceed");
                 }
                 break;
-            case R.id.marks:
-                if (!mPlusClient.isConnected()) {
-                    Toast.makeText(getApplicationContext(), "Not logged in", Toast.LENGTH_SHORT).show();
-                } else {
-                    Intent a = new Intent(this, Marks.class);
-                    startActivity(a);
-
-                }
             default:
                 // Unknown id.
         }
