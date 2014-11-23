@@ -4,6 +4,7 @@ package app.cloud9.com.cloud9;
  * Created by chirag on 20/11/14.
  */
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;

@@ -1,18 +1,15 @@
 package app.cloud9.com.cloud9;
 
-import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Temp extends ActionBarActivity {
     ViewPager Tab;
@@ -36,6 +33,10 @@ public class Temp extends ActionBarActivity {
         b = new Bundle();
         b.putString("all_marks", all_marks_string);
 
+        ArrayList<String> color = null;
+        final String[] color_list = {"#ffff00", "#ffff00", "#ffffff", "#00ff00", "#ff99aa", "#ff00ff", "#000000"};
+        final Random r = new Random();
+        r.nextInt();
 
         Bundle c = getIntent().getExtras();
 
@@ -51,17 +52,28 @@ public class Temp extends ActionBarActivity {
         TabAdapter.get_number_of_subject(arr.size());
 
         Tab = (ViewPager) findViewById(R.id.pager);
+
         Tab.setOnPageChangeListener(
                 new ViewPager.SimpleOnPageChangeListener() {
                     @Override
                     public void onPageSelected(int position) {
                         //actionBar = getSupportActionBar();
                         getSupportActionBar().setSelectedNavigationItem(position);
+                        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(color_list[r.nextInt(7)])));
+                    }
+
+                    @Override
+                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                        super.onPageScrolled(position, positionOffset, positionOffsetPixels);
                     }
                 });
         Tab.setAdapter(TabAdapter);
+
+
         actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#9C27B0")));
+//        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(a)));
+
+        //actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#9C27B0")));
         //Enable Tabs on Action Bar
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         ActionBar.TabListener tabListener = new ActionBar.TabListener() {
@@ -98,6 +110,14 @@ public class Temp extends ActionBarActivity {
             actionBar.addTab(actionBar.newTab().setText("" + arr.get(i)).setTabListener(tabListener));
         }
 
+    }
+
+    static int blendColors(int from, int to, float ratio) {
+        final float inverseRation = 1f - ratio;
+        final float r = Color.red(from) * ratio + Color.red(to) * inverseRation;
+        final float g = Color.green(from) * ratio + Color.green(to) * inverseRation;
+        final float b = Color.blue(from) * ratio + Color.blue(to) * inverseRation;
+        return Color.rgb((int) r, (int) g, (int) b);
     }
 
     public String getAllMarks() {
