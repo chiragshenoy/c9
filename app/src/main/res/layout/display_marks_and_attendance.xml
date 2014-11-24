@@ -1,98 +1,250 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="125dp"
+        android:id="@+id/ll"
+        android:orientation="horizontal"
+        android:weightSum="2">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/i1"
-        android:text="" />
 
-    <TextView
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:id="@+id/subject_icon"
+            android:layout_weight="1" />
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/i2"
-        android:text="" />
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1">
 
-    <TextView
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily=""
+                android:id="@+id/current_total_hoarding"
+                android:textSize="20sp"
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:text="CURRENT TOTAL" />
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/i3"
-        android:text="" />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/current_total_hoarding"
+                android:gravity="center"
+                android:text="ddddddddd"
+                android:id="@+id/tv_current_total" />
+        </RelativeLayout>
+    </LinearLayout>
 
-    <TextView
+    <RelativeLayout
+        android:layout_marginLeft="8dp"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/ll"
+        android:orientation="vertical">
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/q1"
-        android:text="" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:text="INTERNALS"
+            android:drawableLeft="@drawable/internalicon"
+            android:textColor="#9E9E9E"
+            android:id="@+id/internals_hoarding" />
 
-    <TextView
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ll1"
+            android:orientation="horizontal"
+            android:layout_below="@id/internals_hoarding"
+            android:weightSum="10">
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/q2"
-        android:text="" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:id="@+id/internal_number1"
+                android:layout_weight="1"
+                android:layout_gravity="center" />
 
-    <TextView
+            <ProgressBar
+                android:layout_below="@id/internals_hoarding"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:id="@+id/pb1"
+                android:max="40"
+                android:layout_gravity="center_vertical"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_weight="7" />
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/l1"
-        android:text="" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_i1_marks"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center"
+                android:layout_weight="2" />
 
-    <TextView
+        </LinearLayout>
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/l2"
-        android:text="" />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ll2"
+            android:orientation="horizontal"
+            android:layout_below="@id/ll1"
+            android:weightSum="10">
 
-    <TextView
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:id="@+id/internal_number2"
+                android:layout_weight="1"
+                android:layout_gravity="center" />
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/el"
-        android:text="" />
+            <ProgressBar
+                android:layout_below="@id/internals_hoarding"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:id="@+id/pb2"
+                android:max="40"
+                android:layout_gravity="center_vertical"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_weight="7" />
 
-    <TextView
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_i2_marks"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center"
+                android:layout_weight="2" />
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ta"
-        android:text="" />
+        </LinearLayout>
 
-    <TextView
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ll3"
+            android:orientation="horizontal"
+            android:layout_below="@id/ll2"
+            android:weightSum="10">
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/th"
-        android:text="" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:id="@+id/internal_number3"
+                android:layout_weight="1"
+                android:layout_gravity="center" />
 
-    <TextView
+            <ProgressBar
+                android:layout_below="@id/internals_hoarding"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:id="@+id/pb3"
+                android:max="40"
+                android:layout_gravity="center_vertical"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_weight="7" />
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/final_cie_marks"
-        android:text="" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_i3_marks"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center"
+                android:layout_weight="2" />
 
-    <TextView
+        </LinearLayout>
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/la"
-        android:text="" />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/ll3"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
-    <TextView
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/lh"
-        android:text="" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:drawableLeft="@drawable/quizicon"
+                    android:text="QUIZ"
+                    android:textSize="30sp"
+                    android:id="@+id/quiz_hoarding" />
 
-</LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/quiz_hoarding"
+                    android:id="@+id/tv_q1_marks" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/quiz_hoarding"
+                    android:layout_toRightOf="@id/tv_q1_marks"
+                    android:id="@+id/tv_q2_marks"
+                    android:layout_marginLeft="50dp" />
+
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:drawableLeft="@drawable/quizicon"
+                        android:text="LAB"
+                        android:textSize="30sp"
+                        android:id="@+id/lab_hoarding" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/lab_hoarding"
+                        android:id="@+id/tv_l1_marks" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/lab_hoarding"
+                        android:layout_toRightOf="@id/tv_l1_marks"
+                        android:layout_marginLeft="50dp"
+                        android:id="@+id/tv_l2_marks" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

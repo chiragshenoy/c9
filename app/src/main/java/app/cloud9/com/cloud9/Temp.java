@@ -34,7 +34,7 @@ public class Temp extends ActionBarActivity {
         b.putString("all_marks", all_marks_string);
 
         ArrayList<String> color = null;
-        final String[] color_list = {"#ffff00", "#ffff00", "#ffffff", "#00ff00", "#ff99aa", "#ff00ff", "#000000"};
+        final String[] color_list = {"#009688", "#FF5722", "#673AB7", "#00BCD4", "#CDDC39", "#FFC107", "#9E9E9E"};
         final Random r = new Random();
         r.nextInt();
 
@@ -59,12 +59,13 @@ public class Temp extends ActionBarActivity {
                     public void onPageSelected(int position) {
                         //actionBar = getSupportActionBar();
                         getSupportActionBar().setSelectedNavigationItem(position);
-                        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(color_list[r.nextInt(7)])));
+                        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(color_list[position])));
                     }
 
                     @Override
                     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                         super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+
                     }
                 });
         Tab.setAdapter(TabAdapter);
@@ -108,6 +109,7 @@ public class Temp extends ActionBarActivity {
 
         for (int i = 0; i < arr.size(); i++) {
             actionBar.addTab(actionBar.newTab().setText("" + arr.get(i)).setTabListener(tabListener));
+
         }
 
     }

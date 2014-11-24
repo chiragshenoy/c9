@@ -1,9 +1,5 @@
 package app.cloud9.com.cloud9;
 
-/**
- * Created by chirag on 20/11/14.
- */
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -27,23 +23,23 @@ public class Subject6 extends Fragment {
 
     String current_subject_string;
 
-    TextView i1;
-    TextView i2;
-    TextView i3;
-
-    TextView l1;
-    TextView l2;
-
-    TextView el;
-
-    TextView q1;
-    TextView q2;
-
-    TextView lh;
-    TextView la;
-
-    TextView th;
-    TextView ta;
+//    TextView i1;
+//    TextView i2;
+//    TextView i3;
+//
+//    TextView l1;
+//    TextView l2;
+//
+//    TextView el;
+//
+//    TextView q1;
+//    TextView q2;
+//
+//    TextView lh;
+//    TextView la;
+//
+//    TextView th;
+//    TextView ta;
 
     TextView final_cie_marks;
 
@@ -74,32 +70,32 @@ public class Subject6 extends Fragment {
                              Bundle savedInstanceState) {
         View d1 = inflater.inflate(R.layout.display_marks_and_attendance, container, false);
 
-        i1 = (TextView) d1.findViewById(R.id.i1);
-        i2 = (TextView) d1.findViewById(R.id.i2);
-        i3 = (TextView) d1.findViewById(R.id.i3);
-
-
-        q1 = (TextView) d1.findViewById(R.id.q1);
-        q2 = (TextView) d1.findViewById(R.id.q2);
-
-        la = (TextView) d1.findViewById(R.id.la);
-        lh = (TextView) d1.findViewById(R.id.lh);
-
-        ta = (TextView) d1.findViewById(R.id.ta);
-        th = (TextView) d1.findViewById(R.id.th);
-
-        final_cie_marks = (TextView) d1.findViewById(R.id.final_cie_marks);
-        el = (TextView) d1.findViewById(R.id.el);
-
-        l1 = (TextView) d1.findViewById(R.id.l1);
-        l2 = (TextView) d1.findViewById(R.id.l2);
+//        i1 = (TextView) d1.findViewById(R.id.i1);
+//        i2 = (TextView) d1.findViewById(R.id.i2);
+//        i3 = (TextView) d1.findViewById(R.id.i3);
+//
+//
+//        q1 = (TextView) d1.findViewById(R.id.q1);
+//        q2 = (TextView) d1.findViewById(R.id.q2);
+//
+//        la = (TextView) d1.findViewById(R.id.la);
+//        lh = (TextView) d1.findViewById(R.id.lh);
+//
+//        ta = (TextView) d1.findViewById(R.id.ta);
+//        th = (TextView) d1.findViewById(R.id.th);
+//
+//        final_cie_marks = (TextView) d1.findViewById(R.id.final_cie_marks);
+//        el = (TextView) d1.findViewById(R.id.el);
+//
+//        l1 = (TextView) d1.findViewById(R.id.l1);
+//        l2 = (TextView) d1.findViewById(R.id.l2);
 
 
         Temp activity = (Temp) getActivity();
 
         String all_marks_string = activity.getAllMarks();
 
-        String subject_name_string = activity.getPageTitle(5);
+        String subject_name_string = activity.getPageTitle(10);
 
 
         try {
@@ -128,7 +124,7 @@ public class Subject6 extends Fragment {
         //First Internal
         try {
             s_i1 = json_current_subject.getString("internal_1");
-            i1.setText("1st Internal marks : " + s_i1);
+            //i1.setText("1st Internal marks : " + s_i1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -136,7 +132,7 @@ public class Subject6 extends Fragment {
         //Second Internal
         try {
             s_i2 = json_current_subject.getString("internal_2");
-            i2.setText("2nd Internal marks : " + s_i2);
+            //i2.setText("2nd Internal marks : " + s_i2);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -144,7 +140,7 @@ public class Subject6 extends Fragment {
 
         try {
             s_i3 = json_current_subject.getString("internal_3");
-            i3.setText("3rd Internal marks : " + s_i3);
+            //i3.setText("3rd Internal marks : " + s_i3);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -155,7 +151,7 @@ public class Subject6 extends Fragment {
 
         try {
             s_q1 = json_current_subject.getString("quiz_1");
-            q1.setText("Quiz 1 marks : " + s_q1);
+            //q1.setText("Quiz 1 marks : " + s_q1);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -163,7 +159,7 @@ public class Subject6 extends Fragment {
 
         try {
             s_q2 = json_current_subject.getString("quiz_2");
-            q2.setText("Quiz 2 marks : " + s_q2);
+            //q2.setText("Quiz 2 marks : " + s_q2);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -172,7 +168,7 @@ public class Subject6 extends Fragment {
         //Lab Internals
         try {
             s_l1 = json_current_subject.getString("lab_internal_1");
-            l1.setText("Lab 1 : " + s_l1);
+            //l1.setText("Lab 1 : " + s_l1);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -180,7 +176,7 @@ public class Subject6 extends Fragment {
 
         try {
             s_l2 = json_current_subject.getString("lab_internal_2");
-            l2.setText("Lab 2 : " + s_l2);
+            //l2.setText("Lab 2 : " + s_l2);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -189,7 +185,7 @@ public class Subject6 extends Fragment {
         //Theory Classes
         try {
             s_th = json_current_subject.getString("theory_classes_held");
-            th.setText("Theory Held " + s_th);
+            //th.setText("Theory Held " + s_th);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -197,7 +193,7 @@ public class Subject6 extends Fragment {
 
         try {
             s_ta = json_current_subject.getString("theory_classes_attended");
-            ta.setText("Theory Attended : " + s_ta);
+            //ta.setText("Theory Attended : " + s_ta);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -206,7 +202,7 @@ public class Subject6 extends Fragment {
 
         try {
             s_el = json_current_subject.getString("lab_external");
-            el.setText("Lab External : " + s_el);
+            //el.setText("Lab External : " + s_el);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -227,7 +223,7 @@ public class Subject6 extends Fragment {
 
         try {
             s_lh = json_current_subject.getString("lab_held");
-            lh.setText("Lab Held : " + s_lh);
+            //lh.setText("Lab Held : " + s_lh);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -236,14 +232,13 @@ public class Subject6 extends Fragment {
 
         try {
             s_la = json_current_subject.getString("lab_attended");
-            la.setText("Lab Attended : " + s_la);
+            //la.setText("Lab Attended : " + s_la);
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return d1;
 
-
     }
-
 }
+
