@@ -1,9 +1,5 @@
 <resources>
 
-    <style name="AppTheme" parent="android:Theme.Material.Light">
-        <item name="android:colorPrimary">#3498DB</item>
-        <item name="android:colorPrimaryDark">#2C3E50</item>
-        <item name="android:colorAccent">#B455B6</item>
-        <item name="android:statusBarColor">#ffffff</item>
-    </style>
+    <style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar"></style>
+
 </resources>
