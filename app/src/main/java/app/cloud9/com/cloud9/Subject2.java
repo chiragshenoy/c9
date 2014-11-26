@@ -104,7 +104,7 @@ public class Subject2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View d1 = inflater.inflate(R.layout.display_marks_and_attendance, container, false);
-        final String[] color_list = {"#009688", "#FF5722", "#673AB7", "#00BCD4", "#CDDC39", "#FFC107", "#9E9E9E"};
+        final String[] color_list = {"#009688", "#00BCD4", "#2196F3", "#3F51B5", "#673AB7", "#9C27B0", "#E91E63", "#F44336", "#FF9800"};
         Typeface face = Typeface.createFromAsset(getActivity().getAssets(),
                 "fonts/myfont.ttf");
 

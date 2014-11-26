@@ -50,9 +50,8 @@ public class Temp extends ActionBarActivity {
         all_marks_string = bundle.getString("marks");
         Bundle c = getIntent().getExtras();
 
-        final String[] color_list = {"#009688", "#FF5722", "#673AB7", "#00BCD4", "#CDDC39", "#FFC107", "#9E9E9E"};
-
-
+        final String[] color_list = {"#009688", "#00BCD4", "#2196F3", "#3F51B5", "#673AB7", "#9C27B0", "#E91E63", "#F44336", "#FF9800"};
+        final String[] accent_list = {"#1DE9B6", "#18FFFF",	"#82B1FF",	"#536DFE",	"#7C4DFF",	"#E040FB",	"#FF80AB",	"#FF8A80",	"#FFAB40"};
         if (c != null) {
             arr = (ArrayList<String>) c.getStringArrayList("array_list");
         }
@@ -60,17 +59,24 @@ public class Temp extends ActionBarActivity {
 
         tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         tabs.setBackground(new ColorDrawable(Color.parseColor(color_list[0])));
+        tabs.setIndicatorColor(Color.parseColor(accent_list[0]));
         tabs.setIndicatorColor(0xFFFFFFFF);
         tabs.setTextColor(0xAAFFFFFF);
-
+        tabs.setDividerColor(Color.argb(0, 0, 0, 0));
+        tabs.setAllCaps(true);
+        tabs.setIndicatorHeight(5);
+        tabs.setIndicatorColor(Color.argb(65, 255, 255, 255));
+        tabs.setUnderlineColor(Color.argb(0, 0, 0, 0));
 
         pager = (ViewPager) findViewById(R.id.pager);
         adapter = new MyPagerAdapter(getSupportFragmentManager());
         pager.setAdapter(adapter);
 
-        final int pageMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources()
-                .getDisplayMetrics());
-        pager.setPageMargin(pageMargin);
+        //Made 0 so it looks like a seemless transition
+        //final int pageMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources()
+        //        .getDisplayMetrics());
+        //pager.setPageMargin(pageMargin);
+
 
         tabs.setViewPager(pager);
         tabs.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -84,7 +90,8 @@ public class Temp extends ActionBarActivity {
                 int color = Color.parseColor(color_list[i]);
                 changeColor(color);
                 tabs.setBackground(new ColorDrawable(Color.parseColor(color_list[i])));
-                // change_indicator_color(i);
+                tabs.setIndicatorColor(Color.parseColor(accent_list[i]));
+                tabs.setTextColor(0xFFFFFFFF);
             }
 
             @Override
@@ -162,7 +169,8 @@ public class Temp extends ActionBarActivity {
                     getSupportActionBar().setBackgroundDrawable(td);
                 }
 
-                td.startTransition(200);
+                td.startTransition(200); //action bar transitions but the hoarding changes color abruptly
+                //td.startTransition(0); //maybe figure out a  better method to do this
 
             }
 

@@ -103,7 +103,7 @@ public class Subject1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View d1 = inflater.inflate(R.layout.display_marks_and_attendance, container, false);
-        final String[] color_list = {"#009688", "#FF5722", "#673AB7", "#00BCD4", "#CDDC39", "#FFC107", "#9E9E9E"};
+        final String[] color_list = {"#009688", "#00BCD4", "#2196F3", "#3F51B5", "#673AB7", "#9C27B0", "#E91E63", "#F44336", "#FF9800"};
         Typeface face = Typeface.createFromAsset(getActivity().getAssets(),
                 "fonts/myfont.ttf");
 
@@ -168,6 +168,15 @@ public class Subject1 extends Fragment {
         String uri = "@drawable/";
         String subject_name_string = activity.getPageTitle(0);
         String st = subject_name_string.replaceAll("\\s", "");
+        String word_arr[] = st.split(" ");
+        String shortname = "";
+
+        for (String item : word_arr) {
+            shortname.concat(String.valueOf(item.charAt(0)));
+        }
+
+
+
 
         uri = uri + st;
 

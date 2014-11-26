@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="125dp"
+        android:layout_height="145dp"
         android:id="@+id/ll"
         android:orientation="horizontal"
         android:weightSum="2">
