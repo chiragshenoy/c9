@@ -1,16 +1,18 @@
 <resources>
 
-    <style name="AppBaseTheme" parent="android:Theme.Light"></style>
+    <style name="Theme.c9theme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- colorPrimary is used for the default action bar background -->
+        <item name="colorPrimary">@color/primaryColor</item>
 
-    <style name="AppTheme" parent="AppBaseTheme">
-        <item name="android:windowBackground">@color/background_window</item>
-        <item name="android:actionBarStyle">@style/ActionBarStyle</item>
-    </style>
+        <!-- colorPrimaryDark is used for the status bar -->
+        <item name="colorPrimaryDark">@color/colorDark</item>
 
-    <style name="ActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
-        <item name="android:icon">@drawable/home</item>
-        <item name="android:background">#FF666666</item>
-        <item name="android:windowContentOverlay">@null</item>
+        <!-- colorAccent is used as the default value for colorControlActivated
+             which is used to tint widgets -->
+        <item name="colorAccent">@color/secondaryColor</item>
+
+        <!-- You can also set colorControlNormal, colorControlActivated
+             colorControlHighlight & colorSwitchThumbNormal. -->
     </style>
 
 </resources>

@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="background_window">#FFE5E5E5</color>
+    <color name="primaryColor">#ff009688</color>
+    <color name="secondaryColor">#FFE5E518</color>
+    <color name="colorDark">#ff8d138a</color>
+    <color name="progressFill">#1DE9B6</color>
+    <color name="progressBack">#ffe4e4e4</color>
+
+
 </resources>

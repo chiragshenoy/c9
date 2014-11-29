@@ -14,10 +14,19 @@
         android:textSize="16dp"
         android:text="Welcome to Home Page" />
 
+    <android.support.v7.widget.Toolbar
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/c9_toolbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:minHeight="?attr/actionBarSize"
+        android:background="?attr/colorPrimary" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/get_marks"
-        android:background="@drawable/about"/>
+        android:background="@drawable/about"
+        android:layout_below="@id/c9_toolbar"/>
 
 </RelativeLayout>

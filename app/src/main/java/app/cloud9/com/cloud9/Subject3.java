@@ -4,9 +4,7 @@ package app.cloud9.com.cloud9;
  * Created by chirag on 20/11/14.
  */
 
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
+import android.graphics.Color;import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -99,19 +97,13 @@ public class Subject3 extends Fragment {
 
     TextView tv_current_total;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View d1 = inflater.inflate(R.layout.display_marks_and_attendance, container, false);
         final String[] color_list = {"#009688", "#00BCD4", "#2196F3", "#3F51B5", "#673AB7", "#9C27B0", "#E91E63", "#F44336", "#FF9800"};
-        //Typeface face = Typeface.createFromAsset(getActivity().getAssets(),
-        //       "fonts/myfont.ttf");
 
         hoarding = (TextView) d1.findViewById(R.id.current_total_hoarding);
-        //hoarding.setTypeface(face);
-        hoarding.setTypeface(null, Typeface.BOLD);
-
         tv_q1_marks = (TextView) d1.findViewById(R.id.tv_q1_marks);
         tv_q2_marks = (TextView) d1.findViewById(R.id.tv_q2_marks);
         tv_l1_marks = (TextView) d1.findViewById(R.id.tv_l1_marks);
@@ -120,30 +112,22 @@ public class Subject3 extends Fragment {
 
         pb1 = (ProgressBar) d1.findViewById(R.id.pb1);
         tv_i1_marks = (TextView) d1.findViewById(R.id.tv_i1_marks);
-        internal_number1 = (TextView) d1.findViewById(R.id.internal_number1);
-        //internal_number1.setTypeface(face);
-        internal_number1.setText("#1");
+        internal_number1 = (TextView) d1.findViewById(R.id.internal_number1);        internal_number1.setText("#1");
 
         pb2 = (ProgressBar) d1.findViewById(R.id.pb2);
         tv_i2_marks = (TextView) d1.findViewById(R.id.tv_i2_marks);
-        internal_number2 = (TextView) d1.findViewById(R.id.internal_number2);
-        //internal_number2.setTypeface(face);
-        internal_number2.setText("#2");
+        internal_number2 = (TextView) d1.findViewById(R.id.internal_number2);        internal_number2.setText("#2");
 
         pb3 = (ProgressBar) d1.findViewById(R.id.pb3);
         tv_i3_marks = (TextView) d1.findViewById(R.id.tv_i3_marks);
-        internal_number3 = (TextView) d1.findViewById(R.id.internal_number3);
-        //internal_number3.setTypeface(face);
-        internal_number3.setText("#3");
+        internal_number3 = (TextView) d1.findViewById(R.id.internal_number3);        internal_number3.setText("#3");
 
         tv_current_total = (TextView) d1.findViewById(R.id.tv_current_total);
 
 //        i1 = (TextView) d1.findViewById(R.id.i1);
 //        i2 = (TextView) d1.findViewById(R.id.i2);
 //        i3 = (TextView) d1.findViewById(R.id.i3);
-//
-//        i1.setTypeface(face);
-//
+////
 //        q1 = (TextView) d1.findViewById(R.id.q1);
 //        q2 = (TextView) d1.findViewById(R.id.q2);
 //
@@ -164,13 +148,21 @@ public class Subject3 extends Fragment {
 
         Temp activity = (Temp) getActivity();
 
-
         String all_marks_string = activity.getAllMarks();
 
         subject_icon = (ImageView) d1.findViewById(R.id.subject_icon);
         String uri = "@drawable/";
         String subject_name_string = activity.getPageTitle(2);
         String st = subject_name_string.replaceAll("\\s", "");
+        String word_arr[] = st.split(" ");
+        String shortname = "";
+
+        for (String item : word_arr) {
+            shortname.concat(String.valueOf(item.charAt(0)));
+        }
+
+
+
 
         uri = uri + st;
 
@@ -208,11 +200,10 @@ public class Subject3 extends Fragment {
             s_i1 = json_current_subject.getString("internal_1");
             first_internal_theory = Integer.parseInt(s_i1);
             pb1.setProgress(first_internal_theory);
-            SpannableString ss1 = new SpannableString(s_i1 + "/40");
-            ss1.setSpan(new RelativeSizeSpan(2f), 0, 2, 0); // set size
-            ss1.setSpan(new ForegroundColorSpan(Color.GRAY), 0, 2, 0);// set color
-            //tv_i1_marks.setTypeface(face);
-            tv_i1_marks.setText(ss1);
+//            SpannableString ss1 = new SpannableString(s_i1 + "/40");
+//            ss1.setSpan(new RelativeSizeSpan(2f), 0, 2, 0); // set size
+//            ss1.setSpan(new ForegroundColorSpan(Color.GRAY), 0, 2, 0);// set color
+            tv_i1_marks.setText(s_i1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -222,11 +213,10 @@ public class Subject3 extends Fragment {
             s_i2 = json_current_subject.getString("internal_2");
             second_internal_theory = Integer.parseInt(s_i2);
             pb2.setProgress(second_internal_theory);
-            SpannableString ss1 = new SpannableString(s_i2 + "/40");
-            ss1.setSpan(new RelativeSizeSpan(2f), 0, 2, 0); // set size
-            ss1.setSpan(new ForegroundColorSpan(Color.GRAY), 0, 2, 0);// set color
-            //tv_i2_marks.setTypeface(face);
-            tv_i2_marks.setText(ss1);
+//            SpannableString ss1 = new SpannableString(s_i2 + "/40");
+//            ss1.setSpan(new RelativeSizeSpan(2f), 0, 2, 0); // set size
+//            ss1.setSpan(new ForegroundColorSpan(Color.GRAY), 0, 2, 0);// set color
+            tv_i2_marks.setText(s_i2);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -235,11 +225,10 @@ public class Subject3 extends Fragment {
             s_i3 = json_current_subject.getString("internal_3");
             third_internal_theory = Integer.parseInt(s_i3);
             pb3.setProgress(third_internal_theory);
-            SpannableString ss1 = new SpannableString(s_i3 + "/40");
-            ss1.setSpan(new RelativeSizeSpan(2f), 0, 2, 0); // set size
-            ss1.setSpan(new ForegroundColorSpan(Color.GRAY), 0, 2, 0);// set color
-            //tv_i3_marks.setTypeface(face);
-            tv_i3_marks.setText(ss1);
+//            SpannableString ss1 = new SpannableString(s_i3 + "/40");
+//            ss1.setSpan(new RelativeSizeSpan(2f), 0, 2, 0); // set size
+//            ss1.setSpan(new ForegroundColorSpan(Color.GRAY), 0, 2, 0);// set color
+            tv_i3_marks.setText(s_i3);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -250,11 +239,10 @@ public class Subject3 extends Fragment {
         try {
             s_q1 = json_current_subject.getString("quiz_1");
             first_quiz = Integer.parseInt(s_q1);
-            SpannableString ss1 = new SpannableString(s_q1 + "/5");
-            ss1.setSpan(new RelativeSizeSpan(2f), 0, 2, 0); // set size
-            ss1.setSpan(new ForegroundColorSpan(Color.GRAY), 0, 2, 0);// set color
-            //tv_q1_marks.setTypeface(face);
-            tv_q1_marks.setText(ss1);
+//            SpannableString ss1 = new SpannableString(s_q1 + "/5");
+//            ss1.setSpan(new RelativeSizeSpan(2f), 0, 2, 0); // set size
+//            ss1.setSpan(new ForegroundColorSpan(Color.GRAY), 0, 2, 0);// set color
+            tv_q1_marks.setText(s_q1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -262,11 +250,10 @@ public class Subject3 extends Fragment {
         try {
             s_q2 = json_current_subject.getString("quiz_2");
             second_quiz = Integer.parseInt(s_q2);
-            SpannableString ss1 = new SpannableString(s_q2 + "/5");
-            ss1.setSpan(new RelativeSizeSpan(2f), 0, 2, 0); // set size
-            ss1.setSpan(new ForegroundColorSpan(Color.GRAY), 0, 2, 0);// set color
-            //tv_q2_marks.setTypeface(face);
-            tv_q2_marks.setText(ss1);
+//            SpannableString ss1 = new SpannableString(s_q2 + "/5");
+//            ss1.setSpan(new RelativeSizeSpan(2f), 0, 2, 0); // set size
+//            ss1.setSpan(new ForegroundColorSpan(Color.GRAY), 0, 2, 0);// set color
+            tv_q2_marks.setText(s_q2);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -275,11 +262,10 @@ public class Subject3 extends Fragment {
         try {
             s_l1 = json_current_subject.getString("lab_internal_1");
             first_lab_internals = Integer.parseInt(s_l1);
-            SpannableString ss1 = new SpannableString(s_l1 + "/40");
-            ss1.setSpan(new RelativeSizeSpan(2f), 0, 2, 0); // set size
-            ss1.setSpan(new ForegroundColorSpan(Color.GRAY), 0, 2, 0);// set color
-            //tv_l1_marks.setTypeface(face);
-            tv_l1_marks.setText(ss1);
+//            SpannableString ss1 = new SpannableString(s_l1 + "/40");
+//            ss1.setSpan(new RelativeSizeSpan(2f), 0, 2, 0); // set size
+//            ss1.setSpan(new ForegroundColorSpan(Color.GRAY), 0, 2, 0);// set color
+            tv_l1_marks.setText(s_l1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -287,11 +273,10 @@ public class Subject3 extends Fragment {
         try {
             s_l2 = json_current_subject.getString("lab_internal_2");
             second_lab_internals = Integer.parseInt(s_l2);
-            SpannableString ss1 = new SpannableString(s_l2 + "/40");
-            ss1.setSpan(new RelativeSizeSpan(2f), 0, 2, 0); // set size
-            ss1.setSpan(new ForegroundColorSpan(Color.GRAY), 0, 2, 0);// set color
-            //tv_l2_marks.setTypeface(face);
-            tv_l2_marks.setText(ss1);
+//            SpannableString ss1 = new SpannableString(s_l2 + "/40");
+//            ss1.setSpan(new RelativeSizeSpan(2f), 0, 2, 0); // set size
+//            ss1.setSpan(new ForegroundColorSpan(Color.GRAY), 0, 2, 0);// set color
+            tv_l2_marks.setText(s_l2);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -350,12 +335,10 @@ public class Subject3 extends Fragment {
             e.printStackTrace();
         }
 
-        SpannableString ss1 = new SpannableString("37/50");
-        ss1.setSpan(new RelativeSizeSpan(2f), 0, 2, 0); // set size
-        ss1.setSpan(new ForegroundColorSpan(Color.WHITE), 0, 2, 0);// set color
-        //tv_q2_marks.setTypeface(face);
-        tv_current_total.setText(ss1);
-
+//        SpannableString ss1 = new SpannableString("37/50");
+//        ss1.setSpan(new RelativeSizeSpan(2f), 0, 2, 0); // set size
+//        ss1.setSpan(new ForegroundColorSpan(Color.WHITE), 0, 2, 0);// set color
+        tv_current_total.setText("37");
         return d1;
 
 

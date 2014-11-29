@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 
 import com.google.android.gms.auth.GoogleAuthException;
 import com.google.android.gms.auth.GoogleAuthUtil;
@@ -23,7 +25,7 @@ import com.google.android.gms.plus.PlusClient;
 
 import java.io.IOException;
 
-public class LoginPage extends Activity implements
+public class LoginPage extends ActionBarActivity implements
         ConnectionCallbacks, OnConnectionFailedListener, OnClickListener {
 
     private static final String TAG = "SignInTestActivity";

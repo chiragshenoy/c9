@@ -166,10 +166,17 @@ public class HomePage extends Fragment {
                     subjectList.add(i, currentDynamicKey);
                     i++;
                 }
+
+                //Name Shortening
+                for(String subjName : subjectList){
+
+                }
                 name = json_basic_info.getString("name");
                 usn = json_basic_info.getString("usn");
 
                 b.putStringArrayList("names_of_subjects", subjectList);
+                System.out.println(subjectList);
+
                 //
                 b.putString("all_marks", string_marks);
                 Subject1 fragobj = new Subject1();

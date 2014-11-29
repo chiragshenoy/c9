@@ -3,11 +3,22 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
+    <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/c9_toolbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:minHeight="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        />
+
     <com.astuetz.PagerSlidingTabStrip
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="48dip"
-        android:background="@drawable/background_tabs" />
+        android:background="@drawable/background_tabs"
+        android:layout_below="@id/c9_toolbar"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
@@ -15,4 +26,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tabs"
         tools:context=".MainActivity" />
+
+    <GridLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/c9_toolbar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+    </GridLayout>
 </RelativeLayout>

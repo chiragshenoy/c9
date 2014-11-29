@@ -14,6 +14,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 
 import com.astuetz.PagerSlidingTabStrip;
@@ -46,6 +47,11 @@ public class Temp extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.workshops);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.c9_toolbar); //Appcompat support for a sexier action bar
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_drawer);
+
         Bundle bundle = getIntent().getExtras();
         all_marks_string = bundle.getString("marks");
         Bundle c = getIntent().getExtras();
@@ -64,18 +70,17 @@ public class Temp extends ActionBarActivity {
         tabs.setTextColor(0xAAFFFFFF);
         tabs.setDividerColor(Color.argb(0, 0, 0, 0));
         tabs.setAllCaps(true);
-        tabs.setIndicatorHeight(5);
-        tabs.setIndicatorColor(Color.argb(65, 255, 255, 255));
+        tabs.setIndicatorHeight(2);
+        tabs.setIndicatorColor(Color.argb(20, 255, 255, 255));
         tabs.setUnderlineColor(Color.argb(0, 0, 0, 0));
 
         pager = (ViewPager) findViewById(R.id.pager);
         adapter = new MyPagerAdapter(getSupportFragmentManager());
         pager.setAdapter(adapter);
 
-        //Made 0 so it looks like a seemless transition
-        //final int pageMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources()
-        //        .getDisplayMetrics());
-        //pager.setPageMargin(pageMargin);
+        final int pageMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources()
+                .getDisplayMetrics());
+        pager.setPageMargin(pageMargin);
 
 
         tabs.setViewPager(pager);
@@ -90,15 +95,18 @@ public class Temp extends ActionBarActivity {
                 int color = Color.parseColor(color_list[i]);
                 changeColor(color);
                 tabs.setBackground(new ColorDrawable(Color.parseColor(color_list[i])));
-                tabs.setIndicatorColor(Color.parseColor(accent_list[i]));
+                //tabs.setIndicatorColor(Color.parseColor(accent_list[i]));
                 tabs.setTextColor(0xFFFFFFFF);
             }
 
             @Override
             public void onPageScrollStateChanged(int i) {
 
+                tabs.setIndicatorHeight(2);
+
             }
         });
+
 
         changeColor(currentColor);
 
@@ -141,6 +149,8 @@ public class Temp extends ActionBarActivity {
 
     private void changeColor(int newColor) {
 
+        System.out.println("trying to change color to :" + newColor);
+
         // change ActionBar color just if an ActionBar is available
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 
@@ -150,11 +160,11 @@ public class Temp extends ActionBarActivity {
 
             if (oldBackground == null) {
 
-                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                /*if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
                     ld.setCallback(drawableCallback);
                 } else {
-                    getSupportActionBar().setBackgroundDrawable(ld);
-                }
+                    getSupportActionBar().setBackgroundDrawable(new ColorDrawable(newColor));
+                }*/
 
             } else {
 
@@ -165,8 +175,13 @@ public class Temp extends ActionBarActivity {
                 // https://github.com/android/platform_frameworks_base/commit/a7cc06d82e45918c37429a59b14545c6a57db4e4
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
                     td.setCallback(drawableCallback);
-                } else {
-                    getSupportActionBar().setBackgroundDrawable(td);
+                }
+                else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    getWindow().setStatusBarColor(newColor);
+                }
+               else {
+                    //getWindow().setStatusBarColor(newColor);
+                    /*getSupportActionBar().setBackgroundDrawable(new ColorDrawable(newColor));*/
                 }
 
                 td.startTransition(200); //action bar transitions but the hoarding changes color abruptly
@@ -177,8 +192,8 @@ public class Temp extends ActionBarActivity {
             oldBackground = ld;
 
             // http://stackoverflow.com/questions/11002691/actionbar-setbackgrounddrawable-nulling-background-from-thread-handler
-            getSupportActionBar().setDisplayShowTitleEnabled(false);
-            getSupportActionBar().setDisplayShowTitleEnabled(true);
+            /*getSupportActionBar().setDisplayShowTitleEnabled(false);
+            getSupportActionBar().setDisplayShowTitleEnabled(true);*/
 
         }
 
