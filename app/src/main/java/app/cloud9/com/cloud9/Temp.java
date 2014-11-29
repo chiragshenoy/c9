@@ -42,13 +42,14 @@ public class Temp extends ActionBarActivity {
     private int currentColor = 0xFF009688;
 
     final Integer[] accent_color = {0x1DE9B6, 0x000000};
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.workshops);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.c9_toolbar); //Appcompat support for a sexier action bar
+        toolbar = (Toolbar) findViewById(R.id.c9_toolbar); //Appcompat support for a sexier action bar
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_drawer);
 
@@ -57,11 +58,11 @@ public class Temp extends ActionBarActivity {
         Bundle c = getIntent().getExtras();
 
         final String[] color_list = {"#009688", "#00BCD4", "#2196F3", "#3F51B5", "#673AB7", "#9C27B0", "#E91E63", "#F44336", "#FF9800"};
-        final String[] accent_list = {"#1DE9B6", "#18FFFF",	"#82B1FF",	"#536DFE",	"#7C4DFF",	"#E040FB",	"#FF80AB",	"#FF8A80",	"#FFAB40"};
+        final String[] accent_list = {"#1DE9B6", "#18FFFF", "#82B1FF", "#536DFE", "#7C4DFF", "#E040FB", "#FF80AB", "#FF8A80", "#FFAB40"};
         if (c != null) {
             arr = (ArrayList<String>) c.getStringArrayList("array_list");
         }
-        //
+
 
         tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         tabs.setBackground(new ColorDrawable(Color.parseColor(color_list[0])));
@@ -110,15 +111,15 @@ public class Temp extends ActionBarActivity {
 
         changeColor(currentColor);
 
+        //Supported only for Lolipop and above
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            getWindow().setStatusBarColor(currentColor);
+
         b = new Bundle();
         b.putString("all_marks", all_marks_string);
 
         final Random r = new Random();
         r.nextInt();
-
-
-        Subject1 fragobj = new Subject1();
-        fragobj.setArguments(b);
 
         actionBar = getSupportActionBar();
 
@@ -143,10 +144,6 @@ public class Temp extends ActionBarActivity {
 
     }
 
-    public void change_indicator_color(int i) {
-        tabs.setIndicatorColor(accent_color[i]);
-    }
-
     private void changeColor(int newColor) {
 
         System.out.println("trying to change color to :" + newColor);
@@ -160,11 +157,11 @@ public class Temp extends ActionBarActivity {
 
             if (oldBackground == null) {
 
-                /*if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
                     ld.setCallback(drawableCallback);
                 } else {
-                    getSupportActionBar().setBackgroundDrawable(new ColorDrawable(newColor));
-                }*/
+                    toolbar.setBackgroundDrawable(new ColorDrawable(newColor));
+                }
 
             } else {
 
@@ -175,13 +172,12 @@ public class Temp extends ActionBarActivity {
                 // https://github.com/android/platform_frameworks_base/commit/a7cc06d82e45918c37429a59b14545c6a57db4e4
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
                     td.setCallback(drawableCallback);
-                }
-                else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     getWindow().setStatusBarColor(newColor);
-                }
-               else {
+                    toolbar.setBackgroundDrawable(new ColorDrawable(newColor));
+                } else {
                     //getWindow().setStatusBarColor(newColor);
-                    /*getSupportActionBar().setBackgroundDrawable(new ColorDrawable(newColor));*/
+                    toolbar.setBackgroundDrawable(new ColorDrawable(newColor));
                 }
 
                 td.startTransition(200); //action bar transitions but the hoarding changes color abruptly
@@ -192,8 +188,9 @@ public class Temp extends ActionBarActivity {
             oldBackground = ld;
 
             // http://stackoverflow.com/questions/11002691/actionbar-setbackgrounddrawable-nulling-background-from-thread-handler
-            /*getSupportActionBar().setDisplayShowTitleEnabled(false);
-            getSupportActionBar().setDisplayShowTitleEnabled(true);*/
+
+//            getSupportActionBar().setDisplayShowTitleEnabled(false);
+//            getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         }
 
@@ -204,7 +201,8 @@ public class Temp extends ActionBarActivity {
     private Drawable.Callback drawableCallback = new Drawable.Callback() {
         @Override
         public void invalidateDrawable(Drawable who) {
-            getSupportActionBar().setBackgroundDrawable(who);
+            toolbar.setBackgroundDrawable(who);
+            //getSupportActionBar().setBackgroundDrawable(who);
         }
 
         @Override
@@ -237,30 +235,12 @@ public class Temp extends ActionBarActivity {
 
         @Override
         public Fragment getItem(int i) {
-            switch (i) {
-                case 0:
-                    return new Subject1();
-                case 1:
-                    return new Subject2();
-                case 2:
-                    return new Subject3();
-                case 3:
-                    return new Subject4();
-                case 4:
-                    return new Subject5();
-                case 5:
-                    return new Subject6();
-                case 6:
-                    return new Subject7();
-                case 7:
-                    return new Subject8();
-                case 8:
-                    return new Subject9();
-                case 9:
-                    return new Subject10();
 
-            }
-            return null;
+            SubjectFragment s = new SubjectFragment();
+            Bundle args = new Bundle();
+            args.putInt("index", i);
+            s.setArguments(args);
+            return s;
         }
 
     }

@@ -25,7 +25,7 @@ import com.google.android.gms.plus.PlusClient;
 
 import java.io.IOException;
 
-public class LoginPage extends ActionBarActivity implements
+public class LoginPage extends Activity implements
         ConnectionCallbacks, OnConnectionFailedListener, OnClickListener {
 
     private static final String TAG = "SignInTestActivity";

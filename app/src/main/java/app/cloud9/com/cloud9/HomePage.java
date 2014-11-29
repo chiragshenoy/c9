@@ -14,7 +14,6 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -168,7 +167,7 @@ public class HomePage extends Fragment {
                 }
 
                 //Name Shortening
-                for(String subjName : subjectList){
+                for (String subjName : subjectList) {
 
                 }
                 name = json_basic_info.getString("name");
@@ -179,8 +178,6 @@ public class HomePage extends Fragment {
 
                 //
                 b.putString("all_marks", string_marks);
-                Subject1 fragobj = new Subject1();
-                fragobj.setArguments(b);
 
                 return null;
 

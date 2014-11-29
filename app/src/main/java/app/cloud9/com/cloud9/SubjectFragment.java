@@ -4,19 +4,19 @@ package app.cloud9.com.cloud9;
  * Created by chirag on 20/11/14.
  */
 
-import android.graphics.Color;import android.graphics.drawable.ColorDrawable;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -25,7 +25,7 @@ import org.json.JSONObject;
 /**
  * Created by Chirag on 06-11-2014.
  */
-public class Subject1 extends Fragment {
+public class SubjectFragment extends Fragment {
 
     JSONObject full_json;
     JSONObject json_current_subject;
@@ -96,16 +96,23 @@ public class Subject1 extends Fragment {
     TextView tv_l2_marks;
 
     TextView tv_current_total;
-
-    public Subject1(){
-
-    };
+    int mIndex;
+    RelativeLayout circle;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View d1 = inflater.inflate(R.layout.display_marks_and_attendance, container, false);
         final String[] color_list = {"#009688", "#00BCD4", "#2196F3", "#3F51B5", "#673AB7", "#9C27B0", "#E91E63", "#F44336", "#FF9800"};
+        final String[] accent_list = {"#1DE9B6", "#18FFFF", "#82B1FF", "#536DFE", "#7C4DFF", "#E040FB", "#FF80AB", "#FF8A80", "#FFAB40"};
+
+        circle = (RelativeLayout) d1.findViewById(R.id.circle);
+
+        //Get the index of fragment
+        mIndex = getArguments().getInt("index");
+
+        GradientDrawable bgShape = (GradientDrawable) circle.getBackground();
+        bgShape.setColor(Color.parseColor(accent_list[mIndex]));
 
         hoarding = (TextView) d1.findViewById(R.id.current_total_hoarding);
         tv_q1_marks = (TextView) d1.findViewById(R.id.tv_q1_marks);
@@ -116,39 +123,23 @@ public class Subject1 extends Fragment {
 
         pb1 = (ProgressBar) d1.findViewById(R.id.pb1);
         tv_i1_marks = (TextView) d1.findViewById(R.id.tv_i1_marks);
-        internal_number1 = (TextView) d1.findViewById(R.id.internal_number1);        internal_number1.setText("#1");
+        internal_number1 = (TextView) d1.findViewById(R.id.internal_number1);
+        internal_number1.setText("#1");
 
         pb2 = (ProgressBar) d1.findViewById(R.id.pb2);
         tv_i2_marks = (TextView) d1.findViewById(R.id.tv_i2_marks);
-        internal_number2 = (TextView) d1.findViewById(R.id.internal_number2);        internal_number2.setText("#2");
+        internal_number2 = (TextView) d1.findViewById(R.id.internal_number2);
+        internal_number2.setText("#2");
 
         pb3 = (ProgressBar) d1.findViewById(R.id.pb3);
         tv_i3_marks = (TextView) d1.findViewById(R.id.tv_i3_marks);
-        internal_number3 = (TextView) d1.findViewById(R.id.internal_number3);        internal_number3.setText("#3");
+        internal_number3 = (TextView) d1.findViewById(R.id.internal_number3);
+        internal_number3.setText("#3");
 
         tv_current_total = (TextView) d1.findViewById(R.id.tv_current_total);
 
-//        i1 = (TextView) d1.findViewById(R.id.i1);
-//        i2 = (TextView) d1.findViewById(R.id.i2);
-//        i3 = (TextView) d1.findViewById(R.id.i3);
-////
-//        q1 = (TextView) d1.findViewById(R.id.q1);
-//        q2 = (TextView) d1.findViewById(R.id.q2);
-//
-//        la = (TextView) d1.findViewById(R.id.la);
-//        lh = (TextView) d1.findViewById(R.id.lh);
-//
-//        ta = (TextView) d1.findViewById(R.id.ta);
-//        th = (TextView) d1.findViewById(R.id.th);
-//
-//        final_cie_marks = (TextView) d1.findViewById(R.id.final_cie_marks);
-//        el = (TextView) d1.findViewById(R.id.el);
-//
-//        l1 = (TextView) d1.findViewById(R.id.l1);
-//        l2 = (TextView) d1.findViewById(R.id.l2);
-
         LinearLayout ll = (LinearLayout) d1.findViewById(R.id.ll);
-        ll.setBackground(new ColorDrawable(Color.parseColor(color_list[0])));
+        ll.setBackground(new ColorDrawable(Color.parseColor(color_list[mIndex])));
 
         Temp activity = (Temp) getActivity();
 
@@ -156,7 +147,7 @@ public class Subject1 extends Fragment {
 
         subject_icon = (ImageView) d1.findViewById(R.id.subject_icon);
         String uri = "@drawable/";
-        String subject_name_string = activity.getPageTitle(0);
+        String subject_name_string = activity.getPageTitle(mIndex);
         String st = subject_name_string.replaceAll("\\s", "");
         String word_arr[] = st.split(" ");
         String shortname = "";
@@ -164,8 +155,6 @@ public class Subject1 extends Fragment {
         for (String item : word_arr) {
             shortname.concat(String.valueOf(item.charAt(0)));
         }
-
-
 
 
         uri = uri + st;
@@ -207,7 +196,7 @@ public class Subject1 extends Fragment {
 //            SpannableString ss1 = new SpannableString(s_i1 + "/40");
 //            ss1.setSpan(new RelativeSizeSpan(2f), 0, 2, 0); // set size
 //            ss1.setSpan(new ForegroundColorSpan(Color.GRAY), 0, 2, 0);// set color
-             tv_i1_marks.setText(s_i1);
+            tv_i1_marks.setText(s_i1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -220,7 +209,7 @@ public class Subject1 extends Fragment {
 //            SpannableString ss1 = new SpannableString(s_i2 + "/40");
 //            ss1.setSpan(new RelativeSizeSpan(2f), 0, 2, 0); // set size
 //            ss1.setSpan(new ForegroundColorSpan(Color.GRAY), 0, 2, 0);// set color
-           tv_i2_marks.setText(s_i2);
+            tv_i2_marks.setText(s_i2);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -232,7 +221,7 @@ public class Subject1 extends Fragment {
 //            SpannableString ss1 = new SpannableString(s_i3 + "/40");
 //            ss1.setSpan(new RelativeSizeSpan(2f), 0, 2, 0); // set size
 //            ss1.setSpan(new ForegroundColorSpan(Color.GRAY), 0, 2, 0);// set color
-             tv_i3_marks.setText(s_i3);
+            tv_i3_marks.setText(s_i3);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -246,7 +235,7 @@ public class Subject1 extends Fragment {
 //            SpannableString ss1 = new SpannableString(s_q1 + "/5");
 //            ss1.setSpan(new RelativeSizeSpan(2f), 0, 2, 0); // set size
 //            ss1.setSpan(new ForegroundColorSpan(Color.GRAY), 0, 2, 0);// set color
-           tv_q1_marks.setText(s_q1);
+            tv_q1_marks.setText(s_q1);
         } catch (JSONException e) {
             e.printStackTrace();
         }

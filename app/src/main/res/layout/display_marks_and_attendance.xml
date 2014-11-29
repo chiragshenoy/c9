@@ -5,15 +5,13 @@
     android:orientation="vertical"
     android:background="#EEEEEE">
 
-
     <LinearLayout
         android:id="@+id/ll"
         android:layout_width="fill_parent"
         android:layout_height="145dp"
         android:orientation="horizontal"
         android:weightSum="2"
-        android:background="#26A69A"
-     >
+        android:background="#26A69A">
 
 
         <ImageView
@@ -27,8 +25,7 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:paddingTop="15sp"
-           >
+            android:paddingTop="15sp">
 
             <TextView
                 android:id="@+id/current_total_hoarding"
@@ -39,8 +36,7 @@
                 android:text="CURRENT TOTAL :"
                 android:textColor="#77ffffff"
                 android:textSize="14sp"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:id="@+id/llt"
@@ -48,10 +44,10 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_below="@id/current_total_hoarding"
-                android:layout_marginTop="-15dp"
-                >
+                android:layout_marginTop="-15dp">
 
                 <TextView
+                    android:elevation="10dp"
                     android:id="@+id/tv_current_total"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -60,8 +56,7 @@
                     android:textSize="75sp"
                     android:fontFamily="sans-serif"
                     android:textStyle="bold"
-                    android:textColor="#ffffff"
-                    />
+                    android:textColor="#ffffff" />
 
                 <TextView
                     android:id="@+id/tv_subject_total"
@@ -74,74 +69,71 @@
                     android:textStyle="bold"
                     android:textColor="#77ffffff"
                     android:textSize="24sp"
-                    android:layout_marginLeft="-5dp"/>
+                    android:layout_marginLeft="-5dp" />
             </LinearLayout>
-
 
 
         </RelativeLayout>
     </LinearLayout>
+
     <RelativeLayout
         android:id="@+id/llk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="4dp"
         android:layout_marginTop="115dp"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentRight="true">
 
-        >
+        <RelativeLayout
+            android:id="@+id/circle"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/circle">
 
-    <RelativeLayout
-        android:id="@+id/rrc"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_marginRight="15dp"
-        android:background="@drawable/circle"
-        >
-        <LinearLayout
-            android:id="@+id/lla"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center"
-            android:paddingLeft="4dp"
-            >
-        <TextView
-            android:id="@+id/tv_attendance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="85"
-            android:textSize="20sp"
-            android:fontFamily="sans-serif"
-            android:textStyle="bold"
-            android:textColor="#ffffff"
-            />
+            <LinearLayout
+                android:id="@+id/lla"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:paddingLeft="4dp">
+
+                <TextView
+                    android:id="@+id/tv_attendance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="85"
+                    android:textSize="20sp"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff" />
+
+                <TextView
+                    android:id="@+id/tv_attendance_percent_symbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@id/tv_attendance"
+                    android:text="%"
+                    android:textSize="10sp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="#ffffff" />
+            </LinearLayout>
+        </RelativeLayout>
+
         <TextView
             android:id="@+id/tv_attendance_percent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/tv_attendance"
-            android:text="%"
-            android:textSize="10sp"
-            android:fontFamily="sans-serif"
-            android:textColor="#ffffff"
-            />
-        </LinearLayout>
-    </RelativeLayout>
-        <TextView
-            android:id="@+id/tv_attendance_percent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/tv_attendance"
             android:text="ATTENDENCE"
             android:textSize="11sp"
             android:fontFamily="sans-serif-condensed"
             android:textColor="#ffc0c0c0"
-            android:layout_below="@+id/rrc"
+            android:layout_below="@+id/circle"
             android:textStyle="bold"
-            android:layout_marginTop="5dp"
-            />
+            android:layout_marginTop="5dp" />
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -181,7 +173,7 @@
                 android:layout_weight="1"
                 android:textSize="14sp"
                 android:fontFamily="sans-serif-light"
-                android:textColor="#9E9E9E"/>
+                android:textColor="#9E9E9E" />
 
             <ProgressBar
                 android:id="@+id/pb1"
@@ -192,8 +184,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight="7"
                 android:max="40"
-                android:progressDrawable="@drawable/progress_drawable"
-                />
+                android:progressDrawable="@drawable/progress_drawable" />
 
             <TextView
                 android:id="@+id/tv_i1_marks"
@@ -202,8 +193,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:fontFamily="sans-serif-condensed"
-                />
+                android:fontFamily="sans-serif-condensed" />
 
             <TextView
                 android:id="@+id/tv_total_marks_i1"
@@ -211,7 +201,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_gravity="center"
-
                 android:text="/40"
                 android:fontFamily="sans-serif-condensed"
                 android:textColor="#ffbebebe"
@@ -237,7 +226,7 @@
                 android:layout_weight="1"
                 android:textSize="14sp"
                 android:fontFamily="sans-serif-light"
-                android:textColor="#9E9E9E"/>
+                android:textColor="#9E9E9E" />
 
             <ProgressBar
                 android:id="@+id/pb2"
@@ -248,8 +237,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight="7"
                 android:max="40"
-                android:progressDrawable="@drawable/progress_drawable"
-                />
+                android:progressDrawable="@drawable/progress_drawable" />
 
             <TextView
                 android:id="@+id/tv_i2_marks"
@@ -258,7 +246,6 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-condensed"
-
                 android:gravity="right" />
 
             <TextView
@@ -268,7 +255,6 @@
                 android:layout_weight="1"
                 android:text="/40"
                 android:layout_gravity="center"
-
                 android:fontFamily="sans-serif-condensed"
                 android:textColor="#ffbebebe"
 
@@ -293,7 +279,7 @@
                 android:layout_weight="1"
                 android:textSize="14sp"
                 android:fontFamily="sans-serif-light"
-                android:textColor="#9E9E9E"/>
+                android:textColor="#9E9E9E" />
 
             <ProgressBar
                 android:id="@+id/pb3"
@@ -304,8 +290,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight="7"
                 android:max="40"
-                android:progressDrawable="@drawable/progress_drawable"
-                />
+                android:progressDrawable="@drawable/progress_drawable" />
 
             <TextView
                 android:id="@+id/tv_i3_marks"
@@ -314,8 +299,7 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-condensed"
                 android:textSize="14sp"
-                android:gravity="right"
-                />
+                android:gravity="right" />
 
             <TextView
                 android:id="@+id/tv_total_marks_i3"
@@ -324,7 +308,6 @@
                 android:layout_weight="1"
                 android:text="/40"
                 android:layout_gravity="center"
-
                 android:fontFamily="sans-serif-condensed"
                 android:textColor="#ffbebebe"
 
@@ -354,15 +337,13 @@
                     android:textColor="#757575"
                     android:textSize="30sp"
                     android:fontFamily="sans-serif-condensed"
-                    android:textStyle="bold"
- />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_q1_marks"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
-
                     android:layout_below="@id/quiz_hoarding" />
 
                 <TextView
@@ -371,12 +352,11 @@
                     android:layout_height="wrap_content"
                     android:text="/5"
                     android:fontFamily="sans-serif-condensed"
-
                     android:textColor="#ffbebebe"
                     android:layout_below="@id/quiz_hoarding"
-                android:layout_toRightOf="@id/tv_q1_marks" />
+                    android:layout_toRightOf="@id/tv_q1_marks" />
 
-                    />
+                />
 
                 <TextView
                     android:id="@+id/tv_q2_marks"
@@ -385,7 +365,6 @@
                     android:layout_below="@id/quiz_hoarding"
                     android:layout_marginLeft="50dp"
                     android:fontFamily="sans-serif-condensed"
-
                     android:layout_toRightOf="@id/tv_q1_marks" />
 
                 <TextView
@@ -430,7 +409,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-condensed"
-
                         android:layout_below="@id/lab_hoarding" />
 
                     <TextView
@@ -441,7 +419,6 @@
                         android:textColor="#ffbebebe"
                         android:layout_below="@id/lab_hoarding"
                         android:fontFamily="sans-serif-condensed"
-
                         android:layout_toRightOf="@id/tv_l1_marks" />
 
                     />
@@ -453,7 +430,6 @@
                         android:layout_below="@id/lab_hoarding"
                         android:layout_marginLeft="50dp"
                         android:fontFamily="sans-serif-condensed"
-
                         android:layout_toRightOf="@id/tv_l1_marks" />
 
                     <TextView
@@ -463,7 +439,6 @@
                         android:text="/40"
                         android:textColor="#ffbebebe"
                         android:fontFamily="sans-serif-condensed"
-
                         android:layout_below="@id/lab_hoarding"
                         android:layout_toRightOf="@id/tv_l2_marks" />
 

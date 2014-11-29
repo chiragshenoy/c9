@@ -1,5 +1,5 @@
 <resources>
 
-    <style name="Theme.c9theme" parent="android:Theme.Material.Light"></style>
+    <style name="Theme.c9theme" parent="Theme.AppCompat.Light.NoActionBar"></style>
 
 </resources>
