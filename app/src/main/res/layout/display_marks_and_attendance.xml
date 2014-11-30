@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipe_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -286,6 +296,7 @@
 
             <ProgressBar
                 android:id="@+id/pb3"
+                android:progressDrawable="@drawable/progress_drawable"
                 style="@android:style/Widget.ProgressBar.Horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="2dp"
@@ -293,7 +304,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight="7"
                 android:max="40"
-                android:progressDrawable="@drawable/progress_drawable" />
+                />
 
             <TextView
                 android:id="@+id/tv_i3_marks"
@@ -457,3 +468,5 @@
 
 
 </RelativeLayout>
+        </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>

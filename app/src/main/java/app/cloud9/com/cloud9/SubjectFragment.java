@@ -5,6 +5,8 @@ package app.cloud9.com.cloud9;
  */
 
 import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
@@ -18,7 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.content.Context;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.ClipDrawable;
 import android.graphics.drawable.LayerDrawable;
@@ -73,11 +75,32 @@ public class SubjectFragment extends Fragment {
     RelativeLayout attendanceCircle;
 
 
-    public static LayerDrawable createDrawable(String accentColor, int back) {
+/*
+
+    public static Drawable createDrawable(String accentColor, int backColor) {
 
         ShapeDrawable shape = new ShapeDrawable();
         shape.getPaint().setStyle(Style.FILL);
-        shape.getPaint().setColor(Color.parseColor(accentColor));
+        shape.getPaint().setColor(Color.BLUE);
+
+        ShapeDrawable shapeD = new ShapeDrawable();
+        shapeD.getPaint().setStyle(Style.FILL);
+        shapeD.getPaint().setColor(Color.BLACK);
+        ClipDrawable clipDrawable = new ClipDrawable(shapeD, Gravity.LEFT,
+                ClipDrawable.HORIZONTAL);
+
+        LayerDrawable layerDrawable = new LayerDrawable(new Drawable[] {
+                clipDrawable });
+        return layerDrawable;
+    }
+
+    */
+
+    public static Drawable createDrawable(String accentColor, int backColor) {
+
+        ShapeDrawable shape = new ShapeDrawable();
+        shape.getPaint().setStyle(Style.FILL);
+        shape.getPaint().setColor(backColor);
 
         ShapeDrawable shapeD = new ShapeDrawable();
         shapeD.getPaint().setStyle(Style.FILL);
@@ -85,8 +108,10 @@ public class SubjectFragment extends Fragment {
         ClipDrawable clipDrawable = new ClipDrawable(shapeD, Gravity.LEFT,
                 ClipDrawable.HORIZONTAL);
 
+        clipDrawable.setLevel(5500);
+
         LayerDrawable layerDrawable = new LayerDrawable(new Drawable[] {
-                 clipDrawable });
+                clipDrawable, shape });
         return layerDrawable;
     }
 
@@ -95,9 +120,28 @@ public class SubjectFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
+
         View d1 = inflater.inflate(R.layout.display_marks_and_attendance, container, false);
 
-        //Get the index of fragment
+            SwipeRefreshLayout swipeLayout = (SwipeRefreshLayout) d1.findViewById(R.id.swipe_container);
+            //swipeLayout.setOnRefreshListener();
+            swipeLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
+                    android.R.color.holo_green_light,
+                    android.R.color.holo_orange_light,
+                    android.R.color.holo_red_light);
+
+
+        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+
+            @Override
+            public void onRefresh() {
+               System.out.println("Refresh code below");
+            }
+        });
+
+
+            //Get the index of fragment
         mIndex = getArguments().getInt("index");
 
         final String[] color_list = getResources().getStringArray(R.array.subjectMainColors);
@@ -176,8 +220,12 @@ public class SubjectFragment extends Fragment {
                 try {
 
                     internal_marks[i] = json_current_subject.getString("internal_" + (i + 1));
-                    progressBar[i].setProgress(Integer.parseInt(internal_marks[i]));
                     progressBar[i].setProgressDrawable(createDrawable(accent_list[mIndex],getResources().getColor(R.color.progressBack)));
+
+                    progressBar[i].getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.LIGHTEN);
+                    progressBar[i].setProgress(Integer.parseInt(internal_marks[i]));
+                    /*Drawable drawable = progressBar[i].getProgressDrawable();
+                    drawable.setColorFilter(Color.parseColor(accent_list[mIndex]), PorterDuff.Mode.ADD);*/
                     tv_internal_marks[i].setText(internal_marks[i]);
                 }
 
@@ -271,10 +319,9 @@ public class SubjectFragment extends Fragment {
 
         //Progress Bars
 
+    }
 
-
-
-
+    public void onRefresh() {
 
     }
 

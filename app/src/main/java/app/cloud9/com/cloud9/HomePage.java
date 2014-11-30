@@ -68,11 +68,10 @@ public class HomePage extends Fragment {
         welcome = (TextView) rootView.findViewById(R.id.welcome);
         relativeLayout = (RelativeLayout) rootView.findViewById(R.id.relative_layout);
 
-        transition = (TransitionDrawable) relativeLayout.getBackground();
 
         final Handler handler = new Handler();
 
-        final Runnable r = new Runnable() {
+        /*final Runnable r = new Runnable() {
             public void run() {
                 if (!started) {
                     transition.startTransition(10000);
@@ -88,7 +87,7 @@ public class HomePage extends Fragment {
         };
 
         handler.postDelayed(r, 0);
-
+*/
 
         get_marks.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -198,7 +197,7 @@ public class HomePage extends Fragment {
             if (dialog.isShowing()) {
                 dialog.dismiss();
             }
-            welcome.setText(name + " " + usn);
+            welcome.setText("Welcome " + name + "!");
         }
 
         @Override

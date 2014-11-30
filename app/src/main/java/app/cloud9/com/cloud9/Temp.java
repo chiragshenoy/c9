@@ -74,7 +74,6 @@ public class Temp extends ActionBarActivity {
         tabs.setIndicatorHeight(2);
         tabs.setIndicatorColor(Color.argb(20, 255, 255, 255));
         tabs.setUnderlineColor(Color.argb(0, 0, 0, 0));
-
         pager = (ViewPager) findViewById(R.id.pager);
         adapter = new MyPagerAdapter(getSupportFragmentManager());
         pager.setAdapter(adapter);
