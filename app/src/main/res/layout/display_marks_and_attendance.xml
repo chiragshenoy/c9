@@ -172,6 +172,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:textSize="14sp"
+                android:text="#1"
                 android:fontFamily="sans-serif-light"
                 android:textColor="#9E9E9E" />
 
@@ -184,7 +185,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight="7"
                 android:max="40"
-                android:progressDrawable="@drawable/progress_drawable" />
+/>
 
             <TextView
                 android:id="@+id/tv_i1_marks"
@@ -225,6 +226,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:textSize="14sp"
+                android:text="#2"
                 android:fontFamily="sans-serif-light"
                 android:textColor="#9E9E9E" />
 
@@ -277,6 +279,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
+                android:text="#3"
                 android:textSize="14sp"
                 android:fontFamily="sans-serif-light"
                 android:textColor="#9E9E9E" />

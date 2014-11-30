@@ -18,7 +18,12 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
+import android.content.Context;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.ClipDrawable;
+import android.graphics.drawable.LayerDrawable;
+import android.view.Gravity;
+import android.graphics.Paint.Style;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -36,126 +41,104 @@ public class SubjectFragment extends Fragment {
     String current_subject_string;
 
     //Strings
-    String s_i1;
-    String s_i2;
-    String s_i3;
+    String internal_marks[] = new String[3];
 
-    String s_l1;
-    String s_l2;
+    String quiz_marks[] = new String[2];
 
-    String s_el;
+    String lab_marks[] = new String[2];
+    String lab_externals;
+    String lab_attended;
+    String lab_held;
 
-    String s_q1;
-    String s_q2;
+    String theory_attended;
+    String theory_held;
 
-    String s_lh;
-    String s_la;
-
-    String s_th;
-    String s_ta;
-
-    String s_final_cie_marks;
-    ImageView subject_icon;
+    String final_cie_total;
 
     TextView hoarding;
+    ImageView subject_icon;
 
-    int first_internal_theory;
-    int second_internal_theory;
-    int third_internal_theory;
+    ProgressBar progressBar[] = new ProgressBar[3];
 
-    int first_quiz;
-    int second_quiz;
+    TextView tv_internal_marks[] = new TextView[3];
+    TextView tv_quiz_marks[] = new TextView[2];
+    TextView tv_lab_marks[] = new TextView[2];
+    TextView tv_attendance;
+    TextView tv_cie_total;
 
-    int first_lab_internals;
-    int second_lab_internals;
+    int calculatedAttendance;
 
-    int classes_held;
-    int classes_attended;
-
-    int current_total;
-
-    float attendance_status;
-
-    ProgressBar pb1;
-    TextView tv_i1_marks;
-    TextView internal_number1;
-
-    ProgressBar pb2;
-    TextView tv_i2_marks;
-    TextView internal_number2;
-
-    ProgressBar pb3;
-    TextView tv_i3_marks;
-    TextView internal_number3;
-
-    TextView tv_q1_marks;
-    TextView tv_q2_marks;
-
-
-    TextView tv_l1_marks;
-    TextView tv_l2_marks;
-
-    TextView tv_current_total;
     int mIndex;
-    RelativeLayout circle;
+
+    RelativeLayout attendanceCircle;
+
+
+    public static LayerDrawable createDrawable(String accentColor, int back) {
+
+        ShapeDrawable shape = new ShapeDrawable();
+        shape.getPaint().setStyle(Style.FILL);
+        shape.getPaint().setColor(Color.parseColor(accentColor));
+
+        ShapeDrawable shapeD = new ShapeDrawable();
+        shapeD.getPaint().setStyle(Style.FILL);
+        shapeD.getPaint().setColor(Color.BLUE);
+        ClipDrawable clipDrawable = new ClipDrawable(shapeD, Gravity.LEFT,
+                ClipDrawable.HORIZONTAL);
+
+        LayerDrawable layerDrawable = new LayerDrawable(new Drawable[] {
+                 clipDrawable });
+        return layerDrawable;
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View d1 = inflater.inflate(R.layout.display_marks_and_attendance, container, false);
-        final String[] color_list = {"#009688", "#00BCD4", "#2196F3", "#3F51B5", "#673AB7", "#9C27B0", "#E91E63", "#F44336", "#FF9800"};
-        final String[] accent_list = {"#1DE9B6", "#18FFFF", "#82B1FF", "#536DFE", "#7C4DFF", "#E040FB", "#FF80AB", "#FF8A80", "#FFAB40"};
 
-        circle = (RelativeLayout) d1.findViewById(R.id.circle);
+        View d1 = inflater.inflate(R.layout.display_marks_and_attendance, container, false);
 
         //Get the index of fragment
         mIndex = getArguments().getInt("index");
 
-        GradientDrawable bgShape = (GradientDrawable) circle.getBackground();
+        final String[] color_list = getResources().getStringArray(R.array.subjectMainColors);
+        final String[] accent_list =  getResources().getStringArray(R.array.subjectAccentColors);
+
+
+        attendanceCircle = (RelativeLayout) d1.findViewById(R.id.circle);
+        Temp activity = (Temp) getActivity();
+        String all_marks_string = activity.getAllMarks();
+
+        GradientDrawable bgShape = (GradientDrawable) attendanceCircle.getBackground();
         bgShape.setColor(Color.parseColor(accent_list[mIndex]));
 
         hoarding = (TextView) d1.findViewById(R.id.current_total_hoarding);
-        tv_q1_marks = (TextView) d1.findViewById(R.id.tv_q1_marks);
-        tv_q2_marks = (TextView) d1.findViewById(R.id.tv_q2_marks);
-        tv_l1_marks = (TextView) d1.findViewById(R.id.tv_l1_marks);
-        tv_l2_marks = (TextView) d1.findViewById(R.id.tv_l2_marks);
 
+        tv_quiz_marks[0] = (TextView) d1.findViewById(R.id.tv_q1_marks);
+        tv_quiz_marks[1] = (TextView) d1.findViewById(R.id.tv_q2_marks);
 
-        pb1 = (ProgressBar) d1.findViewById(R.id.pb1);
-        tv_i1_marks = (TextView) d1.findViewById(R.id.tv_i1_marks);
-        internal_number1 = (TextView) d1.findViewById(R.id.internal_number1);
-        internal_number1.setText("#1");
+        tv_lab_marks[0] = (TextView) d1.findViewById(R.id.tv_l1_marks);
+        tv_lab_marks[1] = (TextView) d1.findViewById(R.id.tv_l2_marks);
 
-        pb2 = (ProgressBar) d1.findViewById(R.id.pb2);
-        tv_i2_marks = (TextView) d1.findViewById(R.id.tv_i2_marks);
-        internal_number2 = (TextView) d1.findViewById(R.id.internal_number2);
-        internal_number2.setText("#2");
+        tv_internal_marks[0] =  (TextView) d1.findViewById(R.id.tv_i1_marks);
+        tv_internal_marks[1] =  (TextView) d1.findViewById(R.id.tv_i2_marks);
+        tv_internal_marks[2] =  (TextView) d1.findViewById(R.id.tv_i3_marks);
 
-        pb3 = (ProgressBar) d1.findViewById(R.id.pb3);
-        tv_i3_marks = (TextView) d1.findViewById(R.id.tv_i3_marks);
-        internal_number3 = (TextView) d1.findViewById(R.id.internal_number3);
-        internal_number3.setText("#3");
+        tv_attendance = (TextView) d1.findViewById(R.id.tv_attendance);
 
-        tv_current_total = (TextView) d1.findViewById(R.id.tv_current_total);
+        progressBar[0] = (ProgressBar) d1.findViewById(R.id.pb1);
+        progressBar[1] = (ProgressBar) d1.findViewById(R.id.pb2);
+        progressBar[2] = (ProgressBar) d1.findViewById(R.id.pb3);
+
+        tv_cie_total = (TextView) d1.findViewById(R.id.tv_current_total);
 
         LinearLayout ll = (LinearLayout) d1.findViewById(R.id.ll);
         ll.setBackground(new ColorDrawable(Color.parseColor(color_list[mIndex])));
 
-        Temp activity = (Temp) getActivity();
-
-        String all_marks_string = activity.getAllMarks();
 
         subject_icon = (ImageView) d1.findViewById(R.id.subject_icon);
         String uri = "@drawable/";
         String subject_name_string = activity.getPageTitle(mIndex);
         String st = subject_name_string.replaceAll("\\s", "");
-        String word_arr[] = st.split(" ");
-        String shortname = "";
-
-        for (String item : word_arr) {
-            shortname.concat(String.valueOf(item.charAt(0)));
-        }
-
 
         uri = uri + st;
 
@@ -188,111 +171,86 @@ public class SubjectFragment extends Fragment {
 
         //Get 3 internals marks
 
-        //First Internal
-        try {
-            s_i1 = json_current_subject.getString("internal_1");
-            first_internal_theory = Integer.parseInt(s_i1);
-            pb1.setProgress(first_internal_theory);
-//            SpannableString ss1 = new SpannableString(s_i1 + "/40");
-//            ss1.setSpan(new RelativeSizeSpan(2f), 0, 2, 0); // set size
-//            ss1.setSpan(new ForegroundColorSpan(Color.GRAY), 0, 2, 0);// set color
-            tv_i1_marks.setText(s_i1);
-        } catch (JSONException e) {
-            e.printStackTrace();
+            for(int i = 0; i<3; i++){
+
+                try {
+
+                    internal_marks[i] = json_current_subject.getString("internal_" + (i + 1));
+                    progressBar[i].setProgress(Integer.parseInt(internal_marks[i]));
+                    progressBar[i].setProgressDrawable(createDrawable(accent_list[mIndex],getResources().getColor(R.color.progressBack)));
+                    tv_internal_marks[i].setText(internal_marks[i]);
+                }
+
+                catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+        //Get 2 quiz and lab marks
+
+        for(int i = 0; i<2; i++){
+
+            try {
+
+                quiz_marks[i] = json_current_subject.getString("quiz_" + (i + 1));
+                tv_quiz_marks[i].setText(quiz_marks[i]);
+            }
+
+            catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            try {
+
+                lab_marks[i] = json_current_subject.getString("lab_internal_" + (i + 1));
+                tv_lab_marks[i].setText(lab_marks[i]);
+            }
+
+            catch (JSONException e) {
+                e.printStackTrace();
+            }
+
         }
 
-        //Second Internal
-        try {
-            s_i2 = json_current_subject.getString("internal_2");
-            second_internal_theory = Integer.parseInt(s_i2);
-            pb2.setProgress(second_internal_theory);
-//            SpannableString ss1 = new SpannableString(s_i2 + "/40");
-//            ss1.setSpan(new RelativeSizeSpan(2f), 0, 2, 0); // set size
-//            ss1.setSpan(new ForegroundColorSpan(Color.GRAY), 0, 2, 0);// set color
-            tv_i2_marks.setText(s_i2);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        //Get attendance
 
         try {
-            s_i3 = json_current_subject.getString("internal_3");
-            third_internal_theory = Integer.parseInt(s_i3);
-            pb3.setProgress(third_internal_theory);
-//            SpannableString ss1 = new SpannableString(s_i3 + "/40");
-//            ss1.setSpan(new RelativeSizeSpan(2f), 0, 2, 0); // set size
-//            ss1.setSpan(new ForegroundColorSpan(Color.GRAY), 0, 2, 0);// set color
-            tv_i3_marks.setText(s_i3);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        //Quizzes
-
-
-        try {
-            s_q1 = json_current_subject.getString("quiz_1");
-            first_quiz = Integer.parseInt(s_q1);
-//            SpannableString ss1 = new SpannableString(s_q1 + "/5");
-//            ss1.setSpan(new RelativeSizeSpan(2f), 0, 2, 0); // set size
-//            ss1.setSpan(new ForegroundColorSpan(Color.GRAY), 0, 2, 0);// set color
-            tv_q1_marks.setText(s_q1);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            s_q2 = json_current_subject.getString("quiz_2");
-            second_quiz = Integer.parseInt(s_q2);
-//            SpannableString ss1 = new SpannableString(s_q2 + "/5");
-//            ss1.setSpan(new RelativeSizeSpan(2f), 0, 2, 0); // set size
-//            ss1.setSpan(new ForegroundColorSpan(Color.GRAY), 0, 2, 0);// set color
-            tv_q2_marks.setText(s_q2);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        //Lab Internals
-        try {
-            s_l1 = json_current_subject.getString("lab_internal_1");
-            first_lab_internals = Integer.parseInt(s_l1);
-//            SpannableString ss1 = new SpannableString(s_l1 + "/40");
-//            ss1.setSpan(new RelativeSizeSpan(2f), 0, 2, 0); // set size
-//            ss1.setSpan(new ForegroundColorSpan(Color.GRAY), 0, 2, 0);// set color
-            tv_l1_marks.setText(s_l1);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            s_l2 = json_current_subject.getString("lab_internal_2");
-            second_lab_internals = Integer.parseInt(s_l2);
-//            SpannableString ss1 = new SpannableString(s_l2 + "/40");
-//            ss1.setSpan(new RelativeSizeSpan(2f), 0, 2, 0); // set size
-//            ss1.setSpan(new ForegroundColorSpan(Color.GRAY), 0, 2, 0);// set color
-            tv_l2_marks.setText(s_l2);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        //Theory Classes
-        try {
-            s_th = json_current_subject.getString("theory_classes_held");
+            theory_held = json_current_subject.getString("theory_classes_held");
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         try {
-            s_ta = json_current_subject.getString("theory_classes_attended");
+            theory_attended = json_current_subject.getString("theory_classes_attended");
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        //Enternal Lab
+        try {
+            lab_held = json_current_subject.getString("lab_held");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
 
         try {
-            s_el = json_current_subject.getString("lab_external");
-            //el.setText("Lab External : " + s_el);
+            lab_attended = json_current_subject.getString("lab_attended");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        //Set attendance after calculation
+
+        System.out.println(Integer.parseInt(theory_attended) / Integer.parseInt(theory_held) * 100);
+        calculatedAttendance = (int)((Integer.parseInt(theory_attended) * 100.0f) / Integer.parseInt(theory_held));
+        tv_attendance.setText(String.valueOf(calculatedAttendance));
+
+        try {
+            lab_externals = json_current_subject.getString("lab_external");
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -301,38 +259,21 @@ public class SubjectFragment extends Fragment {
         //Final Cie Marks
 
         try {
-            s_final_cie_marks = json_current_subject.getString("final_cie_marks");
-            //final_cie_marks.setText("Final cie marks : " + s_final_cie_marks);
+            final_cie_total = json_current_subject.getString("final_cie_marks");
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-
-        //Lab Held and Attended
-
-        try {
-            s_lh = json_current_subject.getString("lab_held");
-            //lh.setText("Lab Held : " + s_lh);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
-        try {
-            s_la = json_current_subject.getString("lab_attended");
-            //la.setText("Lab Attended : " + s_la);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-//        SpannableString ss1 = new SpannableString("37/50");
-//        ss1.setSpan(new RelativeSizeSpan(2f), 0, 2, 0); // set size
-//        ss1.setSpan(new ForegroundColorSpan(Color.WHITE), 0, 2, 0);// set color
-        tv_current_total.setText("37");
+        tv_cie_total.setText("37");
         return d1;
+
+
+        //Progress Bars
+
+
+
+
 
 
     }

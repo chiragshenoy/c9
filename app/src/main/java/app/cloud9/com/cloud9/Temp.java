@@ -57,8 +57,8 @@ public class Temp extends ActionBarActivity {
         all_marks_string = bundle.getString("marks");
         Bundle c = getIntent().getExtras();
 
-        final String[] color_list = {"#009688", "#00BCD4", "#2196F3", "#3F51B5", "#673AB7", "#9C27B0", "#E91E63", "#F44336", "#FF9800"};
-        final String[] accent_list = {"#1DE9B6", "#18FFFF", "#82B1FF", "#536DFE", "#7C4DFF", "#E040FB", "#FF80AB", "#FF8A80", "#FFAB40"};
+        final String[] color_list = getResources().getStringArray(R.array.subjectMainColors);
+        final String[] accent_list =  getResources().getStringArray(R.array.subjectAccentColors);
         if (c != null) {
             arr = (ArrayList<String>) c.getStringArrayList("array_list");
         }

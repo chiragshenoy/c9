@@ -10,4 +10,31 @@
 
 
     </array>
+
+
+
+    <string-array name="subjectMainColors">
+        <item name="mcol1">#009688</item>
+        <item>#00BCD4</item>
+        <item>#2196F3</item>
+        <item>#3F51B5</item>
+        <item>#673AB7</item>
+        <item>#9C27B0</item>
+        <item>#E91E63</item>
+        <item>#F44336</item>
+        <item>#FF9800</item>
+    </string-array>
+
+    <string-array name="subjectAccentColors">
+        <item>#1DE9B6</item>
+        <item>#18FFFF</item>
+        <item>#82B1FF</item>
+        <item>#536DFE</item>
+        <item>#7C4DFF</item>
+        <item>#E040FB</item>
+        <item>#FF80AB</item>
+        <item>#FF8A80</item>
+        <item>#FFAB40</item>
+    </string-array>
+
 </resources>
