@@ -41,7 +41,6 @@ public class Temp extends ActionBarActivity {
     private Drawable oldBackground = null;
     private int currentColor = 0xFF009688;
 
-    final Integer[] accent_color = {0x1DE9B6, 0x000000};
     Toolbar toolbar;
 
     @Override
@@ -85,10 +84,7 @@ public class Temp extends ActionBarActivity {
 
         tabs.setViewPager(pager);
         tabs.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int i, float v, int i2) {
 
-            }
 
             @Override
             public void onPageSelected(int i) {
@@ -103,6 +99,11 @@ public class Temp extends ActionBarActivity {
             public void onPageScrollStateChanged(int i) {
 
                 tabs.setIndicatorHeight(2);
+
+            }
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
+            {
 
             }
         });

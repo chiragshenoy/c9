@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/swipe_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -9,464 +8,379 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#EEEEEE">
-
-    <LinearLayout
-        android:id="@+id/ll"
-        android:layout_width="fill_parent"
-        android:layout_height="145dp"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        android:background="#26A69A">
-
-
-        <ImageView
-            android:id="@+id/subject_icon"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:padding="5sp" />
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:paddingTop="15sp">
-
-            <TextView
-                android:id="@+id/current_total_hoarding"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:gravity="center"
-                android:text="CURRENT TOTAL :"
-                android:textColor="#77ffffff"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#EEEEEE"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/llt"
+                android:id="@+id/ll"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="145dp"
+                android:background="#26A69A"
                 android:orientation="horizontal"
-                android:layout_below="@id/current_total_hoarding"
-                android:layout_marginTop="-15dp">
+                android:weightSum="2">
 
-                <TextView
-                    android:elevation="10dp"
-                    android:id="@+id/tv_current_total"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/current_total_hoarding"
-                    android:text="35"
-                    android:textSize="75sp"
-                    android:fontFamily="sans-serif"
-                    android:textStyle="bold"
-                    android:textColor="#ffffff" />
 
-                <TextView
-                    android:id="@+id/tv_subject_total"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/tv_current_total"
-                    android:gravity="center"
-                    android:text="/40"
-                    android:fontFamily="sans-serif"
-                    android:textStyle="bold"
-                    android:textColor="#77ffffff"
-                    android:textSize="24sp"
-                    android:layout_marginLeft="-5dp" />
+                <ImageView
+                    android:id="@+id/subject_icon"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:padding="5sp" />
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:paddingTop="15sp">
+
+                    <TextView
+                        android:id="@+id/current_total_hoarding"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center"
+                        android:text="CURRENT TOTAL :"
+                        android:textColor="#77ffffff"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/llt"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/current_total_hoarding"
+                        android:layout_marginTop="-15dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_current_total"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/current_total_hoarding"
+                            android:fontFamily="sans-serif"
+                            android:text="35"
+                            android:textColor="#ffffff"
+                            android:textSize="75sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_subject_total"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-5dp"
+                            android:layout_toRightOf="@id/tv_current_total"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center"
+                            android:text="/40"
+                            android:textColor="#77ffffff"
+                            android:textSize="24sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+
+                </RelativeLayout>
             </LinearLayout>
-
-
-        </RelativeLayout>
-    </LinearLayout>
-
-    <RelativeLayout
-        android:id="@+id/llk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="4dp"
-        android:layout_marginTop="115dp"
-        android:layout_alignParentRight="true">
-
-        <RelativeLayout
-            android:id="@+id/circle"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginRight="15dp"
-            android:background="@drawable/circle">
-
-            <LinearLayout
-                android:id="@+id/lla"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_gravity="center"
-                android:paddingLeft="4dp">
-
-                <TextView
-                    android:id="@+id/tv_attendance"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="85"
-                    android:textSize="20sp"
-                    android:fontFamily="sans-serif"
-                    android:textStyle="bold"
-                    android:textColor="#ffffff" />
-
-                <TextView
-                    android:id="@+id/tv_attendance_percent_symbol"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@id/tv_attendance"
-                    android:text="%"
-                    android:textSize="10sp"
-                    android:fontFamily="sans-serif"
-                    android:textColor="#ffffff" />
-            </LinearLayout>
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/tv_attendance_percent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ATTENDENCE"
-            android:textSize="11sp"
-            android:fontFamily="sans-serif-condensed"
-            android:textColor="#ffc0c0c0"
-            android:layout_below="@+id/circle"
-            android:textStyle="bold"
-            android:layout_marginTop="5dp" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@+id/ll"
-        android:paddingTop="15dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="35dp"
-        android:paddingRight="30dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/internals_hoarding"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="INTERNALS"
-            android:textColor="#757575"
-            android:textSize="30sp"
-            android:fontFamily="sans-serif-condensed"
-            android:textStyle="bold"
-
-            />
-
-        <LinearLayout
-            android:id="@+id/ll1"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/internals_hoarding"
-            android:orientation="horizontal"
-            android:weightSum="10"
-            android:layout_marginTop="5dp">
-
-            <TextView
-                android:id="@+id/internal_number1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:textSize="14sp"
-                android:text="#1"
-                android:fontFamily="sans-serif-light"
-                android:textColor="#9E9E9E" />
-
-            <ProgressBar
-                android:id="@+id/pb1"
-                style="@android:style/Widget.ProgressBar.Horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="2dp"
-                android:layout_below="@id/internals_hoarding"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="7"
-                android:max="40"
-/>
-
-            <TextView
-                android:id="@+id/tv_i1_marks"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:fontFamily="sans-serif-condensed" />
-
-            <TextView
-                android:id="@+id/tv_total_marks_i1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:text="/40"
-                android:fontFamily="sans-serif-condensed"
-                android:textColor="#ffbebebe"
-
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll2"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/ll1"
-            android:orientation="horizontal"
-            android:weightSum="10"
-            android:layout_marginTop="5dp">
-
-            <TextView
-                android:id="@+id/internal_number2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:textSize="14sp"
-                android:text="#2"
-                android:fontFamily="sans-serif-light"
-                android:textColor="#9E9E9E" />
-
-            <ProgressBar
-                android:id="@+id/pb2"
-                style="@android:style/Widget.ProgressBar.Horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="2dp"
-                android:layout_below="@id/internals_hoarding"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="7"
-                android:max="40"
-                android:progressDrawable="@drawable/progress_drawable" />
-
-            <TextView
-                android:id="@+id/tv_i2_marks"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif-condensed"
-                android:gravity="right" />
-
-            <TextView
-                android:id="@+id/tv_total_marks_i2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="/40"
-                android:layout_gravity="center"
-                android:fontFamily="sans-serif-condensed"
-                android:textColor="#ffbebebe"
-
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll3"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/ll2"
-            android:orientation="horizontal"
-            android:weightSum="10"
-            android:layout_marginTop="5dp">
-
-            <TextView
-                android:id="@+id/internal_number3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:text="#3"
-                android:textSize="14sp"
-                android:fontFamily="sans-serif-light"
-                android:textColor="#9E9E9E" />
-
-            <ProgressBar
-                android:id="@+id/pb3"
-                android:progressDrawable="@drawable/progress_drawable"
-                style="@android:style/Widget.ProgressBar.Horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="2dp"
-                android:layout_below="@id/internals_hoarding"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="7"
-                android:max="40"
-                />
-
-            <TextView
-                android:id="@+id/tv_i3_marks"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif-condensed"
-                android:textSize="14sp"
-                android:gravity="right" />
-
-            <TextView
-                android:id="@+id/tv_total_marks_i3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="/40"
-                android:layout_gravity="center"
-                android:fontFamily="sans-serif-condensed"
-                android:textColor="#ffbebebe"
-
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_below="@id/ll3"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            android:layout_marginTop="10dp">
 
             <RelativeLayout
-                android:layout_width="0dp"
+                android:id="@+id/llk"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="115dp"
+                android:paddingLeft="4dp">
+
+                <RelativeLayout
+                    android:id="@+id/circle"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/circle">
+
+                    <LinearLayout
+                        android:id="@+id/lla"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:paddingLeft="4dp">
+
+                        <TextView
+                            android:id="@+id/tv_attendance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif"
+                            android:text="85"
+                            android:textColor="#ffffff"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_attendance_percent_symbol"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toLeftOf="@id/tv_attendance"
+                            android:fontFamily="sans-serif"
+                            android:text="%"
+                            android:textColor="#ffffff"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+                </RelativeLayout>
 
                 <TextView
-                    android:id="@+id/quiz_hoarding"
+                    android:id="@+id/tv_attendance_percent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="QUIZ"
-                    android:textColor="#757575"
-                    android:textSize="30sp"
+                    android:layout_below="@+id/circle"
+                    android:layout_marginTop="5dp"
                     android:fontFamily="sans-serif-condensed"
+                    android:text="ATTENDANCE"
+                    android:textColor="#ffc0c0c0"
+                    android:textSize="11sp"
                     android:textStyle="bold" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@+id/ll"
+                android:orientation="vertical"
+                android:paddingBottom="10dp"
+                android:paddingLeft="35dp"
+                android:paddingRight="30dp"
+                android:paddingTop="15dp">
 
                 <TextView
-                    android:id="@+id/tv_q1_marks"
+                    android:id="@+id/internals_hoarding"
+                    style="@style/testHeading"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:layout_below="@id/quiz_hoarding" />
+                    android:text="INTERNALS" />
 
-                <TextView
-                    android:id="@+id/tv_total_marks_q1"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/ll1"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="/5"
-                    android:fontFamily="sans-serif-condensed"
-                    android:textColor="#ffbebebe"
-                    android:layout_below="@id/quiz_hoarding"
-                    android:layout_toRightOf="@id/tv_q1_marks" />
+                    android:layout_below="@id/internals_hoarding"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
 
-                />
+                    <TextView
+                        android:id="@+id/internal_number1"
+                        style="@style/numberingStyle"
+                        android:text="#1" />
 
-                <TextView
-                    android:id="@+id/tv_q2_marks"
-                    android:layout_width="wrap_content"
+                    <ProgressBar
+                        android:id="@+id/pb1"
+                        style="@style/progressStyle"
+                        android:layout_width="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tv_i1_marks"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-condensed"
+                        android:gravity="right" />
+
+                    <TextView
+                        android:id="@+id/tv_total_marks_i1"
+                        style="@style/totalStyle"
+                        android:text="/40" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll2"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/quiz_hoarding"
-                    android:layout_marginLeft="50dp"
-                    android:fontFamily="sans-serif-condensed"
-                    android:layout_toRightOf="@id/tv_q1_marks" />
+                    android:layout_below="@id/ll1"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
 
-                <TextView
-                    android:id="@+id/tv_total_marks_q2"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/internal_number2"
+                        style="@style/numberingStyle"
+                        android:text="#2" />
+
+                    <ProgressBar
+                        android:id="@+id/pb2"
+                        style="@style/progressStyle"
+                        android:layout_width="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tv_i2_marks"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-condensed"
+                        android:gravity="right" />
+
+                    <TextView
+                        android:id="@+id/tv_total_marks_i2"
+                        style="@style/totalStyle"
+                        android:text="/40"
+
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll3"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="/5"
-                    android:textColor="#ffbebebe"
-                    android:fontFamily="sans-serif-condensed"
+                    android:layout_below="@id/ll2"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
 
-                    android:layout_below="@id/quiz_hoarding"
-                    android:layout_toRightOf="@id/tv_q2_marks" />
+                    <TextView
+                        android:id="@+id/internal_number3"
+                        style="@style/numberingStyle"
+                        android:text="#3" />
 
-                />
+                    <ProgressBar
+                        android:id="@+id/pb3"
+                        style="@style/progressStyle"
+                        android:layout_width="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tv_i3_marks"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-condensed"
+                        android:gravity="right"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_total_marks_i3"
+                        style="@style/totalStyle"
+                        android:text="/40"
+
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_below="@id/ll3"
+                    android:layout_marginTop="10dp"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/quiz_hoarding"
+                            style="@style/testHeading"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="QUIZ" />
+
+                        <TextView
+                            android:id="@+id/tv_q1_marks"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/quiz_hoarding"
+                            android:fontFamily="sans-serif-condensed" />
+
+                        <TextView
+                            android:id="@+id/tv_total_marks_q1"
+                            style="@style/totalStyle"
+                            android:layout_below="@id/quiz_hoarding"
+                            android:layout_toRightOf="@id/tv_q1_marks"
+                            android:text="/5" />
+
+                        <TextView
+                            android:id="@+id/tv_q2_marks"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/quiz_hoarding"
+                            android:layout_marginLeft="50dp"
+                            android:layout_toRightOf="@id/tv_q1_marks"
+                            android:fontFamily="sans-serif-condensed" />
+
+                        <TextView
+                            android:id="@+id/tv_total_marks_q2"
+                            style="@style/totalStyle"
+                            android:layout_below="@id/quiz_hoarding"
+                            android:layout_toRightOf="@id/tv_q2_marks"
+                            android:text="/5" />
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/lab_icon"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/labicon" />
+
+                        <TextView
+                            android:id="@+id/lab_hoarding"
+                            style="@style/testHeading"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/lab_icon"
+                            android:layout_marginLeft="5dp"
+                            android:text="LAB" />
+
+                        <TextView
+                            android:id="@+id/tv_l1_marks"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/lab_hoarding"
+                            android:fontFamily="sans-serif-condensed" />
+
+                        <TextView
+                            android:id="@+id/tv_total_marks_l1"
+                            style="@style/totalStyle"
+                            android:layout_below="@id/lab_hoarding"
+                            android:layout_toRightOf="@id/tv_l1_marks"
+                            android:text="/40"
+
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_l2_marks"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/lab_hoarding"
+                            android:layout_marginLeft="50dp"
+                            android:layout_toRightOf="@id/tv_l1_marks"
+                            android:fontFamily="sans-serif-condensed" />
+
+                        <TextView
+                            android:id="@+id/tv_total_marks_l2"
+                            style="@style/totalStyle"
+                            android:layout_below="@id/lab_hoarding"
+                            android:layout_toRightOf="@id/tv_l2_marks"
+                            android:text="/40" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
 
             </RelativeLayout>
 
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:id="@+id/lab_hoarding"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="LAB"
-                        android:textColor="#757575"
-                        android:textSize="30sp"
-                        android:fontFamily="sans-serif-condensed"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tv_l1_marks"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-condensed"
-                        android:layout_below="@id/lab_hoarding" />
-
-                    <TextView
-                        android:id="@+id/tv_total_marks_l1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="/40"
-                        android:textColor="#ffbebebe"
-                        android:layout_below="@id/lab_hoarding"
-                        android:fontFamily="sans-serif-condensed"
-                        android:layout_toRightOf="@id/tv_l1_marks" />
-
-                    />
-
-                    <TextView
-                        android:id="@+id/tv_l2_marks"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/lab_hoarding"
-                        android:layout_marginLeft="50dp"
-                        android:fontFamily="sans-serif-condensed"
-                        android:layout_toRightOf="@id/tv_l1_marks" />
-
-                    <TextView
-                        android:id="@+id/tv_total_marks_l2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="/40"
-                        android:textColor="#ffbebebe"
-                        android:fontFamily="sans-serif-condensed"
-                        android:layout_below="@id/lab_hoarding"
-                        android:layout_toRightOf="@id/tv_l2_marks" />
-
-                    />
-
-                </RelativeLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </RelativeLayout>
-
-
-</RelativeLayout>
-        </ScrollView>
-    </android.support.v4.widget.SwipeRefreshLayout>
+        </RelativeLayout>
+    </ScrollView>
+</android.support.v4.widget.SwipeRefreshLayout>

@@ -15,4 +15,40 @@
              colorControlHighlight & colorSwitchThumbNormal. -->
     </style>
 
+    <style name="testHeading" parent="Base.TextAppearance.AppCompat.Medium">
+
+        <item name="android:textColor">#424242</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textStyle">bold</item>
+
+    </style>
+
+    <style name="progressStyle" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:layout_height">2dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_weight">7</item>
+        <item name="android:max">40</item>
+        <item name="android:progressDrawable">@drawable/progress_drawable</item>
+    </style>
+
+    <style name="numberingStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">#ff620b0b</item>
+        <item name="android:layout_weight">1</item>
+
+    </style>
+
+    <style name="totalStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textColor">#ffbebebe</item>
+    </style>
+
+
 </resources>

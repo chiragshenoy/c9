@@ -28,6 +28,7 @@ import android.view.Gravity;
 import android.graphics.Paint.Style;
 import org.json.JSONException;
 import org.json.JSONObject;
+import android.content.Context;
 
 /**
  * Created by Chirag on 06-11-2014.
@@ -75,47 +76,6 @@ public class SubjectFragment extends Fragment {
     RelativeLayout attendanceCircle;
 
 
-/*
-
-    public static Drawable createDrawable(String accentColor, int backColor) {
-
-        ShapeDrawable shape = new ShapeDrawable();
-        shape.getPaint().setStyle(Style.FILL);
-        shape.getPaint().setColor(Color.BLUE);
-
-        ShapeDrawable shapeD = new ShapeDrawable();
-        shapeD.getPaint().setStyle(Style.FILL);
-        shapeD.getPaint().setColor(Color.BLACK);
-        ClipDrawable clipDrawable = new ClipDrawable(shapeD, Gravity.LEFT,
-                ClipDrawable.HORIZONTAL);
-
-        LayerDrawable layerDrawable = new LayerDrawable(new Drawable[] {
-                clipDrawable });
-        return layerDrawable;
-    }
-
-    */
-
-    public static Drawable createDrawable(String accentColor, int backColor) {
-
-        ShapeDrawable shape = new ShapeDrawable();
-        shape.getPaint().setStyle(Style.FILL);
-        shape.getPaint().setColor(backColor);
-
-        ShapeDrawable shapeD = new ShapeDrawable();
-        shapeD.getPaint().setStyle(Style.FILL);
-        shapeD.getPaint().setColor(Color.BLUE);
-        ClipDrawable clipDrawable = new ClipDrawable(shapeD, Gravity.LEFT,
-                ClipDrawable.HORIZONTAL);
-
-        clipDrawable.setLevel(5500);
-
-        LayerDrawable layerDrawable = new LayerDrawable(new Drawable[] {
-                clipDrawable, shape });
-        return layerDrawable;
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -126,10 +86,6 @@ public class SubjectFragment extends Fragment {
 
             SwipeRefreshLayout swipeLayout = (SwipeRefreshLayout) d1.findViewById(R.id.swipe_container);
             //swipeLayout.setOnRefreshListener();
-            swipeLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
-                    android.R.color.holo_green_light,
-                    android.R.color.holo_orange_light,
-                    android.R.color.holo_red_light);
 
 
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -146,6 +102,12 @@ public class SubjectFragment extends Fragment {
 
         final String[] color_list = getResources().getStringArray(R.array.subjectMainColors);
         final String[] accent_list =  getResources().getStringArray(R.array.subjectAccentColors);
+
+        swipeLayout.setColorSchemeColors(Color.parseColor(accent_list[mIndex]),
+                Color.parseColor(accent_list[mIndex]),
+                Color.parseColor(accent_list[mIndex]),
+                Color.parseColor(accent_list[mIndex]));
+
 
 
         attendanceCircle = (RelativeLayout) d1.findViewById(R.id.circle);
@@ -215,17 +177,21 @@ public class SubjectFragment extends Fragment {
 
         //Get 3 internals marks
 
-            for(int i = 0; i<3; i++){
+        int pgId = getResources().getIdentifier("pd"+(mIndex + 1), "drawable","app.cloud9.com.cloud9");
+
+
+        for(int i = 0; i<3; i++){
 
                 try {
 
                     internal_marks[i] = json_current_subject.getString("internal_" + (i + 1));
-                    progressBar[i].setProgressDrawable(createDrawable(accent_list[mIndex],getResources().getColor(R.color.progressBack)));
-
-                    progressBar[i].getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.LIGHTEN);
+                    try {
+                        progressBar[i].setProgressDrawable(getResources().getDrawable(pgId));
+                    }
+                    catch (Exception e){
+                        System.out.println("Drawable error for mindex = " + mIndex);
+                    }
                     progressBar[i].setProgress(Integer.parseInt(internal_marks[i]));
-                    /*Drawable drawable = progressBar[i].getProgressDrawable();
-                    drawable.setColorFilter(Color.parseColor(accent_list[mIndex]), PorterDuff.Mode.ADD);*/
                     tv_internal_marks[i].setText(internal_marks[i]);
                 }
 
@@ -315,9 +281,6 @@ public class SubjectFragment extends Fragment {
 
         tv_cie_total.setText("37");
         return d1;
-
-
-        //Progress Bars
 
     }
 
