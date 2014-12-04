@@ -27,10 +27,10 @@
 
     <string-array name="subjectAccentColors">
         <item>#1DE9B6</item>
-        <item>#18FFFF</item>
-        <item>#82B1FF</item>
+        <item>#00E5FF</item>
+        <item>#90CAF9</item>
         <item>#536DFE</item>
-        <item>#7C4DFF</item>
+        <item>#ffaf85ff</item>
         <item>#E040FB</item>
         <item>#FF80AB</item>
         <item>#FF8A80</item>

@@ -28,7 +28,7 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:padding="5sp" />
+                    android:padding="10sp" />
 
                 <RelativeLayout
                     android:layout_width="0dp"
@@ -157,6 +157,8 @@
                     style="@style/testHeading"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_i"
+                    android:drawablePadding="10dp"
                     android:text="INTERNALS" />
 
                 <LinearLayout
@@ -171,6 +173,8 @@
                     <TextView
                         android:id="@+id/internal_number1"
                         style="@style/numberingStyle"
+
+
                         android:text="#1" />
 
                     <ProgressBar
@@ -287,6 +291,8 @@
                             style="@style/testHeading"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/ic_qui"
+                            android:drawablePadding="10dp"
                             android:text="QUIZ" />
 
                         <TextView
@@ -327,19 +333,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
 
-                        <ImageView
-                            android:id="@+id/lab_icon"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:src="@drawable/labicon" />
 
                         <TextView
                             android:id="@+id/lab_hoarding"
                             style="@style/testHeading"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_toRightOf="@id/lab_icon"
-                            android:layout_marginLeft="5dp"
+                            android:drawableLeft="@drawable/ic_workplace"
+                            android:drawablePadding="10dp"
                             android:text="LAB" />
 
                         <TextView

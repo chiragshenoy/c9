@@ -11,7 +11,7 @@
         <clip >
             <shape>
                 <solid
-                    android:color="#18FFFF" />
+                    android:color="#00E5FF" />
             </shape>
         </clip>
     </item>

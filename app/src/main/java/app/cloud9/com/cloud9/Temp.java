@@ -65,13 +65,11 @@ public class Temp extends ActionBarActivity {
 
         tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         tabs.setBackground(new ColorDrawable(Color.parseColor(color_list[0])));
-        tabs.setIndicatorColor(Color.parseColor(accent_list[0]));
-        tabs.setIndicatorColor(0xFFFFFFFF);
         tabs.setTextColor(0xAAFFFFFF);
         tabs.setDividerColor(Color.argb(0, 0, 0, 0));
         tabs.setAllCaps(true);
-        tabs.setIndicatorHeight(2);
-        tabs.setIndicatorColor(Color.argb(20, 255, 255, 255));
+        tabs.setIndicatorHeight(3);
+        tabs.setIndicatorColor(Color.argb(80, 255, 255, 255));
         tabs.setUnderlineColor(Color.argb(0, 0, 0, 0));
         pager = (ViewPager) findViewById(R.id.pager);
         adapter = new MyPagerAdapter(getSupportFragmentManager());
@@ -98,7 +96,6 @@ public class Temp extends ActionBarActivity {
             @Override
             public void onPageScrollStateChanged(int i) {
 
-                tabs.setIndicatorHeight(2);
 
             }
 

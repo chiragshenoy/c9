@@ -4,31 +4,28 @@ package app.cloud9.com.cloud9;
  * Created by chirag on 20/11/14.
  */
 
+import android.animation.ObjectAnimator;
+import android.animation.TypeEvaluator;
+import android.animation.ValueAnimator;
 import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.ClipDrawable;
-import android.graphics.drawable.LayerDrawable;
-import android.view.Gravity;
-import android.graphics.Paint.Style;
+
 import org.json.JSONException;
 import org.json.JSONObject;
-import android.content.Context;
 
 /**
  * Created by Chirag on 06-11-2014.
@@ -74,6 +71,8 @@ public class SubjectFragment extends Fragment {
     int mIndex;
 
     RelativeLayout attendanceCircle;
+    private LayoutInflater mInflater;
+    private ViewGroup mContainer;
 
 
     @Override
@@ -83,6 +82,8 @@ public class SubjectFragment extends Fragment {
 
 
         View d1 = inflater.inflate(R.layout.display_marks_and_attendance, container, false);
+        mInflater = inflater;
+        mContainer = container;
 
             SwipeRefreshLayout swipeLayout = (SwipeRefreshLayout) d1.findViewById(R.id.swipe_container);
             //swipeLayout.setOnRefreshListener();
@@ -191,7 +192,17 @@ public class SubjectFragment extends Fragment {
                     catch (Exception e){
                         System.out.println("Drawable error for mindex = " + mIndex);
                     }
-                    progressBar[i].setProgress(Integer.parseInt(internal_marks[i]));
+
+                    if(android.os.Build.VERSION.SDK_INT >= 11){
+                        // will update the "progress" propriety of seekbar until it reaches progress
+                        progressBar[i].setProgress(0);
+                        ObjectAnimator animation = ObjectAnimator.ofInt(progressBar[i], "progress", Integer.parseInt(internal_marks[i]));
+                        animation.setDuration(600); // 0.5 second
+                        animation.setInterpolator(new DecelerateInterpolator());
+                        animation.start();
+                    }
+                    else
+                      progressBar[i].setProgress(Integer.parseInt(internal_marks[i]));
                     tv_internal_marks[i].setText(internal_marks[i]);
                 }
 
@@ -261,7 +272,23 @@ public class SubjectFragment extends Fragment {
 
         System.out.println(Integer.parseInt(theory_attended) / Integer.parseInt(theory_held) * 100);
         calculatedAttendance = (int)((Integer.parseInt(theory_attended) * 100.0f) / Integer.parseInt(theory_held));
-        tv_attendance.setText(String.valueOf(calculatedAttendance));
+
+        ValueAnimator animator = new ValueAnimator();
+        animator.setObjectValues(0, calculatedAttendance);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            public void onAnimationUpdate(ValueAnimator animation) {
+                tv_attendance.setText(String.valueOf(animation.getAnimatedValue()));
+            }
+        });
+        animator.setEvaluator(new TypeEvaluator<Integer>() {
+            public Integer evaluate(float fraction, Integer startValue, Integer endValue) {
+                return Math.round((endValue - startValue) * fraction);
+            }
+        });
+        animator.setDuration(1000);
+        animator.start();
+
+        //tv_attendance.setText(String.valueOf(calculatedAttendance));
 
         try {
             lab_externals = json_current_subject.getString("lab_external");
@@ -279,7 +306,23 @@ public class SubjectFragment extends Fragment {
             e.printStackTrace();
         }
 
-        tv_cie_total.setText("37");
+        final_cie_total = "37";
+        ValueAnimator cie_animator = new ValueAnimator();
+        cie_animator.setObjectValues(0, Integer.parseInt(final_cie_total));
+        cie_animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            public void onAnimationUpdate(ValueAnimator animation) {
+                tv_cie_total.setText(String.valueOf(animation.getAnimatedValue()));
+            }
+        });
+        cie_animator.setEvaluator(new TypeEvaluator<Integer>() {
+            public Integer evaluate(float fraction, Integer startValue, Integer endValue) {
+                return Math.round((endValue - startValue) * fraction);
+            }
+        });
+        cie_animator.setDuration(800);
+        cie_animator.start();
+
+        //tv_cie_total.setText("37");
         return d1;
 
     }
