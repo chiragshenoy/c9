@@ -57,7 +57,7 @@ public class Temp extends ActionBarActivity {
         Bundle c = getIntent().getExtras();
 
         final String[] color_list = getResources().getStringArray(R.array.subjectMainColors);
-        final String[] accent_list =  getResources().getStringArray(R.array.subjectAccentColors);
+        final String[] accent_list = getResources().getStringArray(R.array.subjectAccentColors);
         if (c != null) {
             arr = (ArrayList<String>) c.getStringArrayList("array_list");
         }
@@ -101,9 +101,9 @@ public class Temp extends ActionBarActivity {
                 tabs.setIndicatorHeight(2);
 
             }
+
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
-            {
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
             }
         });
@@ -113,7 +113,7 @@ public class Temp extends ActionBarActivity {
 
         //Supported only for Lolipop and above
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-            getWindow().setStatusBarColor(currentColor);
+            getWindow().setStatusBarColor(0xFF00695C);
 
         b = new Bundle();
         b.putString("all_marks", all_marks_string);
@@ -142,6 +142,27 @@ public class Temp extends ActionBarActivity {
 
         return arr.get(position);
 
+    }
+
+
+    public int statusbarColorchanger(int color) {
+
+        switch (color) {
+            case 0xFF009688:
+                return 0xFF00796B;
+            case 0xFF00BCD4:
+                return 0xFF00ACC1; //Note this change
+            case 0xFF2196F3:
+                return 0xFF1976D2;
+            case 0xFF3F51B5:
+                return 0xFF303F9F;
+            case 0xFF673AB7:
+                return 0xFF512DA8;
+            case 0xFF9C27B0:
+                return 0xFF7B1FA2;
+        }
+
+        return 0;
     }
 
     private void changeColor(int newColor) {
@@ -173,7 +194,10 @@ public class Temp extends ActionBarActivity {
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
                     td.setCallback(drawableCallback);
                 } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    getWindow().setStatusBarColor(newColor);
+                    int new_status_color = statusbarColorchanger(newColor);
+                    getWindow().setStatusBarColor(new_status_color);
+
+                    //getWindow().setStatusBarColor(newColor);
                     toolbar.setBackgroundDrawable(new ColorDrawable(newColor));
                 } else {
                     //getWindow().setStatusBarColor(newColor);
