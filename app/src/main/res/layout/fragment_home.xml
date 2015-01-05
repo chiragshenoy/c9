@@ -50,17 +50,34 @@
         >
 
     <Button
+        android:layout_marginTop="50dp"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:id="@+id/get_marks"
-        android:layout_centerInParent="true"
         android:background="@drawable/circle_main"
         android:padding="20dp"
         android:text="My Marks"
         android:textAllCaps="true"
         android:textColor="#ffffff"
+        android:layout_centerHorizontal="true"
 
 />
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/get_notice"
+            android:background="@drawable/circle_main"
+            android:padding="20dp"
+            android:text="Notice Board"
+            android:textAllCaps="true"
+            android:textColor="#ffffff"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/get_marks"
+
+
+
+            />
         </RelativeLayout>
 
 </RelativeLayout>

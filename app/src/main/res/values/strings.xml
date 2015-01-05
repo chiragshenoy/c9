@@ -6,6 +6,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="drawer_opened">Slider Menu Opened</string>
     <string name="drawer_closed">Slider Menu Closed</string>
+    <string name="noticeboard_title">Notice Board</string>
 
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">

@@ -6,6 +6,7 @@
     <color name="colorDark">#ff8d138a</color>
     <color name="progressFill">#1DE9B6</color>
     <color name="progressBack">#ffe8e8e8</color>
+    <color name="app_theme_color">#ff7ac2f5</color>
 
 
 </resources>

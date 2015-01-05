@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@drawable/card"
+    android:id="@+id/notice_ll">
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_proctor_group"
+        android:id="@+id/group_icon"
+        android:layout_marginRight="16dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/notice_subject"
+        android:text="Lorem ipsum"
+        android:textSize="16sp"
+        android:textColor="#212121"
+        android:layout_toRightOf="@id/group_icon"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/notice_time"
+        android:text="5:00pm"
+        android:textSize="14sp"
+        android:textColor="@color/app_theme_color"
+        android:fontFamily="sans-serif-condensed"
+        android:textStyle="bold"
+        android:layout_alignParentRight="true"
+        android:layout_alignBaseline="@id/notice_time"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/notice_body"
+        android:text="Lorem ipsum generata modem pipsum mipsum holalata gypsum"
+        android:textSize="14sp"
+        android:textColor="#ff696969"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:layout_below="@id/notice_subject"
+        android:layout_toRightOf="@id/group_icon"
+
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dummy"
+        android:adjustViewBounds= "true"
+        android:maxHeight="200dp"
+        android:layout_marginTop="32dp"
+        android:id="@+id/notice_preview"
+        android:layout_toRightOf="@id/group_icon"
+        android:layout_below="@id/notice_subject"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Posted by: Shambhavi BR"
+        android:layout_below="@id/notice_preview"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="16dp"/>
+
+
+</RelativeLayout>

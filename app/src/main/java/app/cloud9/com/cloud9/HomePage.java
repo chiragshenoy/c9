@@ -36,6 +36,7 @@ import java.util.Iterator;
 public class HomePage extends Fragment {
 
     Button get_marks;
+    Button get_notice;
     HttpClient client;
     final static String URL = "https://api.myjson.com/bins/4y3gb";
     JSONObject json;
@@ -65,6 +66,7 @@ public class HomePage extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         get_marks = (Button) rootView.findViewById(R.id.get_marks);
+        get_notice = (Button) rootView.findViewById(R.id.get_notice);
         welcome = (TextView) rootView.findViewById(R.id.welcome);
         relativeLayout = (RelativeLayout) rootView.findViewById(R.id.relative_layout);
 
@@ -100,6 +102,19 @@ public class HomePage extends Fragment {
                 startActivity(a);
             }
         });
+
+        get_notice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent b = new Intent(getActivity(), NoticeBoard.class);
+                //a.putExtra("array_list", subjectList);
+                //a.putExtra("marks", string_marks);
+                //Toast.makeText(getActivity(), "" + string_marks, Toast.LENGTH_SHORT).show();
+
+                startActivity(b);
+            }
+        });
+
         return rootView;
     }
     //end of oncreate
