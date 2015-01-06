@@ -4,6 +4,8 @@
         <!-- colorPrimary is used for the default action bar background -->
         <item name="colorPrimary">@color/primaryColor</item>
 
+        <item name="searchViewStyle">@style/MySearchViewStyle</item>
+
         <!-- colorPrimaryDark is used for the status bar -->
         <item name="colorPrimaryDark">@color/colorDark</item>
 
@@ -13,6 +15,30 @@
 
         <!-- You can also set colorControlNormal, colorControlActivated
              colorControlHighlight & colorSwitchThumbNormal. -->
+
+        <item name="android:textColorHint">#66ffffff</item>
+
+        <item name="android:editTextBackground">@drawable/apptheme_edit_text_holo_light</item>
+
+        <item name="android:textColorHighlight">#99c70200</item>
+        <item name="android:textSelectHandleLeft">@drawable/apptheme_text_select_handle_left</item>
+        <item name="android:textSelectHandleRight">@drawable/apptheme_text_select_handle_right
+        </item>
+        <item name="android:textSelectHandle">@drawable/apptheme_text_select_handle_middle</item>
+        <item name="android:textCursorDrawable">@null</item>
+
+        <item name="android:autoCompleteTextViewStyle">@style/AutoCompleteTextViewAppTheme</item>
+    </style>
+
+    <style name="AutoCompleteTextViewAppTheme" parent="android:Widget.Holo.Light.AutoCompleteTextView">
+        <item name="android:dropDownSelector">@drawable/apptheme_list_selector_holo_light</item>
+        <item name="android:background">@drawable/apptheme_edit_text_holo_light</item>
+    </style>
+
+    <style name="MySearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="queryBackground">@drawable/whitetheme_textfield_activated_holo_light</item>
+        <item name="searchIcon">@drawable/ic_trans_search</item>
+        <item name="closeIcon">@drawable/ic_action_navigation_close</item>
     </style>
 
     <style name="testHeading" parent="Base.TextAppearance.AppCompat.Medium">

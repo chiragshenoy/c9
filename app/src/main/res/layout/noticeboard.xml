@@ -1,6 +1,6 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:baselineAligned="false"
@@ -12,22 +12,71 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:minHeight="?attr/actionBarSize"
-    android:background="?attr/colorPrimary" />
+    android:textColor="#ffffff"
+    android:background="@color/bmsce_main_color"
+        />
 
 
+    <TextView
+        style="?android:listSeparatorTextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Recent Notices"
+        android:layout_marginBottom="6dp"/>
 
-<TextView
-    style="?android:listSeparatorTextViewStyle"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Hello" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recentrecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6dp"
+        android:paddingRight="6dp"
 
-<android.support.v7.widget.RecyclerView
-    android:id="@+id/recyclerView"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    />
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rl_empty_notice"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            android:paddingBottom="50dp"
+            android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_empty_notice"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No new notices available"
+            android:fontFamily="sans-serif-light"
+            android:textSize="20sp"
+            android:textColor="#ff858585"
+            />
+        </LinearLayout>
+        </RelativeLayout>
+
+    <!---->
+    <!--<TextView-->
+        <!--style="?android:listSeparatorTextViewStyle"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Old Notices"-->
+        <!--android:layout_marginBottom="6dp"/>-->
+
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/oldrecyclerView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="100dp"-->
+        <!--android:paddingLeft="6dp"-->
+        <!--android:paddingRight="6dp"-->
+
+        <!--/>-->
+
 </LinearLayout>
 
