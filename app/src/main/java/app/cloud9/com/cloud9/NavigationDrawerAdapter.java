@@ -1,6 +1,7 @@
 package app.cloud9.com.cloud9;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -74,10 +75,42 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
         );
 
         //TODO: selected menu position, change layout accordingly
-        if (mSelectedPosition == i || mTouchedPosition == i) {
-            viewHolder.itemView.setBackgroundColor(viewHolder.itemView.getContext().getResources().getColor(R.color.light_gray));
-        } else {
+        if (mSelectedPosition == i ) {
+            viewHolder.itemView.setBackgroundColor(viewHolder.itemView.getContext().getResources().getColor(R.color.select_gray));
+            viewHolder.textView.setTypeface(Typeface.DEFAULT_BOLD);
+            viewHolder.textView.setTextColor(0xFFD60000);
+            switch (i) {
+                case 0:
+                    viewHolder.textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_nav_home_selected, 0, 0, 0);
+                    break;
+                case 1:
+                    viewHolder.textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_book_selected, 0, 0, 0);
+                    break;
+                case 2:
+                    viewHolder.textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_assignment_selected, 0, 0, 0);
+                    break;
+                case 3:
+                    viewHolder.textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_settings_selected, 0, 0, 0);
+                    break;
+                case 4:
+                    viewHolder.textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_face_unlock_selected, 0, 0, 0);
+                    break;
+                case 5:
+                    viewHolder.textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_nav_sign_out_selected, 0, 0, 0);
+                    break;
+
+            }
+
+        } else if(mTouchedPosition == i){
+                viewHolder.itemView.setBackgroundColor(viewHolder.itemView.getContext().getResources().getColor(R.color.select_gray));
+
+            }
+
+        else {
             viewHolder.itemView.setBackgroundColor(Color.TRANSPARENT);
+            viewHolder.textView.setTypeface(Typeface.DEFAULT);
+            viewHolder.textView.setTextColor(0xff000000);
+
         }
     }
 

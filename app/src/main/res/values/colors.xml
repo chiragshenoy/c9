@@ -8,9 +8,11 @@
     <color name="progressBack">#ffe8e8e8</color>
     <color name="app_theme_color">#ff7ac2f5</color>
     <color name="bmsce_main_color">#0B57B8</color>
+    <color name="bmsce_secondary_color">#D60000</color>
     <color name="back_gray">#F5F5F5</color>
     <color name="med_gray">#424242</color>
     <color name="light_gray">#757575</color>
+    <color name="select_gray">#ffe6e6e6</color>
 
 
 </resources>
