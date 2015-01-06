@@ -59,6 +59,8 @@ public class HomePage extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
         b = new Bundle();
         client = new DefaultHttpClient();
         subjectList = new ArrayList<String>();

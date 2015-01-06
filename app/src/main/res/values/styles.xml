@@ -28,6 +28,13 @@
         <item name="android:textCursorDrawable">@null</item>
 
         <item name="android:autoCompleteTextViewStyle">@style/AutoCompleteTextViewAppTheme</item>
+
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+    </style>
+
+    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@android:color/white</item>
     </style>
 
     <style name="AutoCompleteTextViewAppTheme" parent="android:Widget.Holo.Light.AutoCompleteTextView">
