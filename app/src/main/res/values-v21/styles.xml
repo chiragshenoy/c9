@@ -1,5 +1,12 @@
 <resources>
 
-    <style name="Theme.c9theme" parent="Theme.AppCompat.Light.NoActionBar"></style>
+    <style name="Theme.c9theme" parent="android:Theme.Material">
+
+        <item name="colorPrimary">@color/bmsce_main_color</item>
+
+        <!-- colorPrimaryDark is used for the status bar -->
+        <item name="colorPrimaryDark">#ff094c99</item>
+
+    </style>
 
 </resources>

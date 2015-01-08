@@ -101,6 +101,7 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
 //        mOldRecyclerView = (RecyclerView) findViewById(R.id.oldrecyclerView);
 
         mRecentLayoutManager = new LinearLayoutManager(this);
+
 //        mOldLayoutManager = new LinearLayoutManager(this);
 
 
@@ -125,6 +126,8 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
             public int getItemCount() {
                 return mItems.size();
             }
+
+
 
         };
         mRecentRecyclerView.setAdapter(mAdapter);
@@ -164,7 +167,7 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
                                 //If no notice available,
 
                                 if(mItems.size()==0){
-                                    mRecentRecyclerView.setVisibility(View.GONE);
+                                    //mRecentRecyclerView.setVisibility(View.GONE);
                                     emptyNotice.setVisibility(View.VISIBLE);
                                 }
 
@@ -179,8 +182,11 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
                     @Override
                     public void onItemClick(View view, int position) {
                         Toast.makeText(NoticeBoard.this, "Clicked " + mItems.get(position), Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(getBaseContext(), NoticeViewer.class);
+                        startActivity(i);
                     }
                 }));
+
     }
 
 

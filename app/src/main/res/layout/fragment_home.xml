@@ -3,13 +3,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/relative_layout"
-    android:background="@color/back_gray"
+    android:background="@color/bmsce_main_color"
     android:clickable="true">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/loader_hoarding"
+        >
+
+        <TextView
+            android:id="@+id/tv_load"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Refreshing data..."
+            android:textColor="#55ffffff"
+            android:fontFamily="sans-serif-light"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"/>
+
+    <ImageView
+        android:id="@+id/bms_loader"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_loader"
+        android:layout_below="@id/tv_load"
+        android:layout_centerHorizontal="true"
+        />
+
+    </RelativeLayout>
+
 
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/container"
         android:layout_below="@id/c9_toolbar"
         android:padding="16dp"
@@ -19,54 +48,43 @@
 
     <TextView
         android:id="@+id/welcome"
-        android:textColor="@color/light_gray"
+        android:textColor="#fff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:textStyle="bold"
-        android:textAllCaps="true"
-        android:textSize="45sp"
+        android:textSize="60sp"
         android:gravity="center"
+        android:fontFamily="sans-serif-thin"
         android:text="Welcome XYZ!" />
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/container2"
-        android:layout_below="@id/container"
-        android:layout_centerInParent="true"
-        >
 
     <Button
         android:layout_marginTop="50dp"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/get_marks"
-        android:background="@drawable/circle_main"
-        android:padding="20dp"
+        android:padding="25dp"
         android:text="My Marks"
+        android:background="#ff0c53aa"
         android:textAllCaps="true"
         android:textColor="#ffffff"
         android:layout_centerHorizontal="true"
-
-/>
+        android:layout_below="@+id/welcome"
+        android:elegantTextHeight="false"
+       />
 
         <Button
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/get_notice"
-            android:background="@drawable/circle_main"
-            android:padding="20dp"
+            android:padding="25dp"
             android:text="Notice Board"
             android:textAllCaps="true"
             android:textColor="#ffffff"
+            android:background="#ff0c53aa"
+            android:layout_marginTop="20dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/get_marks"
-
-
-
             />
         </RelativeLayout>
 

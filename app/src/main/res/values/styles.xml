@@ -18,6 +18,7 @@
 
         <item name="android:textColorHint">#66ffffff</item>
 
+
         <item name="android:editTextBackground">@drawable/apptheme_edit_text_holo_light</item>
 
         <item name="android:textColorHighlight">#99c70200</item>

@@ -157,7 +157,7 @@
                     style="@style/testHeading"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_labicon"
+                    android:drawableLeft="@drawable/ic_i"
                     android:drawablePadding="10dp"
                     android:text="INTERNALS" />
 
@@ -291,7 +291,7 @@
                             style="@style/testHeading"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/ic_labicon"
+                            android:drawableLeft="@drawable/ic_qui"
                             android:drawablePadding="10dp"
                             android:text="QUIZ" />
 
@@ -339,7 +339,7 @@
                             style="@style/testHeading"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/ic_labicon"
+                            android:drawableLeft="@drawable/ic_workplace"
                             android:drawablePadding="10dp"
                             android:text="LAB" />
 

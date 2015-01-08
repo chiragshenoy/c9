@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:baselineAligned="false"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:animateLayoutChanges="true"
+    >
 
     <android.support.v7.widget.Toolbar
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -15,6 +17,12 @@
     android:textColor="#ffffff"
     android:background="@color/bmsce_main_color"
         />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Toggle"
+        android:id="@+id/toggle_size"/>
 
 
     <TextView
@@ -30,7 +38,6 @@
         android:layout_height="wrap_content"
         android:paddingLeft="6dp"
         android:paddingRight="6dp"
-
         />
 
     <RelativeLayout

@@ -5,16 +5,23 @@ package app.cloud9.com.cloud9;
  */
 
 import android.app.Fragment;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +44,7 @@ public class HomePage extends Fragment {
 
     Button get_marks;
     Button get_notice;
+    ImageView loader;
     HttpClient client;
     final static String URL = "https://api.myjson.com/bins/4y3gb";
     JSONObject json;
@@ -47,6 +55,11 @@ public class HomePage extends Fragment {
     Bundle b;
     String string_marks;
     RelativeLayout relativeLayout;
+    RelativeLayout loaderHoarding;
+    Animation buttonPressAnim;
+    Animation buttonReleaseAnim;
+    AnimationSet welcomeAnim;
+    Animation loaderPop;
 
     TransitionDrawable transition;
     Boolean started = false;
@@ -70,6 +83,8 @@ public class HomePage extends Fragment {
         get_marks = (Button) rootView.findViewById(R.id.get_marks);
         get_notice = (Button) rootView.findViewById(R.id.get_notice);
         welcome = (TextView) rootView.findViewById(R.id.welcome);
+        loaderHoarding = (RelativeLayout) rootView.findViewById(R.id.loader_hoarding);
+        loader = (ImageView) rootView.findViewById(R.id.bms_loader);
         relativeLayout = (RelativeLayout) rootView.findViewById(R.id.relative_layout);
 
 
@@ -92,6 +107,81 @@ public class HomePage extends Fragment {
 
         handler.postDelayed(r, 0);
 */
+
+        buttonPressAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.button_animation);
+        buttonReleaseAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.button_release_animation);
+
+        TranslateAnimation welcomeAnimTranslate = new TranslateAnimation(
+                TranslateAnimation.ABSOLUTE, 0.0f,
+                TranslateAnimation.ABSOLUTE, 0.0f,
+                TranslateAnimation.ABSOLUTE, 40,
+                TranslateAnimation.ABSOLUTE, 0.0f);
+
+        final AlphaAnimation welcomeAnimFade = new AlphaAnimation(0.0f,1.0f);
+
+        welcomeAnim = new AnimationSet(true);
+        welcomeAnim.addAnimation(welcomeAnimFade);
+        welcomeAnim.addAnimation(welcomeAnimTranslate);
+         welcomeAnim.setFillAfter(true);
+        welcomeAnim.setDuration(900);
+        welcomeAnim.setInterpolator(new DecelerateInterpolator());
+
+        get_marks.setAnimation(welcomeAnim);
+        get_notice.setAnimation(welcomeAnim);
+
+
+        Animation rotateLoader = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate_loader);
+        //rotateLoader.setRepeatCount(Animation.INFINITE);
+        //rotateLoader.setRepeatMode(Animation.REVERSE);
+        loader.setDrawingCacheEnabled(true);
+        loader.startAnimation(rotateLoader);
+
+        loaderPop = AnimationUtils.loadAnimation(getActivity(), R.anim.loader_pop_fade);
+        loaderPop.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+                welcome.setVisibility(View.VISIBLE);
+                get_marks.setVisibility(View.VISIBLE);
+                get_notice.setVisibility(View.VISIBLE);
+                loaderHoarding.setVisibility(View.GONE);
+                welcome.startAnimation(welcomeAnim);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+
+        welcome.setVisibility(View.GONE);
+        get_marks.setVisibility(View.GONE);
+        get_notice.setVisibility(View.GONE);
+
+
+
+        get_marks.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if(event.getAction() == MotionEvent.ACTION_DOWN)
+                v.startAnimation(buttonPressAnim);
+
+                if(event.getAction() == MotionEvent.ACTION_UP)
+                {
+                    v.startAnimation(buttonReleaseAnim);
+
+                }
+
+                    return false;
+            }
+        });
 
         get_marks.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,13 +238,7 @@ public class HomePage extends Fragment {
         /**
          * progress dialog to show user that the backup is processing.
          */
-        private ProgressDialog dialog = new ProgressDialog(getActivity());
 
-        @Override
-        protected void onPreExecute() {
-            this.dialog.setMessage("Please wait");
-            this.dialog.show();
-        }
 
         int i = 0;
 
@@ -211,10 +295,15 @@ public class HomePage extends Fragment {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            if (dialog.isShowing()) {
-                dialog.dismiss();
-            }
+
             welcome.setText("Welcome " + name + "!");
+            //loader.clearAnimation();
+            //loader.setVisibility(View.GONE);
+            loader.setAnimation(loaderPop);
+
+
+
+
         }
 
         @Override
