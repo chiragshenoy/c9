@@ -4,9 +4,49 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:transitionName="@string/transition_notice_card"
     tools:context="app.cloud9.com.cloud9.NoticeViewer">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_class_group"
+        android:id="@+id/group_icon"
+        android:layout_marginRight="16dp"
+        android:transitionName="@string/transition_group_icon"
+        android:layout_alignParentLeft="true"
+
+        />
+
+
+    <TextView android:text="Item 1" android:layout_width="wrap_content"
+        android:transitionName="@string/transition_notice"
+        android:layout_centerHorizontal="true"
+        android:textSize="24sp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/group_icon"
+        android:id="@+id/notice_subject"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/light_gray"
+        android:layout_below="@+id/notice_subject"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/notice_separator"
+        />
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/notice_body"
+        android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+        android:layout_below="@id/notice_separator"
+        android:transitionName="@string/transition_notice_body"/>
 
 </RelativeLayout>

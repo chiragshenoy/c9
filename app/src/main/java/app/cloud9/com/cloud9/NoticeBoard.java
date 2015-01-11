@@ -21,11 +21,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.support.v4.util.Pair;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -66,6 +69,7 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
         setSupportActionBar(toolbar);
         toolbar.setTitle(R.string.noticeboard_title);
         toolbar.setNavigationIcon(R.drawable.ic_drawer);
+
 
         emptyNotice = (RelativeLayout) findViewById(R.id.rl_empty_notice);
         emptyNotice.setVisibility(View.GONE);
@@ -183,8 +187,28 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
                     public void onItemClick(View view, int position) {
                         Toast.makeText(NoticeBoard.this, "Clicked " + mItems.get(position), Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(getBaseContext(), NoticeViewer.class);
-                        startActivity(i);
-                    }
+
+                        View noticeSubj = view.findViewById(R.id.notice_subject);
+                        View noticeIcon = view.findViewById(R.id.group_icon);
+                        View noticeBody = view.findViewById(R.id.notice_body);
+
+
+                        String subjectTransitionName = getString(R.string.transition_notice);
+                        String groupIconTransitionName = getString(R.string.transition_group_icon);
+                        String bodyTransitionName = getString(R.string.transition_notice_body);
+                        String cardTransitionName = getString(R.string.transition_notice_card);
+
+
+                            ActivityOptionsCompat options =
+                                    ActivityOptionsCompat.makeSceneTransitionAnimation(NoticeBoard.this,
+                                            Pair.create(noticeSubj, subjectTransitionName),
+                                            Pair.create(noticeIcon, groupIconTransitionName),
+                                            Pair.create(noticeBody, bodyTransitionName)//,
+                                            //Pair.create(view, cardTransitionName)
+                                    );
+
+                            ActivityCompat.startActivity(NoticeBoard.this, i, options.toBundle());
+                        }
                 }));
 
     }

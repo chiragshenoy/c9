@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="Theme.c9theme" parent="android:Theme.Material">
+    <style name="Theme.c9theme" parent="Theme.AppCompat.Light.NoActionBar">
 
         <item name="colorPrimary">@color/bmsce_main_color</item>
 
