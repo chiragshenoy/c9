@@ -50,7 +50,7 @@ public class JsonGetter {
                 1) Current activity context
                 2)  mode : MODE_MARKS  or  MODE_NOTICE; */
 
-    public JsonGetter(Context c, String u, String m) {
+    public JsonGetter(Context c, String m) {
 
         //Initialize variables
         context = c;
