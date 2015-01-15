@@ -26,10 +26,13 @@ import java.util.Iterator;
  * ----------------------------
  *  Constructor          :      JsonGetter(Context context, String url, String mode);
  *  Process Json         :      void parseJson();
+ *
  *  Get student's name   :      String getStudentName();
  *  Get student's usn    :      String getStudentUSN();
  *  Get subject list     :      ArrayList<String> getSubjectList() ;
  *  Get marks json       :      JSONObject getAllMarks();
+ *  
+ *  //TODO Getters for noticeboard
  */
 public class JsonGetter {
     String json_marks;
