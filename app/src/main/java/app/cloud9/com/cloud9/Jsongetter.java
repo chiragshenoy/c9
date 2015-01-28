@@ -34,7 +34,7 @@ import java.util.Iterator;
  *  
  *  //TODO Getters for noticeboard
  */
-public class JsonGetter {
+public class Jsongetter {
     String json_marks;
     String json_notice;
     String url;
@@ -53,7 +53,7 @@ public class JsonGetter {
                 1) Current activity context
                 2)  mode : MODE_MARKS  or  MODE_NOTICE; */
 
-    public JsonGetter(Context c, String m) {
+    public Jsongetter(Context c, String m) {
 
         //Initialize variables
         context = c;
@@ -181,6 +181,7 @@ public class JsonGetter {
     }
 
     //TODO: Getters for Notice
+
 
 
 }

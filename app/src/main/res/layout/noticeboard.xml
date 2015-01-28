@@ -1,28 +1,29 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:baselineAligned="false"
     android:orientation="vertical"
-    android:animateLayoutChanges="true"
-    >
+    android:animateLayoutChanges="true">
 
     <android.support.v7.widget.Toolbar
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@id/c9_toolbar"
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent"
-    android:minHeight="?attr/actionBarSize"
-    android:textColor="#ffffff"
-    android:background="@color/bmsce_main_color"
-        />
+        android:id="@id/c9_toolbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:minHeight="?attr/actionBarSize"
+        android:textColor="#ffffff"
+        android:background="@color/bmsce_main_color" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ff0000"
+        android:id="@+id/test" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Toggle"
-        android:id="@+id/toggle_size"/>
+        android:id="@+id/toggle_size" />
 
 
     <TextView
@@ -30,21 +31,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Recent Notices"
-        android:layout_marginBottom="6dp"/>
+        android:layout_marginBottom="6dp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recentrecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="6dp"
-        android:paddingRight="6dp"
-        />
+        android:paddingRight="6dp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/rl_empty_notice"
-        >
+        android:id="@+id/rl_empty_notice">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -53,37 +53,37 @@
             android:paddingBottom="50dp"
             android:gravity="center">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_empty_notice"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="No new notices available"
-            android:fontFamily="sans-serif-light"
-            android:textSize="20sp"
-            android:textColor="#ff858585"
-            />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_empty_notice" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No new notices available"
+                android:fontFamily="sans-serif-light"
+                android:textSize="20sp"
+                android:textColor="#ff858585" />
         </LinearLayout>
-        </RelativeLayout>
+    </RelativeLayout>
 
     <!---->
     <!--<TextView-->
-        <!--style="?android:listSeparatorTextViewStyle"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="Old Notices"-->
-        <!--android:layout_marginBottom="6dp"/>-->
+    <!--style="?android:listSeparatorTextViewStyle"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="Old Notices"-->
+    <!--android:layout_marginBottom="6dp"/>-->
 
     <!--<android.support.v7.widget.RecyclerView-->
-        <!--android:id="@+id/oldrecyclerView"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="100dp"-->
-        <!--android:paddingLeft="6dp"-->
-        <!--android:paddingRight="6dp"-->
+    <!--android:id="@+id/oldrecyclerView"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="100dp"-->
+    <!--android:paddingLeft="6dp"-->
+    <!--android:paddingRight="6dp"-->
 
-        <!--/>-->
+    <!--/>-->
 
 </LinearLayout>
 

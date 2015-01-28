@@ -19,16 +19,17 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.support.v4.util.Pair;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -41,13 +42,31 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NoticeBoard extends ActionBarActivity implements SearchView.OnQueryTextListener{
+public class NoticeBoard extends ActionBarActivity implements SearchView.OnQueryTextListener {
 
-    private static final int ITEMS_COUNT = 5;
+    private static final int ITEMS_COUNT = 1;
     private List<String> mItems;
+
+    final static String URL = "https://api.myjson.com/bins/4txdj";
+    JSONArray json_array;
+    HttpClient client;
+    String name;
+    ArrayList<NoticeJson> arraylist;
 
     private RecyclerView mRecentRecyclerView;
     private RecyclerView mOldRecyclerView;
@@ -57,10 +76,15 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
     private SearchView mSearchView;
     private Menu mMenu;
     private RelativeLayout emptyNotice;
+    TextView test;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.noticeboard);
+
+
+        client = new DefaultHttpClient();
+        new Read().execute();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.c9_toolbar); //Appcompat support for a sexier action bar
         toolbar.setNavigationIcon(R.drawable.ic_drawer);
@@ -74,11 +98,131 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
         emptyNotice = (RelativeLayout) findViewById(R.id.rl_empty_notice);
         emptyNotice.setVisibility(View.GONE);
 
+        test = (TextView) findViewById(R.id.test);
+
 
         initData();
         initRecyclerView();
         handleIntent(getIntent());
+
     }
+
+    //drama begings
+    //Json Part
+    public JSONArray get_entire_json() throws IOException, JSONException {
+
+        StringBuilder url = new StringBuilder(URL);
+        HttpGet get = new HttpGet(url.toString());
+        HttpResponse r = client.execute(get);
+
+        int status = r.getStatusLine().getStatusCode();
+
+        if (status == 200) {
+            HttpEntity e = r.getEntity();
+            String data = EntityUtils.toString(e);
+//            JSONObject full_json = new JSONObject(data);
+            JSONArray full_json = new JSONArray(data);
+
+            return full_json;
+        } else {
+            Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
+            return null;
+
+        }
+    }
+
+    public class Read extends AsyncTask<String, Integer, String> {
+        /**
+         * progress dialog to show user that the backup is processing.
+         */
+
+
+        int i = 0;
+
+        //Only getting the list of the subjects and getting basic info
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                //Getting the Json Array
+                json_array = get_entire_json();
+
+                //Array of NoticeJson ( Setters were not required )
+//                NoticeJson[] noticeJsons = new NoticeJson[json_array.length()];
+                arraylist = new ArrayList<>();
+
+
+                for (int i = 0; i < json_array.length(); i++) {
+                    try {
+                        JSONObject jsonObject = json_array.getJSONObject(i);
+
+                        arraylist.add(i, new NoticeJson());
+                        arraylist.get(i).setId(jsonObject.getString("id"));
+                        arraylist.get(i).setPosted_by(jsonObject.getString("posted_by"));
+                        arraylist.get(i).setSubject(jsonObject.getString("subject"));
+                        arraylist.get(i).setText(jsonObject.getString("text"));
+                        arraylist.get(i).setTarget_group(jsonObject.getString("target_group"));
+                        arraylist.get(i).setPosted_at(jsonObject.getString("posted_at"));
+                        arraylist.get(i).setPath(jsonObject.getString("path"));
+                    } catch (Exception e) {
+
+                    }
+//                    noticeJsons[i].setId(jsonObject.getString("id"));
+//                    noticeJsons[i].posted_by = jsonObject.getString("posted_by");
+//                    noticeJsons[i].subject = jsonObject.getString("subject");
+//                    noticeJsons[i].text = jsonObject.getString("text");
+//                    noticeJsons[i].target_group = jsonObject.getString("target_group");
+//                    noticeJsons[i].posted_at = jsonObject.getString("posted_at");
+//                    noticeJsons[i].path = jsonObject.getString("path");
+                }
+
+
+                return null;
+
+            } catch (ClientProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            //Testing one case
+            try {
+                test.setText(json_array.getJSONObject(3).getString("text"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+// Adding subject of notification
+            for (int i = 0; i < arraylist.size(); i++) {
+                mItems.add(i, arraylist.get(i).subject);
+            }
+
+            mAdapter.notifyDataSetChanged();
+
+
+            //   test.setText("Welcome " + name + "!");
+            //loader.clearAnimation();
+            //loader.setVisibility(View.GONE);
+//            loader.setAnimation(loaderPop);
+
+
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+
+        }
+    }
+
+    //drama end
 
     @Override
     protected void onNewIntent(Intent intent) {
@@ -124,6 +268,7 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
             @Override
             public void onBindViewHolder(CustomViewHolder viewHolder, int i) {
                 viewHolder.noticeSubject.setText(mItems.get(i));
+               // viewHolder.noticeBody.setText(arraylist.get(i).text);
             }
 
             @Override
@@ -132,17 +277,15 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
             }
 
 
-
         };
         mRecentRecyclerView.setAdapter(mAdapter);
 //        mOldRecyclerView.setAdapter(mAdapter);
 
-        if(mAdapter.getItemCount()==0){
+        if (mAdapter.getItemCount() == 0) {
             emptyNotice.setVisibility(View.VISIBLE);
             mRecentRecyclerView.setVisibility(View.GONE);
 
-        }
-        else{
+        } else {
             emptyNotice.setVisibility(View.GONE);
             mRecentRecyclerView.setVisibility(View.VISIBLE);
 
@@ -170,7 +313,7 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
 
                                 //If no notice available,
 
-                                if(mItems.size()==0){
+                                if (mItems.size() == 0) {
                                     //mRecentRecyclerView.setVisibility(View.GONE);
                                     emptyNotice.setVisibility(View.VISIBLE);
                                 }
@@ -199,16 +342,16 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
                         String cardTransitionName = getString(R.string.transition_notice_card);
 
 
-                            ActivityOptionsCompat options =
-                                    ActivityOptionsCompat.makeSceneTransitionAnimation(NoticeBoard.this,
-                                            Pair.create(noticeSubj, subjectTransitionName),
-                                            Pair.create(noticeIcon, groupIconTransitionName),
-                                            Pair.create(noticeBody, bodyTransitionName)//,
-                                            //Pair.create(view, cardTransitionName)
-                                    );
+                        ActivityOptionsCompat options =
+                                ActivityOptionsCompat.makeSceneTransitionAnimation(NoticeBoard.this,
+                                        Pair.create(noticeSubj, subjectTransitionName),
+                                        Pair.create(noticeIcon, groupIconTransitionName),
+                                        Pair.create(noticeBody, bodyTransitionName)//,
+                                        //Pair.create(view, cardTransitionName)
+                                );
 
-                            ActivityCompat.startActivity(NoticeBoard.this, i, options.toBundle());
-                        }
+                        ActivityCompat.startActivity(NoticeBoard.this, i, options.toBundle());
+                    }
                 }));
 
     }
@@ -217,11 +360,13 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
     private class CustomViewHolder extends RecyclerView.ViewHolder {
 
         private TextView noticeSubject;
+        private TextView noticeBody;
 
         public CustomViewHolder(View itemView) {
             super(itemView);
 
             noticeSubject = (TextView) itemView.findViewById(R.id.notice_subject);
+            noticeBody = (TextView) itemView.findViewById(R.id.notice_body);
         }
     }
 
@@ -273,8 +418,8 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName()));
         searchView.setIconifiedByDefault(true);
-         searchView.setMaxWidth(3800);
-        SearchView.SearchAutoComplete theTextArea = (SearchView.SearchAutoComplete)searchView.findViewById(R.id.search_src_text);
+        searchView.setMaxWidth(3800);
+        SearchView.SearchAutoComplete theTextArea = (SearchView.SearchAutoComplete) searchView.findViewById(R.id.search_src_text);
         theTextArea.setTextColor(Color.WHITE);//or any color that you want
 
         //searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
@@ -301,12 +446,12 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
     public boolean onSearchRequested() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
             MenuItem mi = mMenu.findItem(R.id.search_notice);
-            if(mi.isActionViewExpanded()){
+            if (mi.isActionViewExpanded()) {
                 mi.collapseActionView();
-            } else{
+            } else {
                 mi.expandActionView();
             }
-        } else{
+        } else {
             //onOptionsItemSelected(mMenu.findItem(R.id.search));
         }
         return super.onSearchRequested();
