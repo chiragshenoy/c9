@@ -11,8 +11,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.Toolbar;
 
 import com.google.android.gms.auth.GoogleAuthException;
 import com.google.android.gms.auth.GoogleAuthUtil;
@@ -95,6 +93,12 @@ public class LoginPage extends Activity implements
         // It can be a little costly to keep the connection open
         // to Google Play Services, so each time our activity is
         // stopped we should disconnect.
+        mPlusClient.disconnect();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         mPlusClient.disconnect();
     }
 

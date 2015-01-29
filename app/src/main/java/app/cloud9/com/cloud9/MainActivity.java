@@ -2,6 +2,7 @@ package app.cloud9.com.cloud9;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,12 +11,17 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesClient;
+import com.google.android.gms.plus.PlusClient;
+
 import java.util.ArrayList;
 
-public class MainActivity extends ActionBarActivity implements NavigationDrawerCallbacks{
+public class MainActivity extends ActionBarActivity implements NavigationDrawerCallbacks, GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener, View.OnClickListener {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -34,10 +40,13 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
     private NavDrawerListAdapter adapter;
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
+    private PlusClient mPlusClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mPlusClient = new PlusClient.Builder(this, this, this).build();
 
 
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.c9_toolbar); //Appcompat support for a sexier action bar
@@ -133,6 +142,11 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         Toast.makeText(this, "Menu item selected -> " + position, Toast.LENGTH_SHORT).show();
+        if (position == 5) {
+            mPlusClient.disconnect();
+            Intent i = new Intent(this, LoginPage.class);
+            startActivity(i);
+        }
     }
 
     @Override
@@ -237,6 +251,26 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
 //        }
     }
 
+    @Override
+    public void onConnected(Bundle bundle) {
+
+    }
+
+    @Override
+    public void onDisconnected() {
+
+    }
+
+    @Override
+    public void onClick(View v) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+
+    }
+
 //    @Override
 //    public void setTitle(CharSequence title) {
 //        mTitle = title;
@@ -245,10 +279,10 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
 
 }
 
-    /**
-     * When using the ActionBarDrawerToggle, you must call it during
-     * onPostCreate() and onConfigurationChanged()...
-     */
+/**
+ * When using the ActionBarDrawerToggle, you must call it during
+ * onPostCreate() and onConfigurationChanged()...
+ */
 
 //    @Override
 //    protected void onPostCreate(Bundle savedInstanceState) {

@@ -144,12 +144,12 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
          */
 
 
-        int i = 0,mId;
+        int i = 0, mId;
         private Context mContext;
 
-        public Read(Context context){
-                mContext = context;
-            }
+        public Read(Context context) {
+            mContext = context;
+        }
 
 
         //Only getting the list of the subjects and getting basic info
@@ -203,9 +203,9 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
             Set<String> stored_ids = new HashSet<String>();
             SharedPreferences prefs = getSharedPreferences("notice_cache", Context.MODE_PRIVATE);
 
-            String storedJSON = prefs.getString("noticeJSON","null");
+            String storedJSON = prefs.getString("noticeJSON", "null");
 
-            if(storedJSON != "null"){
+            if (storedJSON != "null") {
                 try {
                     JSONArray full_json_stored = new JSONArray(storedJSON);
 
@@ -254,8 +254,7 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
 // mId allows you to update the notification later on.
                         mNotificationManager.notify(mId, mBuilder.build());
                     }
-                }
-                catch (JSONException e) {
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
@@ -406,13 +405,18 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
                 new OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        Toast.makeText(NoticeBoard.this, "Clicked " + mItems.get(position), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(NoticeBoard.this, "Clicked " + mItems.get(position), Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(getBaseContext(), NoticeViewer.class);
 
                         View noticeSubj = view.findViewById(R.id.notice_subject);
                         View noticeIcon = view.findViewById(R.id.group_icon);
                         View noticeBody = view.findViewById(R.id.notice_body);
 
+                        Bundle b = new Bundle();
+                        b.putString("Subject", arraylist.get(position).getSubject());
+                        b.putString("Text", arraylist.get(position).getText());
+                        b.putString("Path", arraylist.get(position).getPath());
+                        i.putExtras(b);
 
                         String subjectTransitionName = getString(R.string.transition_notice);
                         String groupIconTransitionName = getString(R.string.transition_group_icon);
