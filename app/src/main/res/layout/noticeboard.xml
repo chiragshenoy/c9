@@ -14,24 +14,17 @@
         android:background="@color/bmsce_main_color" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#ff0000"
-        android:id="@+id/test" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Toggle"
-        android:id="@+id/toggle_size" />
-
-
-    <TextView
         style="?android:listSeparatorTextViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Recent Notices"
         android:layout_marginBottom="6dp" />
+
+        <!--<ProgressBar-->
+            <!--android:id="@+id/loadingPanel"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:indeterminate="true" />-->
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recentrecyclerView"

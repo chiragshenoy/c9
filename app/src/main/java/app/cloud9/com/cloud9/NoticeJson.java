@@ -12,6 +12,17 @@ public class NoticeJson {
     String posted_at;
     String path;
 
+    public NoticeJson(){
+        id=" ";
+        posted_at=" ";
+        posted_by=" ";
+        subject= " ";
+        text=" ";
+        target_group=" ";
+        path=" ";
+
+    }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -38,6 +49,35 @@ public class NoticeJson {
 
     public void setTarget_group(String target_group) {
         this.target_group = target_group;
+    }
+
+
+    public String getId() {
+        return this.id ;
+    }
+
+    public String getPosted_by() {
+        return this.posted_by ;
+    }
+
+    public String getSubject() {
+        return this.subject ;
+    }
+
+    public String getText() {
+        return this.text ;
+    }
+
+    public String getPosted_at() {
+        return this.posted_at ;
+    }
+
+    public String getPath() {
+        return this.path ;
+    }
+
+    public String getTarget_group() {
+        return this.target_group ;
     }
 }
 

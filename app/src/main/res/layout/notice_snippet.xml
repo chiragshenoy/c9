@@ -44,17 +44,6 @@
 
         />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/notice_time"
-        android:text="5:00pm"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        android:textColor="#4C83C9"
-        android:layout_alignParentRight="true"
-        android:layout_alignBaseline="@id/notice_subject"
-        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -67,79 +56,98 @@
         android:singleLine="true"
         android:layout_below="@id/notice_subject"
         android:layout_toRightOf="@id/group_icon"
-
+        android:fontFamily="sans-serif-light"
         android:transitionName="@string/transition_notice_body"
 
         />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/ll_attach"
-            android:orientation="horizontal"
-            android:layout_below="@id/notice_subject"
-            android:layout_toRightOf="@id/group_icon"
-            android:paddingTop="24dp">
+        <!--<LinearLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/ll_attach"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_below="@id/notice_subject"-->
+            <!--android:layout_toRightOf="@id/group_icon"-->
+            <!--android:paddingTop="24dp">-->
 
 
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:id="@+id/attachmet1"
-                android:src="@drawable/ic_ppt"
-                android:adjustViewBounds="true"
+            <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="35dp"-->
+                <!--android:id="@+id/attachmet1"-->
+                <!--android:src="@drawable/ic_ppt"-->
+                <!--android:adjustViewBounds="true"-->
 
-                android:layout_marginLeft="2dp"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:id="@+id/attachmet2"
-                android:src="@drawable/ic_doc"
-                android:layout_marginLeft="2dp"
-                android:adjustViewBounds="true"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:id="@+id/attachmet3"
-                android:src="@drawable/ic_xls"
-                android:adjustViewBounds="true"
+                <!--android:layout_marginLeft="2dp"/>-->
+            <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="35dp"-->
+                <!--android:id="@+id/attachmet2"-->
+                <!--android:src="@drawable/ic_doc"-->
+                <!--android:layout_marginLeft="2dp"-->
+                <!--android:adjustViewBounds="true"/>-->
+            <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="35dp"-->
+                <!--android:id="@+id/attachmet3"-->
+                <!--android:src="@drawable/ic_xls"-->
+                <!--android:adjustViewBounds="true"-->
 
-                android:layout_marginLeft="2dp"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:id="@+id/attachmet4"
-                android:src="@drawable/ic_pdf"
-                android:adjustViewBounds="true"
+                <!--android:layout_marginLeft="2dp"/>-->
+            <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="35dp"-->
+                <!--android:id="@+id/attachmet4"-->
+                <!--android:src="@drawable/ic_pdf"-->
+                <!--android:adjustViewBounds="true"-->
 
-                android:layout_marginLeft="2dp"/>
+                <!--android:layout_marginLeft="2dp"/>-->
 
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:id="@+id/attachmet0"
-                android:src="@drawable/dummy"
+            <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="35dp"-->
+                <!--android:id="@+id/attachmet0"-->
+                <!--android:src="@drawable/dummy"-->
 
-                android:adjustViewBounds="true"
-                android:layout_marginLeft="2dp"/>
+                <!--android:adjustViewBounds="true"-->
+                <!--android:layout_marginLeft="2dp"/>-->
 
-            </LinearLayout>
+            <!--</LinearLayout>-->
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/notice_body"
+    android:layout_alignParentRight="true"
+    android:orientation="horizontal">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Shambhavi B.R."
-        android:layout_below="@+id/ll_attach"
         android:textSize="12sp"
-        android:id="@+id/t_post"
+        android:id="@+id/notice_post"
         android:textColor="#ff8a8a8a"
-        android:layout_marginTop="6dp"
-        android:layout_alignParentRight="true"/>
+ />
+<View
+    android:layout_width="1sp"
+    android:layout_height="14sp"
+    android:paddingLeft="5sp"
+    android:paddingRight="5sp"
+    android:layout_marginLeft="5sp"
+    android:layout_marginRight="5sp"
+    android:background="#ffc8c8c8"/>
 
-
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/notice_time"
+            android:text="5:00pm"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="#4C83C9"
+            />
+</LinearLayout>
 
     </RelativeLayout>
     </android.support.v7.widget.CardView>

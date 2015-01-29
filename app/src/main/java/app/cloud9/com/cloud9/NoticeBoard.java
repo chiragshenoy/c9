@@ -15,15 +15,18 @@ package app.cloud9.com.cloud9;
  * limitations under the License.
  */
 
+import android.app.NotificationManager;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.util.Pair;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,6 +41,8 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,14 +60,16 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class NoticeBoard extends ActionBarActivity implements SearchView.OnQueryTextListener {
 
     private static final int ITEMS_COUNT = 1;
-    private List<String> mItems;
+    private List<NoticeJson> mItems;
 
-    final static String URL = "https://api.myjson.com/bins/4txdj";
+    final static String URL = "https://api.myjson.com/bins/1182v";
     JSONArray json_array;
     HttpClient client;
     String name;
@@ -76,7 +83,7 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
     private SearchView mSearchView;
     private Menu mMenu;
     private RelativeLayout emptyNotice;
-    TextView test;
+    private ProgressBar loadingAnim;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +91,7 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
 
 
         client = new DefaultHttpClient();
-        new Read().execute();
+        new Read(this).execute();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.c9_toolbar); //Appcompat support for a sexier action bar
         toolbar.setNavigationIcon(R.drawable.ic_drawer);
@@ -96,9 +103,8 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
 
 
         emptyNotice = (RelativeLayout) findViewById(R.id.rl_empty_notice);
+//        loadingAnim = (ProgressBar) findViewById(R.id.loadingPanel);
         emptyNotice.setVisibility(View.GONE);
-
-        test = (TextView) findViewById(R.id.test);
 
 
         initData();
@@ -114,6 +120,7 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
         StringBuilder url = new StringBuilder(URL);
         HttpGet get = new HttpGet(url.toString());
         HttpResponse r = client.execute(get);
+
 
         int status = r.getStatusLine().getStatusCode();
 
@@ -137,7 +144,13 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
          */
 
 
-        int i = 0;
+        int i = 0,mId;
+        private Context mContext;
+
+        public Read(Context context){
+                mContext = context;
+            }
+
 
         //Only getting the list of the subjects and getting basic info
         @Override
@@ -186,6 +199,72 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
                 e.printStackTrace();
             }
 
+            Set<String> fetched_ids = new HashSet<String>();
+            Set<String> stored_ids = new HashSet<String>();
+            SharedPreferences prefs = getSharedPreferences("notice_cache", Context.MODE_PRIVATE);
+
+            String storedJSON = prefs.getString("noticeJSON","null");
+
+            if(storedJSON != "null"){
+                try {
+                    JSONArray full_json_stored = new JSONArray(storedJSON);
+
+                    for (int i = 0; i < full_json_stored.length(); i++) {
+
+                        JSONObject storedJSONObj = full_json_stored.getJSONObject(i);
+                        JSONObject fetchedJSONObj = json_array.getJSONObject(i);
+
+                        fetched_ids.add(fetchedJSONObj.getString("id"));
+                        stored_ids.add(storedJSONObj.getString("id"));
+                    }
+
+                    fetched_ids.removeAll(stored_ids);
+                    Toast.makeText(NoticeBoard.this, "New = " + fetched_ids.size(), Toast.LENGTH_SHORT).show();
+
+
+                    if (fetched_ids.size() > 0) {
+
+                        //New notifications arrived!
+
+                        NotificationCompat.Builder mBuilder =
+                                new NotificationCompat.Builder(mContext)
+                                        .setSmallIcon(R.drawable.ic_class_group)
+                                        .setContentTitle("My notification")
+                                        .setContentText("Hello World!");
+// Creates an explicit intent for an Activity in your app
+                        //Intent resultIntent = new Intent(this, NoticeBoard.class); //Intent(this, NoticeBoard.class);
+
+// The stack builder object will contain an artificial back stack for the
+// started Activity.
+// This ensures that navigating backward from the Activity leads out of
+// your application to the Home screen.
+                        //TaskStackBuilder stackBuilder = TaskStackBuilder.create(NoticeBoard.this);
+// Adds the back stack for the Intent (but not the Intent itself)
+                        //stackBuilder.addParentStack(NoticeBoard.class);
+// Adds the Intent that starts the Activity to the top of the stack
+                        //stackBuilder.addNextIntent(resultIntent);
+//                        PendingIntent resultPendingIntent =
+//                                stackBuilder.getPendingIntent(
+//                                        0,
+//                                        PendingIntent.FLAG_UPDATE_CURRENT
+//                                );
+//                        mBuilder.setContentIntent(resultPendingIntent);
+                        NotificationManager mNotificationManager =
+                                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+// mId allows you to update the notification later on.
+                        mNotificationManager.notify(mId, mBuilder.build());
+                    }
+                }
+                catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("noticeJSON", json_array.toString());
+            editor.commit();
             return null;
         }
 
@@ -193,25 +272,18 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
-            //Testing one case
-            try {
-                test.setText(json_array.getJSONObject(3).getString("text"));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+
 // Adding subject of notification
+            mItems.clear();
             for (int i = 0; i < arraylist.size(); i++) {
-                mItems.add(i, arraylist.get(i).subject);
+                mItems.add(i, arraylist.get(i));
             }
 
             mAdapter.notifyDataSetChanged();
+//            loadingAnim.setVisibility(View.GONE);
+            mRecentRecyclerView.setVisibility(View.VISIBLE);
 
-
-            //   test.setText("Welcome " + name + "!");
-            //loader.clearAnimation();
-            //loader.setVisibility(View.GONE);
-//            loader.setAnimation(loaderPop);
-
+            Toast.makeText(NoticeBoard.this, "Notice Refreshed", Toast.LENGTH_SHORT).show();
 
         }
 
@@ -237,14 +309,15 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
     }
 
     private void initData() {
-        mItems = new ArrayList<String>();
-        for (int i = 0; i < ITEMS_COUNT; i++) {
-            mItems.add("Item " + (i + 1));
+        mItems = new ArrayList<NoticeJson>();
+        for (int i = 0; i < 1; i++) {
+            mItems.add(new NoticeJson());
         }
     }
 
     private void initRecyclerView() {
         mRecentRecyclerView = (RecyclerView) findViewById(R.id.recentrecyclerView);
+        mRecentRecyclerView.setVisibility(View.GONE);
         mRecentRecyclerView.setHasFixedSize(true);
 //        mOldRecyclerView = (RecyclerView) findViewById(R.id.oldrecyclerView);
 
@@ -267,8 +340,13 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
 
             @Override
             public void onBindViewHolder(CustomViewHolder viewHolder, int i) {
-                viewHolder.noticeSubject.setText(mItems.get(i));
-               // viewHolder.noticeBody.setText(arraylist.get(i).text);
+                viewHolder.noticeSubject.setText(mItems.get(i).getSubject());
+                viewHolder.noticeBody.setText(mItems.get(i).getText());
+                viewHolder.noticeTime.setText(mItems.get(i).getPosted_at());
+                viewHolder.noticePoster.setText(mItems.get(i).getPosted_by());
+
+
+                // viewHolder.noticeBody.setText(arraylist.get(i).text);
             }
 
             @Override
@@ -361,12 +439,17 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
 
         private TextView noticeSubject;
         private TextView noticeBody;
+        private TextView noticePoster;
+        private TextView noticeTime;
+        private ImageView noticeIcon;
 
         public CustomViewHolder(View itemView) {
             super(itemView);
 
             noticeSubject = (TextView) itemView.findViewById(R.id.notice_subject);
             noticeBody = (TextView) itemView.findViewById(R.id.notice_body);
+            noticePoster = (TextView) itemView.findViewById(R.id.notice_post);
+            noticeTime = (TextView) itemView.findViewById(R.id.notice_time);
         }
     }
 
