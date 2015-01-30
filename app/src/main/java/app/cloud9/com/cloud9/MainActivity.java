@@ -142,6 +142,15 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         Toast.makeText(this, "Menu item selected -> " + position, Toast.LENGTH_SHORT).show();
+        if (position == 2) {
+            Intent i = new Intent(this, NoticeBoard.class);
+            startActivity(i);
+        }
+
+        if (position==4){
+            Intent i = new Intent(this, AboutPage.class);
+            startActivity(i);
+        }
         if (position == 5) {
             mPlusClient.disconnect();
             Intent i = new Intent(this, LoginPage.class);
@@ -214,9 +223,9 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
             case 0:
                 fragment = new HomePage();
                 break;
-            case 1:
-                fragment = new AboutPage();
-                break;
+//            case 1:
+//                fragment = new AboutPage();
+//                break;
 //            case 2:
 //                fragment = new PhotosFragment();
 //                break;

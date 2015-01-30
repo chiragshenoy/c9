@@ -28,6 +28,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.util.Pair;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -64,7 +65,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class NoticeBoard extends ActionBarActivity implements SearchView.OnQueryTextListener {
+public class NoticeBoard extends ActionBarActivity implements SearchView.OnQueryTextListener,NavigationDrawerCallbacks {
 
     private static final int ITEMS_COUNT = 1;
     private List<NoticeJson> mItems;
@@ -84,6 +85,8 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
     private Menu mMenu;
     private RelativeLayout emptyNotice;
     private ProgressBar loadingAnim;
+    private NavigationDrawerFragment mNavigationDrawerFragment;
+
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,6 +103,9 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
         setSupportActionBar(toolbar);
         toolbar.setTitle(R.string.noticeboard_title);
         toolbar.setNavigationIcon(R.drawable.ic_drawer);
+
+        mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.fragment_drawer);
+        mNavigationDrawerFragment.setup(R.id.fragment_drawer, (DrawerLayout) findViewById(R.id.drawer), toolbar);
 
 
         emptyNotice = (RelativeLayout) findViewById(R.id.rl_empty_notice);
@@ -136,6 +142,11 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
             return null;
 
         }
+    }
+
+    @Override
+    public void onNavigationDrawerItemSelected(int position) {
+
     }
 
     public class Read extends AsyncTask<String, Integer, String> {
