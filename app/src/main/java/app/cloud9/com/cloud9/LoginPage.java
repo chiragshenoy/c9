@@ -67,8 +67,6 @@ public class LoginPage extends Activity implements
 
         // Connect our sign in, sign out and disconnect buttons.
         findViewById(R.id.sign_in_button).setOnClickListener(this);
-        findViewById(R.id.sign_out_button).setOnClickListener(this);
-        findViewById(R.id.sign_out_button).setVisibility(View.INVISIBLE);
 
         // Configure the ProgressDialog that will be shown if there is a
         // delay in presenting the user with the next sign in step.
@@ -124,7 +122,7 @@ public class LoginPage extends Activity implements
     public void onConnected(Bundle bundle) {
         // Yay! We can get the oAuth 2.0 access token we are using.
         Log.v(TAG, "Connected. Yay!");
-        welcome.setText("You are logged in as :" + mPlusClient.getAccountName());
+        //welcome.setText("You are logged in as :" + mPlusClient.getAccountName());
 
         Intent a = new Intent(this, MainActivity.class);
         startActivity(a);
@@ -138,7 +136,6 @@ public class LoginPage extends Activity implements
 
         // Hide the sign in button, show the sign out buttons.
         findViewById(R.id.sign_in_button).setVisibility(View.INVISIBLE);
-        findViewById(R.id.sign_out_button).setVisibility(View.VISIBLE);
 
 
         // Retrieve the oAuth 2.0 access token.
@@ -218,27 +215,27 @@ public class LoginPage extends Activity implements
                     }
                 }
                 break;
-            case R.id.sign_out_button:
-                Log.v(TAG, "Tapped sign out");
-                // We only want to sign out if we're connected.
-                if (mPlusClient.isConnected()) {
-                    // Clear the default account in order to allow the user
-                    // to potentially choose a different account from the
-                    // account chooser.
-                    mPlusClient.clearDefaultAccount();
-
-                    // Disconnect from Google Play Services, then reconnect in
-                    // order to restart the process from scratch.
-                    mPlusClient.disconnect();
-                    mPlusClient.connect();
-
-                    // Hide the sign out buttons, show the sign in button.
-                    findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
-                    findViewById(R.id.sign_out_button)
-                            .setVisibility(View.INVISIBLE);
-                    welcome.setText("Please Log In to proceed");
-                }
-                break;
+//            case R.id.sign_out_button:
+//                Log.v(TAG, "Tapped sign out");
+//                // We only want to sign out if we're connected.
+//                if (mPlusClient.isConnected()) {
+//                    // Clear the default account in order to allow the user
+//                    // to potentially choose a different account from the
+//                    // account chooser.
+//                    mPlusClient.clearDefaultAccount();
+//
+//                    // Disconnect from Google Play Services, then reconnect in
+//                    // order to restart the process from scratch.
+//                    mPlusClient.disconnect();
+//                    mPlusClient.connect();
+//
+//                    // Hide the sign out buttons, show the sign in button.
+//                    findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
+//                    findViewById(R.id.sign_out_button)
+//                            .setVisibility(View.INVISIBLE);
+//                    welcome.setText("Please Log In to proceed");
+//                }
+//                break;
             default:
                 // Unknown id.
         }

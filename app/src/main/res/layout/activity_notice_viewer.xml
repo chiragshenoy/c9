@@ -2,14 +2,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:transitionName="@string/transition_notice_card"
     tools:context="app.cloud9.com.cloud9.NoticeViewer">
 
 
+    <android.support.v7.widget.Toolbar
+        android:id="@id/c9_toolbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:minHeight="?attr/actionBarSize"
+        android:textColor="#ffffff"
+        android:background="@color/bmsce_main_color"
+        android:elevation="8dp"
+        />
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/scrollView"
+            android:layout_below="@id/c9_toolbar">
+
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+
+    >
     <ImageView
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -30,7 +48,8 @@
         android:textSize="24sp"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/group_icon"
-        android:id="@+id/notice_subject" />
+        android:id="@+id/notice_subject"
+        />
 
     <View
         android:layout_width="match_parent"
@@ -46,15 +65,69 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/notice_body"
-        android:text=" "
+        android:text="Lorem Ipsum vertaire hello boy how are you doing.Lorem Ipsum vertaire hello boy how are you doing.Lorem Ipsum vertaire hello boy how are you doing.Lorem Ipsum vertaire hello boy how are you doing.Lorem Ipsum vertaire hello boy how are you doing.Lorem Ipsum vertaire hello boy how are you doing. I am so cool and...Lorem Ipsum vertaire hello boy how are you doing. I am so cool and...Lorem Ipsum vertaire hello boy how are you doing. I am so cool and..."
         android:layout_below="@id/notice_separator"
         android:transitionName="@string/transition_notice_body" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/notice_body"
-        android:textColor="#ff0000"
-        android:id="@+id/attachments" />
+
+
+
+
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/notice_body"-->
+        <!--android:textColor="#ff0000"-->
+        <!--android:id="@+id/attachments" />-->
+
+        <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/attachments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/notice_body"/>
+
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/light_gray"
+            android:layout_below="@+id/attachments"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/notice_separator2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ff0000"
+            android:id="@+id/posted_by"
+            android:text="Posted by:"
+            android:layout_below="@id/notice_separator2"/>
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ff0000"
+            android:id="@+id/notice_poster"
+            android:text="Shambhavi B. R."
+            android:layout_below="@id/notice_separator2"
+            android:layout_toRightOf="@id/posted_by"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ff0000"
+            android:id="@+id/notice_time"
+            android:text="5 hours ago..."
+            android:layout_below="@id/notice_poster"/>
+
+
+
+    </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>

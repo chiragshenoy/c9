@@ -1,14 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/welcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="\\\\Developers"
+        android:textColor="#000"
+        android:textSize="24sp"
+        android:fontFamily="sans-serif-condensed"
+        android:padding="16dp"
+        android:background="#44000000"/>
+
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp">
+
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:src="@drawable/shub"
+        android:id="@+id/shub_img"/>
+
+    <ImageView
+        android:layout_height="100dp"
+        android:layout_width="match_parent"
+        android:background="@drawable/slanted"
+        android:layerType="software"
+        android:scaleType="fitXY"
+        android:layout_toRightOf="@id/shub_img"
+        android:layout_marginLeft="-50dp"
+        />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:textSize="16dp"
-        android:text="This is the About Us Page" />
+        android:layout_toRightOf="@+id/shub_img"
+        android:id="@+id/shub_name"
+        android:text="Shubham Kanodia"
+        android:textAllCaps="true"
+        android:fontFamily="sans-serif-condensed"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#000"
 
-</RelativeLayout>
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UI, Design and Animation"
+        android:layout_below="@id/shub_name"
+        android:layout_toRightOf="@id/shub_img"
+        android:layout_marginLeft="12dp"
+        />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/sou"
+            android:id="@+id/sou_img"/>
+
+        <ImageView
+            android:layout_height="100dp"
+            android:layout_width="match_parent"
+            android:background="@drawable/slanted"
+            android:layerType="software"
+            android:scaleType="fitXY"
+            android:layout_toRightOf="@id/sou_img"
+            android:layout_marginLeft="-50dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/sou_img"
+            android:id="@+id/sou_name"
+            android:text="Sourabh Singh"
+            android:textAllCaps="true"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#000"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Database and Backend"
+            android:layout_below="@id/sou_name"
+            android:layout_toRightOf="@id/sou_img"
+            android:layout_marginLeft="12dp"
+            />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/chirag"
+            android:id="@+id/chir_img"/>
+
+        <ImageView
+            android:layout_height="100dp"
+            android:layout_width="match_parent"
+            android:background="@drawable/slanted"
+            android:layerType="software"
+            android:scaleType="fitXY"
+            android:layout_toRightOf="@id/chir_img"
+            android:layout_marginLeft="-50dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/chir_img"
+            android:id="@+id/chir_name"
+            android:text="Chirag Shenoy"
+            android:textAllCaps="true"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#000"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Android Development"
+            android:layout_below="@id/chir_name"
+            android:layout_toRightOf="@id/chir_img"
+            android:layout_marginLeft="12dp"
+            />
+    </RelativeLayout>
+
+</LinearLayout>
