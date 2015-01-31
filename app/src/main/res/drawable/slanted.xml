@@ -13,7 +13,7 @@
                 android:shape="line"
                 >
                 <stroke
-                    android:width="5dp"
+                    android:width="4dp"
                     android:color="#000" />
             </shape>
         </rotate>

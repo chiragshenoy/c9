@@ -11,7 +11,7 @@
         android:layout_marginBottom="4dp"
     android:foreground="?android:attr/selectableItemBackground"
     android:clickable="true"
-    android:transitionName="@string/transition_notice_card"
+    android:transitionName="@string/transition_card"
 
     >
 

@@ -422,6 +422,7 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
                         View noticeSubj = view.findViewById(R.id.notice_subject);
                         View noticeIcon = view.findViewById(R.id.group_icon);
                         View noticeBody = view.findViewById(R.id.notice_body);
+                        View card = view.findViewById(R.id.card_view);
 
                         Bundle b = new Bundle();
                         b.putString("Subject", arraylist.get(position).getSubject());
@@ -432,15 +433,15 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
                         String subjectTransitionName = getString(R.string.transition_notice);
                         String groupIconTransitionName = getString(R.string.transition_group_icon);
                         String bodyTransitionName = getString(R.string.transition_notice_body);
-                        String cardTransitionName = getString(R.string.transition_notice_card);
+                        String cardTransitionName = getString(R.string.transition_card);
 
 
                         ActivityOptionsCompat options =
                                 ActivityOptionsCompat.makeSceneTransitionAnimation(NoticeBoard.this,
                                         Pair.create(noticeSubj, subjectTransitionName),
                                         Pair.create(noticeIcon, groupIconTransitionName),
-                                        Pair.create(noticeBody, bodyTransitionName)//,
-                                        //Pair.create(view, cardTransitionName)
+                                        Pair.create(noticeBody, bodyTransitionName),
+                                        Pair.create(card,cardTransitionName)
                                 );
 
                         ActivityCompat.startActivity(NoticeBoard.this, i, options.toBundle());

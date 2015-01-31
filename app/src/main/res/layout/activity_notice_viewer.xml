@@ -13,7 +13,7 @@
         android:minHeight="?attr/actionBarSize"
         android:textColor="#ffffff"
         android:background="@color/bmsce_main_color"
-        android:elevation="8dp"
+        android:elevation="4dp"
         />
 
         <ScrollView
@@ -26,8 +26,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="16dp"
+        android:transitionName="@string/transition_card"
 
-    >
+
+        >
     <ImageView
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -49,6 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/group_icon"
         android:id="@+id/notice_subject"
+        android:textIsSelectable="true"
         />
 
     <View
@@ -67,6 +70,7 @@
         android:id="@+id/notice_body"
         android:text="Lorem Ipsum vertaire hello boy how are you doing.Lorem Ipsum vertaire hello boy how are you doing.Lorem Ipsum vertaire hello boy how are you doing.Lorem Ipsum vertaire hello boy how are you doing.Lorem Ipsum vertaire hello boy how are you doing.Lorem Ipsum vertaire hello boy how are you doing. I am so cool and...Lorem Ipsum vertaire hello boy how are you doing. I am so cool and...Lorem Ipsum vertaire hello boy how are you doing. I am so cool and..."
         android:layout_below="@id/notice_separator"
+        android:textIsSelectable="true"
         android:transitionName="@string/transition_notice_body" />
 
 
@@ -81,7 +85,7 @@
         <!--android:textColor="#ff0000"-->
         <!--android:id="@+id/attachments" />-->
 
-        <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/attachments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -104,6 +108,7 @@
             android:textColor="#ff0000"
             android:id="@+id/posted_by"
             android:text="Posted by:"
+            android:textIsSelectable="true"
             android:layout_below="@id/notice_separator2"/>
 
 
@@ -114,6 +119,7 @@
             android:textColor="#ff0000"
             android:id="@+id/notice_poster"
             android:text="Shambhavi B. R."
+            android:textIsSelectable="true"
             android:layout_below="@id/notice_separator2"
             android:layout_toRightOf="@id/posted_by"/>
 
@@ -123,6 +129,7 @@
             android:textColor="#ff0000"
             android:id="@+id/notice_time"
             android:text="5 hours ago..."
+            android:textIsSelectable="true"
             android:layout_below="@id/notice_poster"/>
 
 

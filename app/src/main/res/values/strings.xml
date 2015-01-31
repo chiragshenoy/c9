@@ -14,7 +14,9 @@
     <string name="transition_group_icon">GroupIconTransition</string>
     <string name="transition_notice_body">GroupIconTransition</string>
     <string name="transition_notice_card">NoticeCardTransition</string>
-    
+    <string name="transition_card">CardTransition</string>
+
+
     <string name="marks_url">https://api.myjson.com/bins/4y3gb</string>
     <string name="notice_url">http://pastebin.com/raw.php?i=0wW7mJ1j</string>
 
