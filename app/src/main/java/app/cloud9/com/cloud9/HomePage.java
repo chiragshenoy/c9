@@ -46,7 +46,7 @@ public class HomePage extends Fragment {
     Button get_notice;
     ImageView loader;
     HttpClient client;
-    final static String URL = "https://api.myjson.com/bins/4y3gb";
+    final static String URL = "http://cloud9.cu.cc/api/foo.sheets.api@gmail.com/mangoing";
     JSONObject json;
     TextView welcome;
     ArrayList<String> subjectList;

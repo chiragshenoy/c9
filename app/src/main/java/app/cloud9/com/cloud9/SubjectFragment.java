@@ -196,10 +196,15 @@ public class SubjectFragment extends Fragment {
                     if(android.os.Build.VERSION.SDK_INT >= 11){
                         // will update the "progress" propriety of seekbar until it reaches progress
                         progressBar[i].setProgress(0);
-                        ObjectAnimator animation = ObjectAnimator.ofInt(progressBar[i], "progress", Integer.parseInt(internal_marks[i]));
-                        animation.setDuration(600); // 0.5 second
-                        animation.setInterpolator(new DecelerateInterpolator());
-                        animation.start();
+                        try {
+                            ObjectAnimator animation = ObjectAnimator.ofInt(progressBar[i], "progress", Integer.parseInt(internal_marks[i]));
+                            animation.setDuration(600); // 0.5 second
+
+                            animation.setInterpolator(new DecelerateInterpolator());
+                            animation.start();
+                        } catch (Exception e){
+
+                        }
                     }
                     else
                       progressBar[i].setProgress(Integer.parseInt(internal_marks[i]));

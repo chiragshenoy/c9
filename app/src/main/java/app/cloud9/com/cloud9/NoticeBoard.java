@@ -521,9 +521,9 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
         SearchView.SearchAutoComplete theTextArea = (SearchView.SearchAutoComplete) searchView.findViewById(R.id.search_src_text);
         theTextArea.setTextColor(Color.WHITE);//or any color that you want
 
-        //searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        //searchView.setSubmitButtonEnabled(true);
-        //searchView.setOnQueryTextListener(this);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setSubmitButtonEnabled(true);
+        searchView.setOnQueryTextListener(this);
 
         return true;
 
@@ -558,12 +558,13 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
 
 
     public boolean onQueryTextChange(String newText) {
-        Toast.makeText(NoticeBoard.this, "Query = " + newText, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(NoticeBoard.this, "Query = " + newText, Toast.LENGTH_SHORT).show();
         return false;
     }
 
     public boolean onQueryTextSubmit(String query) {
         Toast.makeText(NoticeBoard.this, "Query = " + query + " : submitted", Toast.LENGTH_SHORT).show();
+//        mAdapter.notifyDataSetChanged();
         return false;
     }
 

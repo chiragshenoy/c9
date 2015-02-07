@@ -47,6 +47,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mPlusClient = new PlusClient.Builder(this, this, this).build();
+        mPlusClient.connect();
 
 
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.c9_toolbar); //Appcompat support for a sexier action bar
@@ -142,17 +143,18 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         Toast.makeText(this, "Menu item selected -> " + position, Toast.LENGTH_SHORT).show();
-        if (position == 2) {
+        if (position == 1) {
             Intent i = new Intent(this, NoticeBoard.class);
             startActivity(i);
         }
 
-        if (position==4){
+        if (position==2){
             Intent i = new Intent(this, AboutPage.class);
             startActivity(i);
         }
-        if (position == 5) {
+        if (position == 3) {
             mPlusClient.disconnect();
+            mPlusClient.clearDefaultAccount();
             Intent i = new Intent(this, LoginPage.class);
             startActivity(i);
         }
