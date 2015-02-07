@@ -3,6 +3,7 @@ package app.cloud9.com.cloud9;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -17,11 +18,13 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.plus.Plus;
 import com.google.android.gms.plus.PlusClient;
 
 import java.util.ArrayList;
 
-public class MainActivity extends ActionBarActivity implements NavigationDrawerCallbacks, GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener, View.OnClickListener {
+public class MainActivity extends ActionBarActivity implements NavigationDrawerCallbacks, GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener, View.OnClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -41,13 +44,24 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
     private PlusClient mPlusClient;
+    private GoogleApiClient mGoogleApiClient;
+
+    private static final int RC_SIGN_IN = 0;
+    private boolean mIntentInProgress;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mPlusClient = new PlusClient.Builder(this, this, this).build();
-        mPlusClient.connect();
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(Plus.API)
+                .addScope(Plus.SCOPE_PLUS_LOGIN)
+                .build();
+        mGoogleApiClient.connect();
+
 
 
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.c9_toolbar); //Appcompat support for a sexier action bar
@@ -134,6 +148,31 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
         }
     }
 
+    protected void onActivityResult(int requestCode, int responseCode, Intent intent) {
+        if (requestCode == RC_SIGN_IN) {
+            mIntentInProgress = false;
+
+            if (!mGoogleApiClient.isConnecting()) {
+                mGoogleApiClient.connect();
+            }
+        }
+    }
+
+    public void onConnectionFailed(ConnectionResult result) {
+        if (!mIntentInProgress && result.hasResolution()) {
+            try {
+                mIntentInProgress = true;
+                startIntentSenderForResult(result.getResolution().getIntentSender(),
+                        RC_SIGN_IN, null, 0, 0, 0);
+            } catch (IntentSender.SendIntentException e) {
+                // The intent was canceled before it was sent.  Return to the default
+                // state and attempt to connect to get an updated ConnectionResult.
+                mIntentInProgress = false;
+                mGoogleApiClient.connect();
+            }
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
@@ -148,13 +187,12 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
             startActivity(i);
         }
 
-        if (position==2){
+        if (position == 2) {
             Intent i = new Intent(this, AboutPage.class);
             startActivity(i);
         }
         if (position == 3) {
-            mPlusClient.disconnect();
-            mPlusClient.clearDefaultAccount();
+            Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
             Intent i = new Intent(this, LoginPage.class);
             startActivity(i);
         }
@@ -268,17 +306,17 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
     }
 
     @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
     public void onDisconnected() {
 
     }
 
     @Override
     public void onClick(View v) {
-
-    }
-
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
 
     }
 
