@@ -5,13 +5,16 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.plus.Plus;
+import com.google.android.gms.plus.model.people.Person;
 
 public class LoginPage extends Activity implements OnClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 //
@@ -49,6 +52,8 @@ public class LoginPage extends Activity implements OnClickListener, GoogleApiCli
 
     private ProgressDialog mConnectionProgressDialog;
     TextView welcome;
+    String email;
+    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,8 +131,10 @@ public class LoginPage extends Activity implements OnClickListener, GoogleApiCli
     public void onConnected(Bundle connectionHint) {
         // We've resolved any connection errors.  mGoogleApiClient can be used to
         // access Google APIs on behalf of the user.
-
+        getProfileInformation();
         Intent a = new Intent(this, MainActivity.class);
+        a.putExtra("email", email);
+        a.putExtra("name", name);
         startActivity(a);
         mConnectionProgressDialog.dismiss();
 
@@ -135,6 +142,68 @@ public class LoginPage extends Activity implements OnClickListener, GoogleApiCli
         findViewById(R.id.sign_in_button).setVisibility(View.INVISIBLE);
     }
 
+
+    private void getProfileInformation() {
+        try {
+            if (Plus.PeopleApi.getCurrentPerson(mGoogleApiClient) != null) {
+                Person currentPerson = Plus.PeopleApi
+                        .getCurrentPerson(mGoogleApiClient);
+                name = currentPerson.getDisplayName();
+                String personPhotoUrl = currentPerson.getImage().getUrl();
+                String personGooglePlusProfile = currentPerson.getUrl();
+                email = Plus.AccountApi.getAccountName(mGoogleApiClient);
+                Log.e(" ", "Name: " + name + ", plusProfile: "
+                                + personGooglePlusProfile + ", email: " + email
+                );
+//
+//                txtName.setText(personName);
+//                txtEmail.setText(email);
+
+                // by default the profile url gives 50x50 px image only
+                // we can replace the value with whatever dimension we want by
+                // replacing sz=X
+//                personPhotoUrl = personPhotoUrl.substring(0,
+//                        personPhotoUrl.length() - 2)
+//                        + PROFILE_PIC_SIZE;
+//
+//                new LoadProfileImage(imgProfilePic).execute(personPhotoUrl);
+
+            } else {
+                Toast.makeText(getApplicationContext(),
+                        "Person information is null", Toast.LENGTH_LONG).show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Background Async task to load user profile picture from url
+     */
+//    private class LoadProfileImage extends AsyncTask<String, Void, Bitmap> {
+//        ImageView bmImage;
+//
+//        public LoadProfileImage(ImageView bmImage) {
+//            this.bmImage = bmImage;
+//        }
+//
+//        protected Bitmap doInBackground(String... urls) {
+//            String urldisplay = urls[0];
+//            Bitmap mIcon11 = null;
+//            try {
+//                InputStream in = new java.net.URL(urldisplay).openStream();
+//                mIcon11 = BitmapFactory.decodeStream(in);
+//            } catch (Exception e) {
+//                Log.e("Error", e.getMessage());
+//                e.printStackTrace();
+//            }
+//            return mIcon11;
+//        }
+//
+//        protected void onPostExecute(Bitmap result) {
+//            bmImage.setImageBitmap(result);
+//        }
+//    }
     protected void onStart() {
         super.onStart();
     }

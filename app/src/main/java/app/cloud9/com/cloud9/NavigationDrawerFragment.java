@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,9 @@ public class NavigationDrawerFragment extends Fragment implements NavigationDraw
     private boolean mUserLearnedDrawer;
     private boolean mFromSavedInstanceState;
     private int mCurrentSelectedPosition;
-
+    TextView nav_usn;
+    TextView nav_email;
+    TextView nav_name;
 
     @Nullable
     @Override
@@ -45,6 +48,9 @@ public class NavigationDrawerFragment extends Fragment implements NavigationDraw
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mDrawerList.setLayoutManager(layoutManager);
         mDrawerList.setHasFixedSize(true);
+        nav_usn = (TextView) view.findViewById(R.id.nav_usn);
+        nav_email = (TextView) view.findViewById(R.id.nav_email);
+        nav_name = (TextView) view.findViewById(R.id.nav_name);
 
         final List<NavigationItem> navigationItems = getMenu();
         NavigationDrawerAdapter adapter = new NavigationDrawerAdapter(navigationItems);

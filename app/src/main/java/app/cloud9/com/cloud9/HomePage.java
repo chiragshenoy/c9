@@ -46,7 +46,9 @@ public class HomePage extends Fragment {
     Button get_notice;
     ImageView loader;
     HttpClient client;
-    final static String URL = "http://cloud9.cu.cc/api/foo.sheets.api@gmail.com/mangoing";
+    //    String URL = "http://cloud9.cu.cc/api/foo.sheets.api@gmail.com/mangoing";
+    String URL = "http://cloud9.cu.cc/api/";
+    final static String PASSWORD = "/mangoing";
     JSONObject json;
     TextView welcome;
     ArrayList<String> subjectList;
@@ -63,7 +65,8 @@ public class HomePage extends Fragment {
 
     TransitionDrawable transition;
     Boolean started = false;
-
+    String email;
+    String personName;
 
     public HomePage() {
     }
@@ -73,6 +76,12 @@ public class HomePage extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        email = getActivity().getIntent().getStringExtra("email");
+        personName = getActivity().getIntent().getStringExtra("name");
+
+
+        Toast.makeText(getActivity(), email, Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), name, Toast.LENGTH_LONG).show();
 
         b = new Bundle();
         client = new DefaultHttpClient();
@@ -117,12 +126,12 @@ public class HomePage extends Fragment {
                 TranslateAnimation.ABSOLUTE, 40,
                 TranslateAnimation.ABSOLUTE, 0.0f);
 
-        final AlphaAnimation welcomeAnimFade = new AlphaAnimation(0.0f,1.0f);
+        final AlphaAnimation welcomeAnimFade = new AlphaAnimation(0.0f, 1.0f);
 
         welcomeAnim = new AnimationSet(true);
         welcomeAnim.addAnimation(welcomeAnimFade);
         welcomeAnim.addAnimation(welcomeAnimTranslate);
-         welcomeAnim.setFillAfter(true);
+        welcomeAnim.setFillAfter(true);
         welcomeAnim.setDuration(900);
         welcomeAnim.setInterpolator(new DecelerateInterpolator());
 
@@ -165,21 +174,19 @@ public class HomePage extends Fragment {
         get_notice.setVisibility(View.GONE);
 
 
-
         get_marks.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
-                if(event.getAction() == MotionEvent.ACTION_DOWN)
-                v.startAnimation(buttonPressAnim);
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    v.startAnimation(buttonPressAnim);
 
-                if(event.getAction() == MotionEvent.ACTION_UP)
-                {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
                     v.startAnimation(buttonReleaseAnim);
 
                 }
 
-                    return false;
+                return false;
             }
         });
 
@@ -215,7 +222,7 @@ public class HomePage extends Fragment {
     //Json Part
     public JSONObject get_entire_json() throws IOException, JSONException {
 
-        StringBuilder url = new StringBuilder(URL);
+        StringBuilder url = new StringBuilder(URL + email + PASSWORD);
         HttpGet get = new HttpGet(url.toString());
         HttpResponse r = client.execute(get);
 
@@ -300,8 +307,6 @@ public class HomePage extends Fragment {
             //loader.clearAnimation();
             //loader.setVisibility(View.GONE);
             loader.setAnimation(loaderPop);
-
-
 
 
         }

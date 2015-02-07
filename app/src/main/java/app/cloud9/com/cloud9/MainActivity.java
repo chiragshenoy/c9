@@ -48,12 +48,24 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
 
     private static final int RC_SIGN_IN = 0;
     private boolean mIntentInProgress;
-
+    String email;
+    String personName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Bundle bundle = getIntent().getExtras();
+        email = bundle.getString("email");
+        personName = bundle.getString("name");
+
+//        NavigationDrawerFragment navigationDrawerFragment = new NavigationDrawerFragment();
+//        Bundle args = new Bundle();
+//        args.putString("email", email);
+//        args.putString("name",personName);
+//        navigationDrawerFragment.setArguments(args);
+
+
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -61,7 +73,6 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
                 .addScope(Plus.SCOPE_PLUS_LOGIN)
                 .build();
         mGoogleApiClient.connect();
-
 
 
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.c9_toolbar); //Appcompat support for a sexier action bar
@@ -80,6 +91,9 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
 
         mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.fragment_drawer);
         mNavigationDrawerFragment.setup(R.id.fragment_drawer, (DrawerLayout) findViewById(R.id.drawer), toolbar);
+        mNavigationDrawerFragment.nav_email.setText(email);
+        mNavigationDrawerFragment.nav_name.setText(personName);
+
 
 //        mTitle = mDrawerTitle = getTitle();
 //
@@ -261,7 +275,10 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
         Fragment fragment = null;
         switch (position) {
             case 0:
+                Bundle args = new Bundle();
+                args.putString("email", email);
                 fragment = new HomePage();
+                fragment.setArguments(args);
                 break;
 //            case 1:
 //                fragment = new AboutPage();
