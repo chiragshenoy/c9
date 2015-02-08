@@ -81,8 +81,8 @@ public class HomePage extends Fragment {
         personName = getActivity().getIntent().getStringExtra("name");
 
 
-        Toast.makeText(getActivity(), email, Toast.LENGTH_LONG).show();
-        Toast.makeText(getActivity(), name, Toast.LENGTH_LONG).show();
+//        Toast.makeText(getActivity(), email, Toast.LENGTH_LONG).show();
+//        Toast.makeText(getActivity(), name, Toast.LENGTH_LONG).show();
 
         b = new Bundle();
         client = new DefaultHttpClient();

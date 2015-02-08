@@ -13,128 +13,119 @@
         android:minHeight="?attr/actionBarSize"
         android:textColor="#ffffff"
         android:background="@color/bmsce_main_color"
-        android:elevation="4dp"
-        />
+        android:elevation="4dp" />
 
-        <ScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/scrollView"
-            android:layout_below="@id/c9_toolbar">
-
-    <RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="16dp"
-        android:transitionName="@string/transition_card"
-
-
-        >
-    <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/ic_class_group"
-        android:id="@+id/group_icon"
-        android:layout_marginRight="16dp"
-        android:transitionName="@string/transition_group_icon"
-        android:layout_alignParentLeft="true"
-
-        />
-
-
-    <TextView
-        android:text="Item 1"
-        android:layout_width="wrap_content"
-        android:transitionName="@string/transition_notice"
-        android:layout_centerHorizontal="true"
-        android:textSize="24sp"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/group_icon"
-        android:id="@+id/notice_subject"
-        android:textIsSelectable="true"
-        />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/light_gray"
-        android:layout_below="@+id/notice_subject"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:id="@+id/notice_separator" />
-
-
-    <TextView
+    <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/notice_body"
-        android:text="Lorem Ipsum vertaire hello boy how are you doing.Lorem Ipsum vertaire hello boy how are you doing.Lorem Ipsum vertaire hello boy how are you doing.Lorem Ipsum vertaire hello boy how are you doing.Lorem Ipsum vertaire hello boy how are you doing.Lorem Ipsum vertaire hello boy how are you doing. I am so cool and...Lorem Ipsum vertaire hello boy how are you doing. I am so cool and...Lorem Ipsum vertaire hello boy how are you doing. I am so cool and..."
-        android:layout_below="@id/notice_separator"
-        android:textIsSelectable="true"
-        android:transitionName="@string/transition_notice_body" />
+        android:id="@+id/scrollView"
+        android:layout_below="@id/c9_toolbar">
 
-
-
-
-
-
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@id/notice_body"-->
-        <!--android:textColor="#ff0000"-->
-        <!--android:id="@+id/attachments" />-->
-
-        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/attachments"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/notice_body"/>
-
-
-
-        <View
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/light_gray"
-            android:layout_below="@+id/attachments"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:id="@+id/notice_separator2" />
-
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#ff0000"
-            android:id="@+id/posted_by"
-            android:text="Posted by:"
-            android:textIsSelectable="true"
-            android:layout_below="@id/notice_separator2"/>
+            android:padding="16dp"
+            android:transitionName="@string/transition_card"
 
 
+            >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#ff0000"
-            android:id="@+id/notice_poster"
-            android:text="Shambhavi B. R."
-            android:textIsSelectable="true"
-            android:layout_below="@id/notice_separator2"
-            android:layout_toRightOf="@id/posted_by"/>
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_class_group"
+                android:id="@+id/group_icon"
+                android:layout_marginRight="16dp"
+                android:transitionName="@string/transition_group_icon"
+                android:layout_alignParentLeft="true"
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#ff0000"
-            android:id="@+id/notice_time"
-            android:text="5 hours ago..."
-            android:textIsSelectable="true"
-            android:layout_below="@id/notice_poster"/>
+                />
 
 
+            <TextView
+                android:text="Item 1"
+                android:layout_width="wrap_content"
+                android:transitionName="@string/transition_notice"
+                android:layout_centerHorizontal="true"
+                android:textSize="24sp"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/group_icon"
+                android:id="@+id/notice_subject"
+                android:textIsSelectable="true" />
 
-    </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/light_gray"
+                android:layout_below="@+id/notice_subject"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:id="@+id/notice_separator" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/notice_body"
+                android:layout_below="@id/notice_separator"
+                android:textIsSelectable="true"
+                android:transitionName="@string/transition_notice_body" />
+
+
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@id/notice_body"-->
+            <!--android:textColor="#ff0000"-->
+            <!--android:id="@+id/attachments" />-->
+
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/attachments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/notice_body" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/light_gray"
+                android:layout_below="@+id/attachments"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:id="@+id/notice_separator2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ff0000"
+                android:id="@+id/posted_by"
+                android:text="Posted by:"
+                android:textIsSelectable="true"
+                android:layout_below="@id/notice_separator2" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ff0000"
+                android:id="@+id/notice_poster"
+                android:text="Shambhavi B. R."
+                android:textIsSelectable="true"
+                android:layout_below="@id/notice_separator2"
+                android:layout_toRightOf="@id/posted_by" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ff0000"
+                android:id="@+id/notice_time"
+                android:text="5 hours ago..."
+                android:textIsSelectable="true"
+                android:layout_below="@id/notice_poster" />
+
+
+        </RelativeLayout>
     </ScrollView>
 
 </RelativeLayout>

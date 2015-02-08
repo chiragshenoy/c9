@@ -70,7 +70,7 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
     private static final int ITEMS_COUNT = 1;
     private List<NoticeJson> mItems;
 
-    final static String URL = "https://api.myjson.com/bins/1182v";
+    final static String URL = "https://api.myjson.com/bins/uw97";
     JSONArray json_array;
     HttpClient client;
     String name;
