@@ -2,6 +2,7 @@ package app.cloud9.com.cloud9;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.res.TypedArray;
@@ -94,6 +95,11 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
         mNavigationDrawerFragment.nav_email.setText(email);
         mNavigationDrawerFragment.nav_name.setText(personName);
 
+        Context context = getApplicationContext();
+        AppPrefs appPrefs = new AppPrefs(context);
+        String usn = appPrefs.getUsn_saved();
+
+        mNavigationDrawerFragment.nav_usn.setText(usn);
 
 //        mTitle = mDrawerTitle = getTitle();
 //

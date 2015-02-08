@@ -5,6 +5,7 @@ package app.cloud9.com.cloud9;
  */
 
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.AsyncTask;
@@ -279,6 +280,10 @@ public class HomePage extends Fragment {
                 }
                 name = json_basic_info.getString("name");
                 usn = json_basic_info.getString("usn");
+
+                Context context = getActivity();
+                AppPrefs appPrefs = new AppPrefs(context);
+                appPrefs.setUsn_saved(usn);
 
                 b.putStringArrayList("names_of_subjects", subjectList);
                 System.out.println(subjectList);

@@ -14,7 +14,7 @@ public class AppPrefs {
     private SharedPreferences.Editor prefsEditor;
     private String json_got = "json_got";
     private String sSc = "stars_collected";
-
+    private String usn_saved = "usn";
 
     public AppPrefs(Context context) {
         this.appSharedPrefs = context.getSharedPreferences(USER_PREFS,
@@ -31,14 +31,13 @@ public class AppPrefs {
         prefsEditor.putInt(json_got, _level).commit();
     }
 
-    //Stars
+    public String getUsn_saved() {
+        return appSharedPrefs.getString(usn_saved, "");
+    }
 
-//    public int getStars() {
-//        return appSharedPrefs.getInt(sSc, 0);
-//    }
-//
-//    public void setUser_name(int _stars) {
-//        prefsEditor.putInt(sSc, _stars).commit();
-//    }
+    public void setUsn_saved(String _usn_saved) {
+        prefsEditor.putString(usn_saved, _usn_saved).commit();
+    }
+
 
 }
