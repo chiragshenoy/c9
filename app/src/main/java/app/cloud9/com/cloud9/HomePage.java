@@ -8,6 +8,8 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.TransitionDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -48,8 +50,9 @@ public class HomePage extends Fragment {
     ImageView loader;
     HttpClient client;
     //    String URL = "http://cloud9.cu.cc/api/foo.sheets.api@gmail.com/mangoing";
-    String URL = "http://cloud9.cu.cc/api/";
-    final static String PASSWORD = "/mangoing";
+//    String URL = "http://cloud9.cu.cc/api/";
+//    final static String PASSWORD = "/mangoing";
+    String URL = "https://api.myjson.com/bins/1a08j";
     JSONObject json;
     TextView welcome;
     ArrayList<String> subjectList;
@@ -206,12 +209,18 @@ public class HomePage extends Fragment {
         get_notice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent b = new Intent(getActivity(), NoticeBoard.class);
-                //a.putExtra("array_list", subjectList);
-                //a.putExtra("marks", string_marks);
-                //Toast.makeText(getActivity(), "" + string_marks, Toast.LENGTH_SHORT).show();
 
-                startActivity(b);
+                if (isNetworkAvailable()) {
+                    Intent b = new Intent(getActivity(), NoticeBoard.class);
+                    //a.putExtra("array_list", subjectList);
+                    //a.putExtra("marks", string_marks);
+                    //Toast.makeText(getActivity(), "" + string_marks, Toast.LENGTH_SHORT).show();
+
+                    startActivity(b);
+                } else {
+                    Toast.makeText(getActivity(), "Please connect to the Internet", Toast.LENGTH_LONG).show();
+
+                }
             }
         });
 
@@ -220,10 +229,18 @@ public class HomePage extends Fragment {
     //end of oncreate
 
 
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
     //Json Part
     public JSONObject get_entire_json() throws IOException, JSONException {
 
-        StringBuilder url = new StringBuilder(URL + email + PASSWORD);
+//        StringBuilder url = new StringBuilder(URL + email + PASSWORD);
+        StringBuilder url = new StringBuilder(URL);
         HttpGet get = new HttpGet(url.toString());
         HttpResponse r = client.execute(get);
 

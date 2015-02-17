@@ -2,8 +2,11 @@ package app.cloud9.com.cloud9;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -80,12 +83,23 @@ public class LoginPage extends Activity implements OnClickListener, GoogleApiCli
     }
 
 
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.sign_in_button:
-                mGoogleApiClient.connect();
 
+            case R.id.sign_in_button:
+                if (!isNetworkAvailable()) {
+                    Toast.makeText(getApplicationContext(), "Not connected to the Internet", Toast.LENGTH_LONG).show();
+                } else {
+                    mGoogleApiClient.connect();
+                }
                 break;
 //            case R.id.sign_out_button:
 //                Log.v(TAG, "Tapped sign out");
@@ -206,6 +220,19 @@ public class LoginPage extends Activity implements OnClickListener, GoogleApiCli
 //    }
     protected void onStart() {
         super.onStart();
+        if (!isNetworkAvailable()) {
+            Toast.makeText(getApplicationContext(), "Not connected to the Internet", Toast.LENGTH_LONG).show();
+
+        } else {
+            mGoogleApiClient.connect();
+            if (mGoogleApiClient.isConnected()) {
+                getProfileInformation();
+                Intent a = new Intent(this, MainActivity.class);
+                a.putExtra("email", email);
+                a.putExtra("name", name);
+                startActivity(a);
+            }
+        }
     }
 
     protected void onStop() {

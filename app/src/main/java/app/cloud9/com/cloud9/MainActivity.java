@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
@@ -15,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
@@ -198,12 +201,25 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
         return super.onCreateOptionsMenu(menu);
     }
 
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
     @Override
     public void onNavigationDrawerItemSelected(int position) {
 //        Toast.makeText(this, "Menu item selected -> " + position, Toast.LENGTH_SHORT).show();
-        if (position == 1) {
+
+        if (position == 1 && isNetworkAvailable()) {
             Intent i = new Intent(this, NoticeBoard.class);
             startActivity(i);
+        }
+
+        if (position != 0 && position == 1 && !isNetworkAvailable()) {
+            Toast.makeText(getApplicationContext(), "Please connect to the Internet", Toast.LENGTH_LONG).show();
+
         }
 
         if (position == 2) {
