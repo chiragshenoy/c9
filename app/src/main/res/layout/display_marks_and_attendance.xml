@@ -61,7 +61,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/current_total_hoarding"
                             android:fontFamily="sans-serif"
-                            android:text="35"
+                            android:text="0"
                             android:textColor="#ffffff"
                             android:textSize="75sp"
                             android:textStyle="bold" />
@@ -283,6 +283,7 @@
 
                     <RelativeLayout
                         android:layout_width="0dp"
+                        android:id="@+id/quiz_section"
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
 
@@ -329,6 +330,7 @@
 
 
                     <RelativeLayout
+                        android:id="@+id/lab_section"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
@@ -355,7 +357,7 @@
                             style="@style/totalStyle"
                             android:layout_below="@id/lab_hoarding"
                             android:layout_toRightOf="@id/tv_l1_marks"
-                            android:text="/40"
+                            android:text="/10"
 
                             />
 
@@ -373,7 +375,7 @@
                             style="@style/totalStyle"
                             android:layout_below="@id/lab_hoarding"
                             android:layout_toRightOf="@id/tv_l2_marks"
-                            android:text="/40" />
+                            android:text="/10" />
 
                     </RelativeLayout>
 

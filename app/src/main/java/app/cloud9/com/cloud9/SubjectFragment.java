@@ -73,17 +73,24 @@ public class SubjectFragment extends Fragment {
     RelativeLayout attendanceCircle;
     private LayoutInflater mInflater;
     private ViewGroup mContainer;
+    View d1;
+    RelativeLayout lab_section;
+    RelativeLayout quiz_section;
+    LinearLayout ll3;
 
+    Boolean integrated = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
 
-        View d1 = inflater.inflate(R.layout.display_marks_and_attendance, container, false);
+        d1 = inflater.inflate(R.layout.display_marks_and_attendance, container, false);
         mInflater = inflater;
         mContainer = container;
-
+        lab_section = (RelativeLayout) d1.findViewById(R.id.lab_section);
+        quiz_section = (RelativeLayout) d1.findViewById(R.id.quiz_section);
+        ll3 = (LinearLayout) d1.findViewById(R.id.ll3);
         SwipeRefreshLayout swipeLayout = (SwipeRefreshLayout) d1.findViewById(R.id.swipe_container);
         //swipeLayout.setOnRefreshListener();
 
@@ -227,6 +234,7 @@ public class SubjectFragment extends Fragment {
                 tv_quiz_marks[i].setText(quiz_marks[i]);
             } catch (JSONException e) {
                 e.printStackTrace();
+                tv_quiz_marks[i].setVisibility(View.GONE);
             }
 
             try {
@@ -254,11 +262,17 @@ public class SubjectFragment extends Fragment {
             e.printStackTrace();
         }
 
+
+        //Make Lab Section Disappear if no lab_held field is present
         try {
             lab_held = json_current_subject.getString("lab_held");
 
         } catch (JSONException e) {
             e.printStackTrace();
+            lab_section.setVisibility(View.GONE);
+            integrated = true;
+//            ll3.removeView(lab_section);
+//            quiz_section.setGravity(Gravity.CENTER_HORIZONTAL);
         }
 
 
@@ -295,21 +309,22 @@ public class SubjectFragment extends Fragment {
 
         try {
             lab_externals = json_current_subject.getString("lab_external");
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         //Final Cie Marks
-
-        try {
-            final_cie_total = json_current_subject.getString("final_cie_marks");
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
+//
+//        try {
+//            final_cie_total = json_current_subject.getString("final_cie_marks");
+//
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
         final_cie_total = "37";
+
+//        final_cie_total = calculate();
+
         ValueAnimator cie_animator = new ValueAnimator();
         cie_animator.setObjectValues(0, Integer.parseInt(final_cie_total));
         cie_animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -328,6 +343,16 @@ public class SubjectFragment extends Fragment {
         //tv_cie_total.setText("37");
         return d1;
 
+    }
+
+    private String calculate() {
+        Integer final_marks;
+        if (integrated)
+            final_marks = Integer.parseInt(quiz_marks[0]) + Integer.parseInt(internal_marks[0] + Integer.parseInt(internal_marks[1]) + Integer.parseInt(internal_marks[2]) + Integer.parseInt(lab_marks[0]) + Integer.parseInt(lab_marks[1]));
+        else {
+            final_marks = 1;
+        }
+        return final_marks.toString();
     }
 
     public void onRefresh() {

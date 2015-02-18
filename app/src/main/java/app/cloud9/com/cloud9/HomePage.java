@@ -52,8 +52,13 @@ public class HomePage extends Fragment {
     //    String URL = "http://cloud9.cu.cc/api/foo.sheets.api@gmail.com/mangoing";
 //    String URL = "http://cloud9.cu.cc/api/";
 //    final static String PASSWORD = "/mangoing";
-//    String URL = "https://api.myjson.com/bins/1a08j";
-    String URL = "https://api.myjson.com/bins/1u9hb";
+
+    String URL = "https://api.myjson.com/bins/1a08j";
+
+
+    //4th sem url
+//    String URL = "https://api.myjson.com/bins/1u9hb";
+
     JSONObject json;
     TextView welcome;
     ArrayList<String> subjectList;
