@@ -80,35 +80,33 @@ public class SubjectFragment extends Fragment {
                              Bundle savedInstanceState) {
 
 
-
         View d1 = inflater.inflate(R.layout.display_marks_and_attendance, container, false);
         mInflater = inflater;
         mContainer = container;
 
-            SwipeRefreshLayout swipeLayout = (SwipeRefreshLayout) d1.findViewById(R.id.swipe_container);
-            //swipeLayout.setOnRefreshListener();
+        SwipeRefreshLayout swipeLayout = (SwipeRefreshLayout) d1.findViewById(R.id.swipe_container);
+        //swipeLayout.setOnRefreshListener();
 
 
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 
             @Override
             public void onRefresh() {
-               System.out.println("Refresh code below");
+                System.out.println("Refresh code below");
             }
         });
 
 
-            //Get the index of fragment
+        //Get the index of fragment
         mIndex = getArguments().getInt("index");
 
         final String[] color_list = getResources().getStringArray(R.array.subjectMainColors);
-        final String[] accent_list =  getResources().getStringArray(R.array.subjectAccentColors);
+        final String[] accent_list = getResources().getStringArray(R.array.subjectAccentColors);
 
         swipeLayout.setColorSchemeColors(Color.parseColor(accent_list[mIndex]),
                 Color.parseColor(accent_list[mIndex]),
                 Color.parseColor(accent_list[mIndex]),
                 Color.parseColor(accent_list[mIndex]));
-
 
 
         attendanceCircle = (RelativeLayout) d1.findViewById(R.id.circle);
@@ -126,9 +124,9 @@ public class SubjectFragment extends Fragment {
         tv_lab_marks[0] = (TextView) d1.findViewById(R.id.tv_l1_marks);
         tv_lab_marks[1] = (TextView) d1.findViewById(R.id.tv_l2_marks);
 
-        tv_internal_marks[0] =  (TextView) d1.findViewById(R.id.tv_i1_marks);
-        tv_internal_marks[1] =  (TextView) d1.findViewById(R.id.tv_i2_marks);
-        tv_internal_marks[2] =  (TextView) d1.findViewById(R.id.tv_i3_marks);
+        tv_internal_marks[0] = (TextView) d1.findViewById(R.id.tv_i1_marks);
+        tv_internal_marks[1] = (TextView) d1.findViewById(R.id.tv_i2_marks);
+        tv_internal_marks[2] = (TextView) d1.findViewById(R.id.tv_i3_marks);
 
         tv_attendance = (TextView) d1.findViewById(R.id.tv_attendance);
 
@@ -147,6 +145,12 @@ public class SubjectFragment extends Fragment {
         String subject_name_string = activity.getPageTitle(mIndex);
         String st = subject_name_string.replaceAll("\\s", "");
 
+        if (st.contains("++")) {
+            st = st.replace("++", "");
+            st = st.replace("-", "");
+
+        }
+        st = st.toLowerCase();
         uri = uri + st;
 
         int imageResource = getResources().getIdentifier(uri, null, "app.cloud9.com.cloud9");
@@ -178,56 +182,50 @@ public class SubjectFragment extends Fragment {
 
         //Get 3 internals marks
 
-        int pgId = getResources().getIdentifier("pd"+(mIndex + 1), "drawable","app.cloud9.com.cloud9");
+        int pgId = getResources().getIdentifier("pd" + (mIndex + 1), "drawable", "app.cloud9.com.cloud9");
 
 
-        for(int i = 0; i<3; i++){
+        for (int i = 0; i < 3; i++) {
 
+            try {
+
+                internal_marks[i] = json_current_subject.getString("internal_" + (i + 1));
                 try {
+                    progressBar[i].setProgressDrawable(getResources().getDrawable(pgId));
+                } catch (Exception e) {
+                    System.out.println("Drawable error for mindex = " + mIndex);
+                }
 
-                    internal_marks[i] = json_current_subject.getString("internal_" + (i + 1));
+                if (android.os.Build.VERSION.SDK_INT >= 11) {
+                    // will update the "progress" propriety of seekbar until it reaches progress
+                    progressBar[i].setProgress(0);
                     try {
-                        progressBar[i].setProgressDrawable(getResources().getDrawable(pgId));
+                        ObjectAnimator animation = ObjectAnimator.ofInt(progressBar[i], "progress", Integer.parseInt(internal_marks[i]));
+                        animation.setDuration(600); // 0.5 second
+
+                        animation.setInterpolator(new DecelerateInterpolator());
+                        animation.start();
+                    } catch (Exception e) {
+
                     }
-                    catch (Exception e){
-                        System.out.println("Drawable error for mindex = " + mIndex);
-                    }
-
-                    if(android.os.Build.VERSION.SDK_INT >= 11){
-                        // will update the "progress" propriety of seekbar until it reaches progress
-                        progressBar[i].setProgress(0);
-                        try {
-                            ObjectAnimator animation = ObjectAnimator.ofInt(progressBar[i], "progress", Integer.parseInt(internal_marks[i]));
-                            animation.setDuration(600); // 0.5 second
-
-                            animation.setInterpolator(new DecelerateInterpolator());
-                            animation.start();
-                        } catch (Exception e){
-
-                        }
-                    }
-                    else
-                      progressBar[i].setProgress(Integer.parseInt(internal_marks[i]));
-                    tv_internal_marks[i].setText(internal_marks[i]);
-                }
-
-                catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
+                } else
+                    progressBar[i].setProgress(Integer.parseInt(internal_marks[i]));
+                tv_internal_marks[i].setText(internal_marks[i]);
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+
+        }
 
         //Get 2 quiz and lab marks
 
-        for(int i = 0; i<2; i++){
+        for (int i = 0; i < 2; i++) {
 
             try {
 
                 quiz_marks[i] = json_current_subject.getString("quiz_" + (i + 1));
                 tv_quiz_marks[i].setText(quiz_marks[i]);
-            }
-
-            catch (JSONException e) {
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
 
@@ -235,9 +233,7 @@ public class SubjectFragment extends Fragment {
 
                 lab_marks[i] = json_current_subject.getString("lab_internal_" + (i + 1));
                 tv_lab_marks[i].setText(lab_marks[i]);
-            }
-
-            catch (JSONException e) {
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
 
@@ -274,10 +270,12 @@ public class SubjectFragment extends Fragment {
         }
 
         //Set attendance after calculation
+        try {
+            System.out.println(Integer.parseInt(theory_attended) / Integer.parseInt(theory_held) * 100);
+            calculatedAttendance = (int) ((Integer.parseInt(theory_attended) * 100.0f) / Integer.parseInt(theory_held));
+        } catch (Exception e) {
 
-        System.out.println(Integer.parseInt(theory_attended) / Integer.parseInt(theory_held) * 100);
-        calculatedAttendance = (int)((Integer.parseInt(theory_attended) * 100.0f) / Integer.parseInt(theory_held));
-
+        }
         ValueAnimator animator = new ValueAnimator();
         animator.setObjectValues(0, calculatedAttendance);
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
