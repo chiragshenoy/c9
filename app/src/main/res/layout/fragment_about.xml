@@ -38,7 +38,7 @@
         android:layout_marginLeft="-50dp"
         />
 
-    <TextView
+    <com.romainpiel.shimmer.ShimmerTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/shub_img"

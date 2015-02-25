@@ -53,7 +53,7 @@ public class HomePage extends Fragment {
 //    String URL = "http://cloud9.cu.cc/api/";
 //    final static String PASSWORD = "/mangoing";
 
-    String URL = "https://api.myjson.com/bins/1a08j";
+    String URL = "https://api.myjson.com/bins/347sv";
 
 
     //4th sem url
