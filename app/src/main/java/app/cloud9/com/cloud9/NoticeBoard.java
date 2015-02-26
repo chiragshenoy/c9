@@ -48,6 +48,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lsjwzh.widget.materialloadingprogressbar.CircleProgressBar;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -65,7 +67,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class NoticeBoard extends ActionBarActivity implements SearchView.OnQueryTextListener,NavigationDrawerCallbacks {
+public class NoticeBoard extends ActionBarActivity implements SearchView.OnQueryTextListener, NavigationDrawerCallbacks {
 
     private static final int ITEMS_COUNT = 1;
     private List<NoticeJson> mItems;
@@ -86,12 +88,31 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
     private RelativeLayout emptyNotice;
     private ProgressBar loadingAnim;
     private NavigationDrawerFragment mNavigationDrawerFragment;
-
+    int progress = 0;
+    CircleProgressBar progressWithoutBg;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.noticeboard);
 
+
+        progressWithoutBg = (CircleProgressBar) findViewById(R.id.progressWithoutBg);
+        progressWithoutBg.setColorSchemeResources(android.R.color.holo_red_light);
+
+//        handler = new Handler();
+//        for (int i = 0; i < 10; i++) {
+//            final int finalI = i;
+//            handler.postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    if(finalI *10>=90){
+//                        progress2.setVisibility(View.INVISIBLE);
+//                    }else {
+//                        progress2.setProgress(finalI * 10);
+//                    }
+//                }
+//            },1000*(i+1));
+//        }
 
         client = new DefaultHttpClient();
         new Read(this).execute();
@@ -283,7 +304,7 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
             super.onPostExecute(s);
 
 
-// Adding subject of notification
+// Adding subject of notifications
             mItems.clear();
             for (int i = 0; i < arraylist.size(); i++) {
                 mItems.add(i, arraylist.get(i));
@@ -294,13 +315,12 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
             mRecentRecyclerView.setVisibility(View.VISIBLE);
 
             Toast.makeText(NoticeBoard.this, "Notice Refreshed", Toast.LENGTH_SHORT).show();
-
+            progressWithoutBg.setVisibility(View.GONE);
         }
 
         @Override
         protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(values);
-
         }
     }
 
@@ -441,7 +461,7 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
                                         Pair.create(noticeSubj, subjectTransitionName),
                                         Pair.create(noticeIcon, groupIconTransitionName),
                                         Pair.create(noticeBody, bodyTransitionName),
-                                        Pair.create(card,cardTransitionName)
+                                        Pair.create(card, cardTransitionName)
                                 );
 
                         ActivityCompat.startActivity(NoticeBoard.this, i, options.toBundle());

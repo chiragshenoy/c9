@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -19,19 +19,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Recent Notices"
+        android:id="@+id/seperator"
+        android:layout_below="@id/c9_toolbar"
         android:layout_marginBottom="6dp" />
 
-        <!--<ProgressBar-->
-            <!--android:id="@+id/loadingPanel"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:indeterminate="true" />-->
+    <!--<ProgressBar-->
+    <!--android:id="@+id/loadingPanel"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:indeterminate="true" />-->
+
+    <com.lsjwzh.widget.materialloadingprogressbar.CircleProgressBar
+        android:id="@+id/progressWithoutBg"
+        app:mlpb_enable_circle_background="false"
+        app:mlpb_show_arrow="true"
+        app:mlpb_arrow_height="10dp"
+        android:layout_centerInParent="true"
+        app:mlpb_arrow_width="20dp"
+        app:mlpb_progress_stoke_width="5dp"
+        app:mlpb_progress_text_visibility="invisible"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recentrecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="6dp"
+        android:layout_below="@id/seperator"
         android:paddingRight="6dp" />
 
     <RelativeLayout
@@ -71,7 +86,7 @@
                 android:id="@+id/frame_container"
                 android:layout_width="match_parent"
                 android:clickable="true"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
             <!-- android:layout_marginTop="?android:attr/actionBarSize"-->
             <fragment
@@ -80,7 +95,7 @@
                 android:layout_width="@dimen/navigation_drawer_width"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
-                app:layout="@layout/fragment_navigation_drawer"/>
+                app:layout="@layout/fragment_navigation_drawer" />
         </android.support.v4.widget.DrawerLayout>
     </RelativeLayout>
 
@@ -101,5 +116,5 @@
 
     <!--/>-->
 
-</LinearLayout>
+</RelativeLayout>
 
