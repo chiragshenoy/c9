@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:id="@+id/lin_lay"
+    android:background="#00E5FF"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.romainpiel.shimmer.ShimmerTextView
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/shimmering_name"
-        android:textAllCaps="true"
-        android:fontFamily="sans-serif-condensed"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="#000"
-
-        />
+        android:id="@+id/logo"
+        android:src="@drawable/mainlogo" />
 
 </LinearLayout>

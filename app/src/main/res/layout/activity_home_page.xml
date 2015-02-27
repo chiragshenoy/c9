@@ -40,7 +40,7 @@
             android:adjustViewBounds="true"
             android:scaleType="centerInside"
             android:id="@+id/logoimg"
-            android:src="@drawable/logo2" />
+            android:src="@drawable/mainlogo" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -52,7 +52,7 @@
             android:textColor="#fff"
             android:fontFamily="sans-serif-condensed"
             android:textStyle="bold"
-            android:textSize="34sp"/>
+            android:textSize="34sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -63,16 +63,15 @@
             android:textColor="#88ffffff"
             android:textStyle="italic"
             android:textSize="14sp"
-            android:layout_centerHorizontal="true"
-            />
+            android:layout_centerHorizontal="true" />
 
         <!--<TextView-->
-            <!--android:id="@+id/welcome"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="bottom"-->
+        <!--android:id="@+id/welcome"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom"-->
 
-            <!--android:layout_centerHorizontal="true"/>-->
+        <!--android:layout_centerHorizontal="true"/>-->
 
     </RelativeLayout>
 
@@ -82,8 +81,8 @@
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:padding="15dp"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="80dp"
         android:text="SIGN IN"
         android:textColor="#ff0c53af"
         android:textSize="30sp"
