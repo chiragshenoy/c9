@@ -2,63 +2,68 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical">
 
-    <TextView
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/c9_toolbar"
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="\\\\Developers"
-        android:textColor="#000"
-        android:textSize="24sp"
-        android:fontFamily="sans-serif-condensed"
-        android:padding="16dp"
-        android:background="#44000000"/>
+        android:background="@color/bmsce_main_color"
+        android:minHeight="@dimen/abc_action_bar_default_height_material"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <!--<TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="\\\\Developers"-->
+    <!--android:textColor="#000"-->
+    <!--android:textSize="24sp"-->
+    <!--android:fontFamily="sans-serif-condensed"-->
+    <!--android:padding="16dp"-->
+    <!--android:background="#44000000" />-->
 
-<RelativeLayout
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="16dp">
-
-
-    <ImageView
-        android:layout_width="100dp"
+    <RelativeLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:src="@drawable/shub"
-        android:id="@+id/shub_img"/>
+        android:layout_marginTop="16dp">
 
-    <ImageView
-        android:layout_height="100dp"
-        android:layout_width="match_parent"
-        android:background="@drawable/slanted"
-        android:layerType="software"
-        android:scaleType="fitXY"
-        android:layout_toRightOf="@id/shub_img"
-        android:layout_marginLeft="-50dp"
-        />
 
-    <com.romainpiel.shimmer.ShimmerTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/shub_img"
-        android:id="@+id/shub_name"
-        android:text="Shubham Kanodia"
-        android:textAllCaps="true"
-        android:fontFamily="sans-serif-condensed"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="#000"
+        <!--<com.pkmmte.view.CircularImageView-->
+        <!--android:layout_width="100dp"-->
+        <!--android:layout_height="100dp"-->
+        <!--app:border_width="2dp"-->
+        <!--app:border_color="#FF000000"-->
+        <!--android:src="@drawable/shub"-->
+        <!--android:id="@+id/shub_img" />-->
 
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="UI, Design and Animation"
-        android:layout_below="@id/shub_name"
-        android:layout_toRightOf="@id/shub_img"
-        android:layout_marginLeft="12dp"
-        />
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/shub"
+            android:id="@+id/shub_img" />
+
+
+        <com.romainpiel.shimmer.ShimmerTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/shub_img"
+            android:id="@+id/shub_name"
+            android:text="Shubham Kanodia"
+            android:textAllCaps="true"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#000"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UI, Design and Animation"
+            android:layout_below="@id/shub_name"
+            android:layout_toRightOf="@id/shub_img" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -69,22 +74,12 @@
 
         <ImageView
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:src="@drawable/sou"
-            android:id="@+id/sou_img"/>
-
-        <ImageView
             android:layout_height="100dp"
-            android:layout_width="match_parent"
-            android:background="@drawable/slanted"
-            android:layerType="software"
-            android:scaleType="fitXY"
-            android:layout_toRightOf="@id/sou_img"
-            android:layout_marginLeft="-50dp"
-            />
+            android:src="@drawable/sou"
+            android:id="@+id/sou_img" />
 
-        <TextView
+
+        <com.romainpiel.shimmer.ShimmerTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/sou_img"
@@ -94,16 +89,14 @@
             android:fontFamily="sans-serif-condensed"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="#000"
-            />
+            android:textColor="#000" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Database and Backend"
             android:layout_below="@id/sou_name"
-            android:layout_toRightOf="@id/sou_img"
-            android:layout_marginLeft="12dp"
-            />
+            android:layout_toRightOf="@id/sou_img" />
     </RelativeLayout>
 
 
@@ -115,22 +108,11 @@
 
         <ImageView
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:src="@drawable/chirag"
-            android:id="@+id/chir_img"/>
-
-        <ImageView
             android:layout_height="100dp"
-            android:layout_width="match_parent"
-            android:background="@drawable/slanted"
-            android:layerType="software"
-            android:scaleType="fitXY"
-            android:layout_toRightOf="@id/chir_img"
-            android:layout_marginLeft="-50dp"
-            />
+            android:src="@drawable/chirag"
+            android:id="@+id/chir_img" />
 
-        <TextView
+        <com.romainpiel.shimmer.ShimmerTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/chir_img"
@@ -140,17 +122,14 @@
             android:fontFamily="sans-serif-condensed"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="#000"
-            />
+            android:textColor="#000" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Android Development"
             android:layout_below="@id/chir_name"
-            android:layout_toRightOf="@id/chir_img"
-            android:layout_marginLeft="12dp"
-            />
+            android:layout_toRightOf="@id/chir_img" />
     </RelativeLayout>
 
 </LinearLayout>

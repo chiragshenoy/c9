@@ -33,4 +33,5 @@ dependencies {
     compile 'com.romainpiel.shimmer:library:1.4.0@aar'
     compile 'com.facebook.rebound:rebound:0.3.4'
     compile 'com.lsjwzh:materialloadingprogressbar:0.5.2-RELEASE'
+    compile 'com.pkmmte.view:circularimageview:1.1'
 }
