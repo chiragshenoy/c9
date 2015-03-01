@@ -49,7 +49,7 @@ public class HomePage extends Fragment {
     Button get_notice;
     ImageView loader;
     HttpClient client;
-        String URL = "http://cloud9.cu.cc/api/chiragshenoy@gmail.com/mangoing";
+    String URL = "http://cloud9.cu.cc/api/chiragshenoy@gmail.com/mangoing";
 //    String URL = "http://cloud9.cu.cc/api/";
 //    final static String PASSWORD = "/mangoing";
 
@@ -204,12 +204,19 @@ public class HomePage extends Fragment {
         get_marks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent a = new Intent(getActivity(), Temp.class);
-                a.putExtra("array_list", subjectList);
-                a.putExtra("marks", string_marks);
-                //Toast.makeText(getActivity(), "" + string_marks, Toast.LENGTH_SHORT).show();
 
-                startActivity(a);
+                if (!string_marks.equals("[]")) {
+
+
+                    Intent a = new Intent(getActivity(), Temp.class);
+                    a.putExtra("array_list", subjectList);
+                    a.putExtra("marks", string_marks);
+
+                    startActivity(a);
+                } else {
+                    Toast.makeText(getActivity(), "Marks not entered", Toast.LENGTH_SHORT).show();
+
+                }
             }
         });
 
