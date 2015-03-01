@@ -49,7 +49,7 @@ public class HomePage extends Fragment {
     Button get_notice;
     ImageView loader;
     HttpClient client;
-    //    String URL = "http://cloud9.cu.cc/api/foo.sheets.api@gmail.com/mangoing";
+        String URL = "http://cloud9.cu.cc/api/chiragshenoy@gmail.com/mangoing";
 //    String URL = "http://cloud9.cu.cc/api/";
 //    final static String PASSWORD = "/mangoing";
 
@@ -58,7 +58,7 @@ public class HomePage extends Fragment {
 //    String URL = "https://api.myjson.com/bins/2l90b";
 
     //4th sem url
-    String URL = "https://api.myjson.com/bins/1u9hb";
+//    String URL = "https://api.myjson.com/bins/1u9hb";
 
     JSONObject json;
     TextView welcome;

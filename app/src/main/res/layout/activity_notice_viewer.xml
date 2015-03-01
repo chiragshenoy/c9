@@ -79,10 +79,13 @@
             <!--android:textColor="#ff0000"-->
             <!--android:id="@+id/attachments" />-->
 
-            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            <Button xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/attachments"
+                style="@style/Button"
+                android:padding="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
                 android:layout_below="@id/notice_body" />
 
 
@@ -120,7 +123,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="#ff0000"
                 android:id="@+id/notice_time"
-                android:text="5 hours ago..."
+                android:text=""
                 android:textIsSelectable="true"
                 android:layout_below="@id/notice_poster" />
 

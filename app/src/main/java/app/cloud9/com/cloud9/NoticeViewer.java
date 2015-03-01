@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,8 +20,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLDecoder;
 
 
 public class NoticeViewer extends ActionBarActivity {
@@ -29,9 +32,11 @@ public class NoticeViewer extends ActionBarActivity {
     TextView notice_subject;
     TextView notice_body;
     ProgressDialog mProgressDialog;
-    TextView attachments;
+    Button attachments;
     DownloadTask downloadTask;
     String[] attachments_array;
+    TextView notice_time;
+    TextView notice_poster;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,32 +46,44 @@ public class NoticeViewer extends ActionBarActivity {
 
         notice_subject = (TextView) findViewById(R.id.notice_subject);
         notice_body = (TextView) findViewById(R.id.notice_body);
-        attachments = (TextView) findViewById(R.id.attachments);
-
+        attachments = (Button) findViewById(R.id.attachments);
+        notice_time = (TextView) findViewById(R.id.notice_time);
+        notice_poster = (TextView) findViewById(R.id.notice_poster);
 
         String subject = b.getString("Subject");
         String text = b.getString("Text");
         String path = b.getString("Path");
+        String posted_at = b.getString("Posted_at");
+        String posted_by = b.getString("Posted_by");
 
         //Stripping [ ]
         path = path.substring(1, path.length() - 1);
+        path = path.replace("\"", "");
 
         //Case of no attachments
         if (path != "")
             attachments_array = path.split(",");
 
-//        Toast.makeText(this, attachments_array[0] + " bobo " + attachments_array[1], Toast.LENGTH_LONG).show();
 
+        notice_poster.setText(posted_by);
         notice_subject.setText(subject);
         notice_body.setText(text);
+        notice_time.setText(posted_at);
+
 
         attachments.setTextSize(20);
         attachments.setText("Click to download Attachments");
 
-        //Stripping additional " " Not sure if required.
+        // Stripping additional " " Not sure if required.
         for (int j = 0; j < attachments_array.length; j++) {
-            if (attachments_array[j] != "")
-                attachments_array[j] = attachments_array[j].substring(1, attachments_array[j].length() - 1);
+            if (attachments_array[j] != "") {
+                try {
+                    attachments_array[j] = URLDecoder.decode("http://" + attachments_array[j], "UTF-8");
+                    attachments_array[j] = attachments_array[j].replace("\\/", "/");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
 
@@ -77,10 +94,8 @@ public class NoticeViewer extends ActionBarActivity {
 
                 //HardCoded 2 links
                 //downloadTask.execute("https://www.cl.cam.ac.uk/teaching/2001/DSAlgs/dsa.pdf","http://elearning.vtu.ac.in/17/e-Notes/10CS54/Unit1-KRA.pdf");
-                downloadTask.execute(new String[]{"https://www.cl.cam.ac.uk/teaching/2001/DSAlgs/dsa.pdf", "http://farm1.static.flickr.com/114/298125983_0e4bf66782_b.jpg"});
-
-                //Based on structure of path, extendable to the working version
-                //downloadTask.execute(attachments_array);
+//                downloadTask.execute(new String[]{"https://www.cl.cam.ac.uk/teaching/2001/DSAlgs/dsa.pdf", "http://farm1.static.flickr.com/114/298125983_0e4bf66782_b.jpg"});
+                downloadTask.execute(attachments_array);
             }
         });
 
@@ -124,7 +139,6 @@ public class NoticeViewer extends ActionBarActivity {
             HttpURLConnection connection = null;
             for (int i = 0; i < sUrl.length; i++) {
                 try {
-                    String extension = "";
 
                     URL url = new URL(sUrl[i]);
                     connection = (HttpURLConnection) url.openConnection();
@@ -141,19 +155,27 @@ public class NoticeViewer extends ActionBarActivity {
                     // might be -1: server did not report the length
                     int fileLength = connection.getContentLength();
 
-                    if (url.toString().contains("doc")) {
-                        extension = ".doc";
-                    } else if (url.toString().contains(".pdf")) {
-                        extension = ".pdf";
-                    } else if (url.toString().contains(".jpg")) {
-                        extension = ".jpg";
-                    }
+//
+//                    if (url.toString().contains("doc")) {
+//                        extension = ".doc";
+//                    } else if (url.toString().contains(".pdf")) {
+//                        extension = ".pdf";
+//                    } else if (url.toString().contains(".jpg")) {
+//                        extension = ".jpg";
+//                    } else if (url.toString().contains(".png")) {
+//                        extension = ".png";
+//                    } else if (url.toString().contains(".docx")) {
+//                        extension = ".docx";
+//                    }
 
                     String root = Environment.getExternalStorageDirectory().toString();
-                    File myDir = new File(root + "/Cloud9");
+                    File myDir = new File(root + "/InSync Downloads");
                     myDir.mkdirs();
 
-                    String fname = "attachment" + i + extension;
+
+                    String fname = url.toString().substring(url.toString().lastIndexOf('/') + 1);
+
+
                     File file = new File(myDir, fname);
 
 

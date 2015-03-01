@@ -99,21 +99,6 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
         progressWithoutBg = (CircleProgressBar) findViewById(R.id.progressWithoutBg);
         progressWithoutBg.setColorSchemeResources(android.R.color.holo_red_light);
 
-//        handler = new Handler();
-//        for (int i = 0; i < 10; i++) {
-//            final int finalI = i;
-//            handler.postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    if(finalI *10>=90){
-//                        progress2.setVisibility(View.INVISIBLE);
-//                    }else {
-//                        progress2.setProgress(finalI * 10);
-//                    }
-//                }
-//            },1000*(i+1));
-//        }
-
         client = new DefaultHttpClient();
         new Read(this).execute();
 
@@ -448,6 +433,8 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
                         b.putString("Subject", arraylist.get(position).getSubject());
                         b.putString("Text", arraylist.get(position).getText());
                         b.putString("Path", arraylist.get(position).getPath());
+                        b.putString("Posted_by", arraylist.get(position).getPosted_by());
+                        b.putString("Posted_at", arraylist.get(position).getPosted_at());
                         i.putExtras(b);
 
                         String subjectTransitionName = getString(R.string.transition_notice);
