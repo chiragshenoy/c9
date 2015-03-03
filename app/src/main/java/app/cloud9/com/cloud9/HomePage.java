@@ -12,7 +12,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -49,7 +48,7 @@ public class HomePage extends Fragment {
     Button get_notice;
     ImageView loader;
     HttpClient client;
-    String URL = "http://cloud9.cu.cc/api/chiragshenoy@gmail.com/mangoing";
+//    String URL = "http://cloud9.cu.cc/api/chiragshenoy@gmail.com/mangoing";
 //    String URL = "http://cloud9.cu.cc/api/";
 //    final static String PASSWORD = "/mangoing";
 
@@ -58,7 +57,7 @@ public class HomePage extends Fragment {
 //    String URL = "https://api.myjson.com/bins/2l90b";
 
     //4th sem url
-//    String URL = "https://api.myjson.com/bins/1u9hb";
+    String URL = "https://api.myjson.com/bins/1u9hb";
 
     JSONObject json;
     TextView welcome;
@@ -106,27 +105,6 @@ public class HomePage extends Fragment {
         loaderHoarding = (RelativeLayout) rootView.findViewById(R.id.loader_hoarding);
         loader = (ImageView) rootView.findViewById(R.id.bms_loader);
         relativeLayout = (RelativeLayout) rootView.findViewById(R.id.relative_layout);
-
-
-        final Handler handler = new Handler();
-
-        /*final Runnable r = new Runnable() {
-            public void run() {
-                if (!started) {
-                    transition.startTransition(10000);
-                    started = true;
-                    handler.postDelayed(this, 10000);
-
-                } else {
-                    transition.reverseTransition(10000);
-                    handler.postDelayed(this, 10000);
-                    started = false;
-                }
-            }
-        };
-
-        handler.postDelayed(r, 0);
-*/
 
         buttonPressAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.button_animation);
         buttonReleaseAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.button_release_animation);
@@ -226,10 +204,6 @@ public class HomePage extends Fragment {
 
                 if (isNetworkAvailable()) {
                     Intent b = new Intent(getActivity(), NoticeBoard.class);
-                    //a.putExtra("array_list", subjectList);
-                    //a.putExtra("marks", string_marks);
-                    //Toast.makeText(getActivity(), "" + string_marks, Toast.LENGTH_SHORT).show();
-
                     startActivity(b);
                 } else {
                     Toast.makeText(getActivity(), "Please connect to the Internet", Toast.LENGTH_LONG).show();
@@ -288,27 +262,27 @@ public class HomePage extends Fragment {
                 json = get_entire_json();
                 String string_basic_info = json.getString("basic_info");
                 JSONObject json_basic_info = new JSONObject(string_basic_info);
+                try {
+                    //Get only marks Objects
+                    string_marks = json.getString("marks");
+                    b.putString("marks", string_marks);
+                    JSONObject json_marks = new JSONObject(string_marks);
 
-                //Get only marks Objects
-                string_marks = json.getString("marks");
-                b.putString("marks", string_marks);
-                JSONObject json_marks = new JSONObject(string_marks);
+                    //Get names of the objects dynamically
+                    Iterator keys = json_marks.keys();
 
-                //Get names of the objects dynamically
-                Iterator keys = json_marks.keys();
+                    while (keys.hasNext()) {
+                        // loop to get the dynamic key
 
-                while (keys.hasNext()) {
-                    // loop to get the dynamic key
+                        String currentDynamicKey = (String) keys.next();
+                        subjectList.add(i, currentDynamicKey);
+                        i++;
+                    }
 
-                    String currentDynamicKey = (String) keys.next();
-                    subjectList.add(i, currentDynamicKey);
-                    i++;
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
 
-                //Name Shortening
-                for (String subjName : subjectList) {
-
-                }
                 name = json_basic_info.getString("name");
                 usn = json_basic_info.getString("usn");
 

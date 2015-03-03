@@ -8,8 +8,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.PowerManager;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -44,6 +43,9 @@ public class NoticeViewer extends ActionBarActivity {
         setContentView(R.layout.activity_notice_viewer);
         Bundle b = getIntent().getExtras();
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.c9_toolbar); //Appcompat support for a sexier action bar
+        setSupportActionBar(toolbar);
+
         notice_subject = (TextView) findViewById(R.id.notice_subject);
         notice_body = (TextView) findViewById(R.id.notice_body);
         attachments = (Button) findViewById(R.id.attachments);
@@ -55,6 +57,8 @@ public class NoticeViewer extends ActionBarActivity {
         String path = b.getString("Path");
         String posted_at = b.getString("Posted_at");
         String posted_by = b.getString("Posted_by");
+
+        getSupportActionBar().setTitle(posted_by);
 
         //Stripping [ ]
         path = path.substring(1, path.length() - 1);
@@ -252,25 +256,25 @@ public class NoticeViewer extends ActionBarActivity {
 //
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_notice_viewer, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.menu_notice_viewer, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 }

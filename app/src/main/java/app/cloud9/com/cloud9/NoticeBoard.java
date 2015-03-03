@@ -28,7 +28,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.util.Pair;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -103,15 +102,15 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
         new Read(this).execute();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.c9_toolbar); //Appcompat support for a sexier action bar
-        toolbar.setNavigationIcon(R.drawable.ic_drawer);
+//        toolbar.setNavigationIcon(R.drawable.ic_drawer);
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setTitle(R.string.noticeboard_title);
         setSupportActionBar(toolbar);
         toolbar.setTitle(R.string.noticeboard_title);
-        toolbar.setNavigationIcon(R.drawable.ic_drawer);
-
-        mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.fragment_drawer);
-        mNavigationDrawerFragment.setup(R.id.fragment_drawer, (DrawerLayout) findViewById(R.id.drawer), toolbar);
+//        toolbar.setNavigationIcon(R.drawable.ic_drawer);
+//
+//        mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.fragment_drawer);
+//        mNavigationDrawerFragment.setup(R.id.fragment_drawer, (DrawerLayout) findViewById(R.id.drawer), toolbar);
 
 
         emptyNotice = (RelativeLayout) findViewById(R.id.rl_empty_notice);
@@ -196,13 +195,6 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
                     } catch (Exception e) {
 
                     }
-//                    noticeJsons[i].setId(jsonObject.getString("id"));
-//                    noticeJsons[i].posted_by = jsonObject.getString("posted_by");
-//                    noticeJsons[i].subject = jsonObject.getString("subject");
-//                    noticeJsons[i].text = jsonObject.getString("text");
-//                    noticeJsons[i].target_group = jsonObject.getString("target_group");
-//                    noticeJsons[i].posted_at = jsonObject.getString("posted_at");
-//                    noticeJsons[i].path = jsonObject.getString("path");
                 }
 
 
@@ -334,15 +326,12 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
         mRecentRecyclerView = (RecyclerView) findViewById(R.id.recentrecyclerView);
         mRecentRecyclerView.setVisibility(View.GONE);
         mRecentRecyclerView.setHasFixedSize(true);
-//        mOldRecyclerView = (RecyclerView) findViewById(R.id.oldrecyclerView);
 
         mRecentLayoutManager = new LinearLayoutManager(this);
 
-//        mOldLayoutManager = new LinearLayoutManager(this);
 
 
         mRecentRecyclerView.setLayoutManager(mRecentLayoutManager);
-//        mOldRecyclerView.setLayoutManager(mOldLayoutManager);
 
 
         mAdapter = new RecyclerView.Adapter<CustomViewHolder>() {
@@ -372,7 +361,6 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
 
         };
         mRecentRecyclerView.setAdapter(mAdapter);
-//        mOldRecyclerView.setAdapter(mAdapter);
 
         if (mAdapter.getItemCount() == 0) {
             emptyNotice.setVisibility(View.VISIBLE);
@@ -426,6 +414,7 @@ public class NoticeBoard extends ActionBarActivity implements SearchView.OnQuery
 
                         View noticeSubj = view.findViewById(R.id.notice_subject);
                         View noticeIcon = view.findViewById(R.id.group_icon);
+
                         View noticeBody = view.findViewById(R.id.notice_body);
                         View card = view.findViewById(R.id.card_view);
 

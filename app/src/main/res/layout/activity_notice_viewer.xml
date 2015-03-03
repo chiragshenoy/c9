@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -72,16 +73,9 @@
                 android:transitionName="@string/transition_notice_body" />
 
 
-            <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_below="@id/notice_body"-->
-            <!--android:textColor="#ff0000"-->
-            <!--android:id="@+id/attachments" />-->
-
-            <Button xmlns:android="http://schemas.android.com/apk/res/android"
+            <Button
                 android:id="@+id/attachments"
-                style="@style/Button"
+                android:background="@color/bmsce_main_color"
                 android:padding="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-    <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/card_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        card_view:cardCornerRadius="2dp"
-        android:layout_marginBottom="4dp"
+<android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:cardCornerRadius="2dp"
+    android:layout_marginBottom="4dp"
     android:foreground="?android:attr/selectableItemBackground"
     android:clickable="true"
     android:transitionName="@string/transition_card"
@@ -16,140 +15,87 @@
     >
 
     <RelativeLayout
-        android:orientation="vertical" android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
         android:id="@+id/notice_ll">
 
 
-    <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/ic_class_group"
-        android:id="@+id/group_icon"
-        android:layout_marginRight="16dp"
-        android:transitionName="@string/transition_group_icon"
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_class_group"
+            android:id="@+id/group_icon"
+            android:layout_marginRight="16dp"
+            android:transitionName="@string/transition_group_icon"
 
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/notice_subject"
-        android:text="Lorem ipsum"
-        android:transitionName="@string/transition_notice"
-        android:textSize="16sp"
-        android:textColor="#212121"
-        android:layout_toRightOf="@id/group_icon"
-
-        />
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/notice_body"
-        android:text="Lorem ipsum generata modem pipsum mipsum holalata gypsum"
-        android:textSize="14sp"
-        android:textColor="#ff696969"
-        android:ellipsize="end"
-        android:singleLine="true"
-        android:layout_below="@id/notice_subject"
-        android:layout_toRightOf="@id/group_icon"
-        android:fontFamily="sans-serif-light"
-        android:transitionName="@string/transition_notice_body"
-
-        />
-
-        <!--<LinearLayout-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/ll_attach"-->
-            <!--android:orientation="horizontal"-->
-            <!--android:layout_below="@id/notice_subject"-->
-            <!--android:layout_toRightOf="@id/group_icon"-->
-            <!--android:paddingTop="24dp">-->
-
-
-
-            <!--<ImageView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="35dp"-->
-                <!--android:id="@+id/attachmet1"-->
-                <!--android:src="@drawable/ic_ppt"-->
-                <!--android:adjustViewBounds="true"-->
-
-                <!--android:layout_marginLeft="2dp"/>-->
-            <!--<ImageView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="35dp"-->
-                <!--android:id="@+id/attachmet2"-->
-                <!--android:src="@drawable/ic_doc"-->
-                <!--android:layout_marginLeft="2dp"-->
-                <!--android:adjustViewBounds="true"/>-->
-            <!--<ImageView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="35dp"-->
-                <!--android:id="@+id/attachmet3"-->
-                <!--android:src="@drawable/ic_xls"-->
-                <!--android:adjustViewBounds="true"-->
-
-                <!--android:layout_marginLeft="2dp"/>-->
-            <!--<ImageView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="35dp"-->
-                <!--android:id="@+id/attachmet4"-->
-                <!--android:src="@drawable/ic_pdf"-->
-                <!--android:adjustViewBounds="true"-->
-
-                <!--android:layout_marginLeft="2dp"/>-->
-
-
-            <!--<ImageView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="35dp"-->
-                <!--android:id="@+id/attachmet0"-->
-                <!--android:src="@drawable/dummy"-->
-
-                <!--android:adjustViewBounds="true"-->
-                <!--android:layout_marginLeft="2dp"/>-->
-
-            <!--</LinearLayout>-->
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/notice_body"
-    android:layout_alignParentRight="true"
-    android:orientation="horizontal">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:id="@+id/notice_post"
-        android:textColor="#ff8a8a8a"
- />
-<View
-    android:layout_width="1sp"
-    android:layout_height="14sp"
-    android:paddingLeft="5sp"
-    android:paddingRight="5sp"
-    android:layout_marginLeft="5sp"
-    android:layout_marginRight="5sp"
-    android:background="#ffc8c8c8"/>
+            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/notice_time"
-            android:text="5:00pm"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:textColor="#4C83C9"
+            android:id="@+id/notice_subject"
+            android:text="Lorem ipsum"
+            android:transitionName="@string/transition_notice"
+            android:textSize="16sp"
+            android:textColor="#212121"
+            android:layout_toRightOf="@id/group_icon"
+
             />
-</LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/notice_body"
+            android:text="Lorem ipsum generata modem pipsum mipsum holalata gypsum"
+            android:textSize="14sp"
+            android:textColor="#ff696969"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:layout_below="@id/notice_subject"
+            android:layout_toRightOf="@id/group_icon"
+            android:fontFamily="sans-serif-light"
+            android:transitionName="@string/transition_notice_body"
+
+            />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/notice_body"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:id="@+id/notice_post"
+                android:textColor="#ff8a8a8a" />
+
+            <View
+                android:layout_width="1sp"
+                android:layout_height="14sp"
+                android:paddingLeft="5sp"
+                android:paddingRight="5sp"
+                android:layout_marginLeft="5sp"
+                android:layout_marginRight="5sp"
+                android:background="#ffc8c8c8" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/notice_time"
+                android:text="5:00pm"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="#4C83C9" />
+        </LinearLayout>
 
     </RelativeLayout>
-    </android.support.v7.widget.CardView>
+</android.support.v7.widget.CardView>
 
 

@@ -4,74 +4,72 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:background="#fff"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    >
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:background="@drawable/drawer_background"
-    android:paddingBottom="4dp"
-    android:paddingLeft="16dp"
-    android:paddingTop="16dp"
-    android:paddingRight="0dp">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/nav_name"
-        android:text="Shubham Kanodia"
-        android:textAllCaps="true"
-        android:textSize="18sp"
-        android:fontFamily="sans-serif-condensed"
-        android:textStyle="bold"
-        android:layout_alignParentRight="true"
-        android:textColor="#fff"
-        android:paddingRight="16dp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/drawer_background"
+        android:paddingBottom="4dp"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp"
+        android:paddingRight="0dp">
 
-    <TextView
-        android:id="@+id/nav_usn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:fontFamily="sans-serif-condensed"
-        android:textAllCaps="true"
-        android:textColor="#88ffffff"
-        android:textStyle="bold"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/nav_name"
-        android:text="1BM12IS073"
-        android:paddingRight="16dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/nav_name"
+            android:text="Shubham Kanodia"
+            android:textAllCaps="true"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:layout_alignParentRight="true"
+            android:textColor="#fff"
+            android:paddingRight="16dp" />
 
-    <TextView
-        android:id="@+id/nav_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity=""
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:fontFamily="sans-serif-condensed"
-        android:text="shubhamsizzles@gmail.com"
-        android:paddingLeft="10dp"
-        android:paddingTop="2dp"
-        android:textColor="#ffffff"
-        android:paddingBottom="0dp"
-        android:paddingRight="16dp"
-        android:alpha="1" />
+        <TextView
+            android:id="@+id/nav_usn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:fontFamily="sans-serif-condensed"
+            android:textAllCaps="true"
+            android:textColor="#88ffffff"
+            android:textStyle="bold"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/nav_name"
+            android:text="1BM12IS073"
+            android:paddingRight="16dp" />
 
-
+        <TextView
+            android:id="@+id/nav_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity=""
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:fontFamily="sans-serif-condensed"
+            android:text="shubhamsizzles@gmail.com"
+            android:paddingLeft="10dp"
+            android:paddingTop="2dp"
+            android:textColor="#ffffff"
+            android:paddingBottom="0dp"
+            android:paddingRight="16dp"
+            android:alpha="1" />
 
 
     </RelativeLayout>
 
-<android.support.v7.widget.RecyclerView
-    android:id="@+id/drawerList"
-    android:layout_width="match_parent"
-    android:clickable="true"
-    android:focusableInTouchMode="true"
-    android:scrollbars="vertical"
-    android:focusable="true"
-    android:layout_height="match_parent"
-    android:background="@color/back_gray"
-    android:layout_marginTop="12dp"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/drawerList"
+        android:layout_width="match_parent"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
+        android:scrollbars="vertical"
+        android:focusable="true"
+        android:layout_height="match_parent"
+        android:background="@color/back_gray"
+        android:layout_marginTop="12dp" />
 
-    </LinearLayout>
+</LinearLayout>
