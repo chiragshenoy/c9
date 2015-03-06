@@ -134,6 +134,18 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
             Intent i = new Intent(this, LoginPage.class);
             startActivity(i);
         }
+//        if (position == 4) {
+//            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+//            Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath()
+//                    + "/InSync Downloads/");
+//            intent.setDataAndType(uri, "*/*");
+//            startActivity(Intent.createChooser(intent, "Open folder"));
+//            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+//            Uri uri = Uri.parse(Environment.getExternalStorageDirectory()
+//                    + "/InSync Downloads/");
+//            intent.setDataAndType(uri, "*/*");
+//            startActivity(Intent.createChooser(intent, "Open folder"));
+//        }
     }
 
     @Override
@@ -161,6 +173,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
     /**
      * Diplaying fragment view for selected nav drawer list item
      */
+
     private void displayView(int position) {
         // update the main content by replacing fragments
         Fragment fragment = null;
